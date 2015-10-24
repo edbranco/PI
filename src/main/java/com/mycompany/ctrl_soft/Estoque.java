@@ -38,14 +38,16 @@ public class Estoque {
     public void cadastrarProduto(ProdutosDAO p) {
         PreparedStatement stmt = null;
         Connection conn = null;
-
-        String sql = "INSERT INTO PRODUTO (NOME_PRODUTO, MARCA_PRODUTO, " // ESPACO ANTES DO "
-                + "VL_PRECO, VL_QTDE, DT_CADASTRO) VALUES (?, ?, ?, ?, ?)";
+        
+        String idfilial ="SELECT ID_FILIAL FROM TB_Funcionario WHERE ID_Funcionario = 1 ";
+        
+        String sql = "INSERT INTO PRODUTO (ID_FILIAL,NOMEPRODUTO,MARCA, " // ESPACO ANTES DO "
+                + "PRECO, QTDE) VALUES (?, ?, ?, ?, ?)";
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             
-            
+           
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getMarca());
             stmt.setDouble(3, p.getPreco());
