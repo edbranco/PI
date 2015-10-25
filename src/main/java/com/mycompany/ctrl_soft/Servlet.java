@@ -84,14 +84,13 @@ public class Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        long id = Long.valueOf("idProduto");
         String nome = request.getParameter("nomeProduto");
         String marca = request.getParameter("marcaProduto");
         double preco = Double.valueOf(request.getParameter("precoProduto"));
         int qtde = Integer.valueOf(request.getParameter("qtdeProduto"));
 
         ProdutosDAO p1 = new ProdutosDAO();
-
+        
         p1.setNome(nome);
         p1.setMarca(marca);
         p1.setPreco(preco);

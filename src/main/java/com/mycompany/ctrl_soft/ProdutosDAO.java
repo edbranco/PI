@@ -25,6 +25,7 @@ import java.util.logging.Logger;
  */
 public class ProdutosDAO {
     protected Long id;
+    protected Long id_filial;
     protected String nome;
     protected String marca;
     protected double preco;
@@ -47,6 +48,14 @@ public class ProdutosDAO {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getId_filial() {
+        return id_filial;
+    }
+
+    public void setId_filial(long id_filial) {
+        this.id_filial = id_filial;
     }
 
     public String getNome() {

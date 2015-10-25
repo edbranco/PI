@@ -20,10 +20,26 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Eder Rodrigues
+ * @author Douglas
  */
-public class Estoque {
-       private Connection obterConexao() throws SQLException, ClassNotFoundException {
+public class teste {
+    
+    
+    
+    public static void main(String[] args) {
+        
+        ProdutosDAO produtoteste = new ProdutosDAO();
+        
+        
+        produtoteste.setNome("teste");
+        produtoteste.setMarca("teste");
+        produtoteste.setPreco(12);
+        produtoteste.setQtde(1);
+        cadastrarProduto(produtoteste);
+        
+    }
+    
+    static private Connection obterConexao() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         // Passo 1: Registrar driver JDBC.
         Class.forName("org.apache.derby.jdbc.ClientDataSource");
@@ -35,10 +51,12 @@ public class Estoque {
         return conn;
     }
     
-    public void cadastrarProduto(ProdutosDAO p) {
+    static void cadastrarProduto(ProdutosDAO p) {
         PreparedStatement stmt = null;
-        Statement stmt2 = null;
         Connection conn = null;
+        Statement stmt2 = null;
+        
+        System.out.println("teste douglas");
         
         int id_filial_user_logado = 0;
         
@@ -51,7 +69,7 @@ public class Estoque {
             while (resultados.next()) {
                 id_filial_user_logado = resultados.getInt("ID_FILIAL");
             }
-            //seta o id_filial para a classe de produto
+            System.out.println(id_filial_user_logado);
             p.setId_filial(id_filial_user_logado);
 
         } catch (SQLException ex) {
@@ -83,7 +101,6 @@ public class Estoque {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             
-           
             stmt.setLong(1, p.getId_filial());
             stmt.setString(2, p.getNome());
             stmt.setString(3, p.getMarca());
@@ -160,4 +177,6 @@ public class Estoque {
         }
         return null;
     }
+        
 }
+
