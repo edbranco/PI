@@ -28,14 +28,21 @@ public class teste {
     
     public static void main(String[] args) {
         
-        ProdutosDAO produtoteste = new ProdutosDAO();
+        ClienteDAO produtoteste = new ClienteDAO();
         
         
+//        produtoteste.setNome("teste");
+//        produtoteste.setMarca("teste");
+//        produtoteste.setPreco(12);
+//        produtoteste.setQtde(1);
         produtoteste.setNome("teste");
-        produtoteste.setMarca("teste");
-        produtoteste.setPreco(12);
-        produtoteste.setQtde(1);
-        cadastrarProduto(produtoteste);
+        produtoteste.setCpf("teste");
+        produtoteste.setTelefone("123");
+        produtoteste.setEmail("teste");
+        produtoteste.setEndereco("teste");
+        produtoteste.setUf("sp");
+        produtoteste.setCidade("sao paulo");
+        cadastrarCliente(produtoteste);
         
     }
     
@@ -176,6 +183,51 @@ public class teste {
             }
         }
         return null;
+    }
+    
+    //Função de cadastro de Clientes
+    static void cadastrarCliente(ClienteDAO cliente) {
+        PreparedStatement stmt = null;
+        Connection conn = null;       
+        
+        String sql = "INSERT INTO TB_Cliente (NomeCliente, CPF, Telefone, Email, " // ESPACO ANTES DO "
+                + "Endereco, Cidade, UF) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            
+           
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getCpf());
+            stmt.setString(3, cliente.getTelefone());
+            stmt.setString(4, cliente.getEmail());
+            stmt.setString(5, cliente.getEndereco());
+            stmt.setString(6, cliente.getCidade());
+            stmt.setString(7, cliente.getUf());
+//            stmt.setDate(5, new java.sql.Date(p.getDtCadastro().getTime()));
+            stmt.executeUpdate();
+            System.out.println("Registro incluído com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
         
 }

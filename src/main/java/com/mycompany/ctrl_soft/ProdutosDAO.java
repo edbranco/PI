@@ -96,12 +96,6 @@ public class ProdutosDAO {
 
     public void setDtCadastro(Date dtCadastro) {
         this.dtCadastro = dtCadastro;
-    }
-    
- 
-
-    
-    
-    
+    }   
     
 }
