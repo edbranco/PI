@@ -206,4 +206,43 @@ public class Estoque {
             }
         }
     }
+        public void cadastrarFilial(FilialDAO f) {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "INSERT INTO TB_FILIAL (NOME_FILIAL, UF, " // ESPACO ANTES DO "
+                + "CNPJ) VALUES (?, ?, ?)";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, f.getNomefilial());
+            stmt.setString(2, f.getUf());
+            stmt.setString(3, f.getCnpj());
+            stmt.executeUpdate();
+            System.out.println("Registro incluido com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+    }
 }
