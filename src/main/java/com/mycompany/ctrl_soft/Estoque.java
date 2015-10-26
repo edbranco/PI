@@ -206,6 +206,44 @@ public class Estoque {
             }
         }
     }
+    
+    //Função de exclusão de Clientes
+    public void excluirCliente(int id) {
+        PreparedStatement stmt = null;
+        Connection conn = null;       
+        
+        String sql = "DELETE FROM TB_Cliente WHERE ID_Cliente = ?";
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+                       
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("Registro excluídoo com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    
         public void cadastrarFilial(FilialDAO f) {
         PreparedStatement stmt = null;
         Connection conn = null;

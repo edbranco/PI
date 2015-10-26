@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Excluir Cliente</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Exclusão de Clientes</h1>
+
+        <form action="ServletExcluirCliente" method="post">            
+            <p>
+                <label for="idcliente">Digite o ID do Cliente:</label>
+                <input type="number" name="idCliente" id="idcliente">
+            </p>
+
+            <input type="submit" value="Enviar"/>
+        </form>
+        <a href="Back_end.jsp">Listar</a>
+    </body>
+</html>
