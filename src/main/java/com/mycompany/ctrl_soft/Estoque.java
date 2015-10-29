@@ -243,6 +243,115 @@ public class Estoque {
         }
     }
     
+    //Função de consulta de Clientes
+    public Cliente consultarCliente(Cliente cliente, int id) {
+        PreparedStatement stmt = null;
+        Statement stmt2 = null;
+        Connection conn = null;
+        
+        String nome = "";
+        String cpf = "";
+        String telefone = "";
+        String email = "";
+        String endereco = "";
+        String cidade = "";
+        String uf = "";
+        
+        String sql2 = "SELECT * FROM TB_Cliente WHERE ID_Cliente = " + id;
+        try {
+            conn = obterConexao();
+            stmt2 = conn.createStatement();
+            ResultSet resultados = stmt2.executeQuery(sql2);
+
+            while (resultados.next()) {
+                nome = resultados.getString("NomeCliente");
+                cpf = resultados.getString("CPF");
+                telefone = resultados.getString("Telefone");
+                email = resultados.getString("Email");
+                endereco = resultados.getString("Endereco");
+                cidade = resultados.getString("Cidade");
+                uf = resultados.getString("UF");
+            }
+            //seta o id_filial para a classe de produto
+            cliente.setNome(nome);
+            cliente.setCpf(cpf);
+            cliente.setTelefone(telefone);
+            cliente.setEmail(email);
+            cliente.setEndereco(endereco);
+            cliente.setCidade(cidade);
+            cliente.setUf(uf);
+            
+            return cliente;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    //Função de alteração de Clientes
+    public void alterarCliente(Cliente cliente, int id) {
+        PreparedStatement stmt = null;
+        Connection conn = null;       
+        
+        String sql = "UPDATE TB_Cliente SET NomeCliente=?, CPF=?, Telefone=?, Email=?, Endereco=?, "
+                + "Cidade=?, UF=? WHERE ID_Cliente = ?";
+        
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+                       
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getCpf());
+            stmt.setString(3, cliente.getTelefone());
+            stmt.setString(4, cliente.getEmail());
+            stmt.setString(5, cliente.getEndereco());
+            stmt.setString(6, cliente.getCidade());
+            stmt.setString(7, cliente.getUf());
+            stmt.setLong(8, id);
+            stmt.executeUpdate();
+            System.out.println("Registro alterado com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
     
         public void cadastrarFilial(FilialDAO f) {
         PreparedStatement stmt = null;
