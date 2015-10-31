@@ -13,7 +13,24 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <p>Cliente excluído com sucesso</p>
+       <a href="Back_end_filial.jsp">Filial</a>
+       <a href="cadastroProduto.jsp">Produto</a>
+       <a href="Back_end_cliente.jsp">Cliente</a>
+      
+        <form action="ServletExcluirCliente" method="post">            
+      
+            <fieldset>
+                <legend>Excluir Cliente </legend>
+            <p>
+                <label for="idcliente">Digite o ID do Cliente:</label>
+                <input type="number" name="idCliente" id="idcliente">
+            </p>
+            <input type="submit" value="Enviar"/>
+            
+            </fieldset>
+
+        </form>
+     <a href="Back_end_cliente_excluir.jsp">excluir cliente</a>
+     <a href="Alterar_Cliente.jsp">alterar cliente</a>
     </body>
 </html>

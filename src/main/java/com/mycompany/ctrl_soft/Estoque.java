@@ -248,7 +248,7 @@ public class Estoque {
         PreparedStatement stmt = null;
         Statement stmt2 = null;
         Connection conn = null;
-        
+
         String nome = "";
         String cpf = "";
         String telefone = "";
@@ -264,6 +264,7 @@ public class Estoque {
             ResultSet resultados = stmt2.executeQuery(sql2);
 
             while (resultados.next()) {
+                
                 nome = resultados.getString("NomeCliente");
                 cpf = resultados.getString("CPF");
                 telefone = resultados.getString("Telefone");

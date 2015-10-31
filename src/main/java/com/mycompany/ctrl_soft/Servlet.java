@@ -103,7 +103,7 @@ public class Servlet extends HttpServlet {
         request.setAttribute("produto", p1);
 
         RequestDispatcher disp
-                = request.getRequestDispatcher("Back_end.jsp");
+                = request.getRequestDispatcher("cadastroProduto.jsp");
         disp.forward(request, response);
 
     }

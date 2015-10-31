@@ -12,10 +12,32 @@
         <title>JSP Page</title>
     </head>
     <body>
+
+        <a href="Back_end_filial.jsp">Filial</a>
+        <a href="cadastroProduto.jsp">Produto</a>
+        <a href="Back_end_cliente.jsp">Cliente</a>
        
-        <h1>Hello World!</h1>
-        <p>Nome: ${filial.nomefilial}</p>
-        <p>UF: ${filial.uf}</p>
-        <p>UF: ${filial.cnpj}</p>
+        <form action="ServletFilial" method="post">
+             
+             <fieldset>
+                <legend>Cadastrar Filial</legend>  
+            <p>
+                <label for="txtNome">Nome:</label>
+                <input type="text" name="nomefilial" id="nomefilial">
+            </p>
+            <p>
+                <label for="txtNome">UF:</label>
+                <input type="text" name="uf" id="uf">
+            </p>
+            <p>
+                <label for="txtNome">CNPJ:</label>
+                <input type="text" name="cnpj" id="cnpj">
+            </p>
+
+            <input type="submit" value="Enviar"/>
+
+             </fieldset>
+               
+        </form>
     </body>
 </html>

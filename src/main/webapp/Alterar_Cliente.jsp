@@ -12,10 +12,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Alteração de Clientes</title>
     </head>
-    <body>
-        <h1>Alteração de Clientes</h1>
+    <body> 
+       <a href="Back_end_filial.jsp">Filial</a>
+       <a href="cadastroProduto.jsp">Produto</a>
+       <a href="Back_end_cliente.jsp">Cliente</a>
         
         <form action="ServletClienteAlterar" method="post">
+       
+            <fieldset>
+                <legend>Alterar cliente  </legend>
+            
             <p>
                 <label for="idcliente">Digite o ID do Cliente:</label>
                 <input type="number" name="idCliente" id="idcliente">
@@ -77,10 +83,11 @@
                 <label for="cidadecliente">Cidade:</label>
                 <input type="text" name="cidadeCliente" id="cidadecliente" value="${cliente.cidade}" />
             </p>
-            
-
+          
             <input type="submit" name="btn-consultar" value="Pesquisar" />
             <input type="submit" name="btn-consultar" value="Alterar" />
+            </fieldset>
+          
         </form>
             
     </body>
