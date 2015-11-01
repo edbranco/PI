@@ -13,6 +13,7 @@
         <title>JSP Page</title>
     </head>
    <body>
+       <jsp:include page="Menu.jsp" />
        
        <a href="Back_end_filial.jsp">Filial</a>
        <a href="cadastroProduto.jsp">Produto</a>

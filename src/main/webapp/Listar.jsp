@@ -12,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="Menu.jsp" />
+        
         <h1>Hello World!</h1>
         <table>
            <tr>

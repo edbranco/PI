@@ -101,7 +101,7 @@ public class ServletClienteCadastrar extends HttpServlet {
         request.setAttribute("cliente", cliente);
 
         RequestDispatcher disp
-                = request.getRequestDispatcher("Back_end_cliente.jsp");
+                = request.getRequestDispatcher("Cadastrar_Cliente.jsp");
         disp.forward(request, response);
     }
 

@@ -95,7 +95,7 @@ public class ServletClienteExcluir extends HttpServlet {
         request.setAttribute("cliente", cliente);
 
         RequestDispatcher disp
-                = request.getRequestDispatcher("Back_end_cliente_excluir.jsp");
+                = request.getRequestDispatcher("Excluir_Cliente.jsp");
         disp.forward(request, response);
     }
 

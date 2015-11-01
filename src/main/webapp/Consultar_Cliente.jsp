@@ -13,8 +13,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Consulta de Clientes</title>
+        <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
+        <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />        
     </head>
-    <body>        
+    
+    <body>
+        <jsp:include page="Menu.jsp" />
+        
         <form action="ServletClienteConsultar" method="post">            
           
             <fieldset>
@@ -52,5 +58,10 @@
                 </tr>
             </c:forEach>
         </table>
+        
+        
+        <!-- Scripts: jQuery e Bootstrap -->
+        <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
     </body>
 </html>
