@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Douglas
  */
-@WebServlet(name = "ServletCliente", urlPatterns = {"/ServletCliente"})
-public class ServletCliente extends HttpServlet {
+@WebServlet(name = "ServletClienteExcluir", urlPatterns = {"/ServletClienteExcluir"})
+public class ServletClienteExcluir extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class ServletCliente extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletCliente</title>");            
+            out.println("<title>Servlet ServletExcluirCliente</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletCliente at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletExcluirCliente at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -84,32 +84,18 @@ public class ServletCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String nome = request.getParameter("nomeCliente");
-        String cpf = request.getParameter("cpfCliente");
-        String telefone = request.getParameter("telefoneCliente");
-        String email = request.getParameter("emailCliente");
-        String endereco = request.getParameter("enderecoCliente");
-        String cidade = request.getParameter("cidadeCliente");
-        String uf = request.getParameter("estadoCliente");
+        String idTexto = request.getParameter("idCliente");
+        int id = Integer.parseInt(idTexto);
 
         ClienteDAO cliente = new ClienteDAO();
-        
-        cliente.setNome(nome);
-        cliente.setCpf(cpf);
-        cliente.setTelefone(telefone);
-        cliente.setEmail(email);
-        cliente.setEndereco(endereco);
-        cliente.setCidade(cidade);
-        cliente.setUf(uf);
-        cliente.setDtCadastro(new Date());
 
-        Estoque dao = new Estoque();
-        dao.cadastrarCliente(cliente);
+        ClienteDAO dao = new ClienteDAO();
+        dao.excluirCliente(id);
 
         request.setAttribute("cliente", cliente);
 
         RequestDispatcher disp
-                = request.getRequestDispatcher("Back_end_cliente.jsp");
+                = request.getRequestDispatcher("Back_end_cliente_excluir.jsp");
         disp.forward(request, response);
     }
 

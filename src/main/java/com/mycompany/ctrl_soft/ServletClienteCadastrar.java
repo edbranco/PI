@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Douglas
  */
-@WebServlet(name = "ServletClienteAlterar", urlPatterns = {"/ServletClienteAlterar"})
-public class ServletClienteAlterar extends HttpServlet {
+@WebServlet(name = "ServletClienteCadastrar", urlPatterns = {"/ServletClienteCadastrar"})
+public class ServletClienteCadastrar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class ServletClienteAlterar extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletClienteAlterar</title>");            
+            out.println("<title>Servlet ServletCliente</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletClienteAlterar at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletCliente at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,69 +76,32 @@ public class ServletClienteAlterar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-//        String nome = request.getParameter("nomeCliente");
-//        String cpf = request.getParameter("cpfCliente");
-//        String telefone = request.getParameter("telefoneCliente");
-//        String email = request.getParameter("emailCliente");
-//        String endereco = request.getParameter("enderecoCliente");
-//        String cidade = request.getParameter("cidadeCliente");
-//        String uf = request.getParameter("estadoCliente");
-//
-//        ClienteDAO cliente = new ClienteDAO();
-//        
-//        cliente.setNome(nome);
-//        cliente.setCpf(cpf);
-//        cliente.setTelefone(telefone);
-//        cliente.setEmail(email);
-//        cliente.setEndereco(endereco);
-//        cliente.setCidade(cidade);
-//        cliente.setUf(uf);
-//        cliente.setDtCadastro(new Date());
-//
-//        Estoque dao = new Estoque();
-//        dao.cadastrarCliente(cliente);
-//
-//        request.setAttribute("cliente", cliente);
-//
-//        RequestDispatcher disp
-//                = request.getRequestDispatcher("Back_end_cliente.jsp");
-//        disp.forward(request, response);
-        String idTexto = request.getParameter("idCliente");
-        String botaoValor = request.getParameter("btn-consultar");
-        int id = Integer.parseInt(idTexto);
+        String nome = request.getParameter("nomeCliente");
+        String cpf = request.getParameter("cpfCliente");
+        String telefone = request.getParameter("telefoneCliente");
+        String email = request.getParameter("emailCliente");
+        String endereco = request.getParameter("enderecoCliente");
+        String cidade = request.getParameter("cidadeCliente");
+        String uf = request.getParameter("estadoCliente");
 
         Cliente cliente = new Cliente();
+        
+        cliente.setNome(nome);
+        cliente.setCpf(cpf);
+        cliente.setTelefone(telefone);
+        cliente.setEmail(email);
+        cliente.setEndereco(endereco);
+        cliente.setCidade(cidade);
+        cliente.setUf(uf);
+        cliente.setDtCadastro(new Date());
 
         ClienteDAO dao = new ClienteDAO();
-        
-        if (botaoValor.equals("Pesquisar")) {
-            dao.consultarCliente(cliente, id);
-        }
-        else {
-            String nome = request.getParameter("nomeCliente");
-            String cpf = request.getParameter("cpfCliente");
-            String telefone = request.getParameter("telefoneCliente");
-            String email = request.getParameter("emailCliente");
-            String endereco = request.getParameter("enderecoCliente");
-            String cidade = request.getParameter("cidadeCliente");
-            String uf = request.getParameter("estadoCliente");
-
-            cliente.setNome(nome);
-            cliente.setCpf(cpf);
-            cliente.setTelefone(telefone);
-            cliente.setEmail(email);
-            cliente.setEndereco(endereco);
-            cliente.setCidade(cidade);
-            cliente.setUf(uf);
-            cliente.setDtCadastro(new Date());
-
-            dao.alterarCliente(cliente, id);
-        }
+        dao.cadastrarCliente(cliente);
 
         request.setAttribute("cliente", cliente);
 
         RequestDispatcher disp
-                = request.getRequestDispatcher("Alterar_Cliente.jsp");
+                = request.getRequestDispatcher("Back_end_cliente.jsp");
         disp.forward(request, response);
     }
 

@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Douglas
  */
-@WebServlet(name = "ServletExcluirCliente", urlPatterns = {"/ServletExcluirCliente"})
-public class ServletExcluirCliente extends HttpServlet {
+@WebServlet(name = "ServletClienteConsultar", urlPatterns = {"/ServletClienteConsultar"})
+public class ServletClienteConsultar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +40,10 @@ public class ServletExcluirCliente extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletExcluirCliente</title>");            
+            out.println("<title>Servlet ServletAlterarCliente</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletExcluirCliente at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletAlterarCliente at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,14 +62,6 @@ public class ServletExcluirCliente extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        Estoque dao = new Estoque();
-        List<ProdutosDAO> listaP = dao.listarProdutos();
-
-        request.setAttribute("produtos", listaP);
-
-        RequestDispatcher disp
-                = request.getRequestDispatcher("Listar.jsp");
-        disp.forward(request, response);
     }
 
     /**
@@ -84,18 +76,19 @@ public class ServletExcluirCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String idTexto = request.getParameter("idCliente");
-        int id = Integer.parseInt(idTexto);
+        String nome = request.getParameter("nomeCliente");
 
-        ClienteDAO cliente = new ClienteDAO();
+        Cliente cliente = new Cliente();
+        
+        cliente.setNome(nome);
 
-        Estoque dao = new Estoque();
-        dao.excluirCliente(id);
+        ClienteDAO dao = new ClienteDAO();
+        List<Cliente> listaClientes = dao.listarCliente(nome);
 
-        request.setAttribute("cliente", cliente);
+        request.setAttribute("listaClientes", listaClientes);
 
         RequestDispatcher disp
-                = request.getRequestDispatcher("Back_end_cliente_excluir.jsp");
+                = request.getRequestDispatcher("Consultar_Cliente.jsp");
         disp.forward(request, response);
     }
 

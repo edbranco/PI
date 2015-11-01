@@ -20,7 +20,7 @@
         <form action="ServletClienteAlterar" method="post">
        
             <fieldset>
-                <legend>Alterar cliente  </legend>
+                <legend>Alterar cliente</legend>
             
             <p>
                 <label for="idcliente">Digite o ID do Cliente:</label>
