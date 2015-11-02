@@ -5,25 +5,13 @@
  */
 package com.mycompany.ctrl_soft;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Eder Rodrigues
  */
-public class ProdutosDAO {
+public class Produto {
     protected Long id;
     protected Long id_filial;
     protected String nome;
@@ -32,10 +20,10 @@ public class ProdutosDAO {
     protected int qtde;
     protected Date dtCadastro;
     
-    public ProdutosDAO(){
+    public Produto(){
         
     }
-    public ProdutosDAO(String n, String m, double p, int q){
+    public Produto(String n, String m, double p, int q){
         this.nome=n;
         this.marca=m;
         this.preco=p;
@@ -96,6 +84,5 @@ public class ProdutosDAO {
 
     public void setDtCadastro(Date dtCadastro) {
         this.dtCadastro = dtCadastro;
-    }   
-    
+    }
 }

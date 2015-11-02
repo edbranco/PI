@@ -25,7 +25,7 @@
                         <li><a href="#">Cadastrar Filial</a></li>
                         <li><a href="#">Cadastrar Funcionário</a></li>
                         <li><a href="Cadastrar_Cliente.jsp">Cadastrar Cliente</a></li> 
-                        <li><a href="#">Cadastrar Produto</a></li> 
+                        <li><a href="cadastroProduto">Cadastrar Produto</a></li> 
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#">Alterar</a>
@@ -33,7 +33,7 @@
                         <li><a href="#">Alterar Filial</a></li>
                         <li><a href="#">Alterar Funcionário</a></li>
                         <li><a href="Alterar_Cliente.jsp">Alterar Cliente</a></li> 
-                        <li><a href="#">Alterar Produto</a></li> 
+                        <li><a href="AlterarProduto">Alterar Produto</a></li> 
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#">Consultar</a>

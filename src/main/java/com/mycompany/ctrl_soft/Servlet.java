@@ -62,8 +62,8 @@ public class Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        Estoque dao = new Estoque();
-        List<ProdutosDAO> listaP = dao.listarProdutos();
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produto> listaP = dao.listarProdutos();
 
         request.setAttribute("produtos", listaP);
 
@@ -89,7 +89,7 @@ public class Servlet extends HttpServlet {
         double preco = Double.valueOf(request.getParameter("precoProduto"));
         int qtde = Integer.valueOf(request.getParameter("qtdeProduto"));
 
-        ProdutosDAO p1 = new ProdutosDAO();
+        Produto p1 = new Produto();
         
         p1.setNome(nome);
         p1.setMarca(marca);
@@ -97,7 +97,7 @@ public class Servlet extends HttpServlet {
         p1.setQtde(qtde);
         p1.setDtCadastro(new Date());
 
-        Estoque dao = new Estoque();
+        ProdutoDAO dao = new ProdutoDAO();
         dao.cadastrarProduto(p1);
 
         request.setAttribute("produto", p1);

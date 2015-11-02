@@ -43,5 +43,8 @@
             
              </fieldset>
         </form>
+            <a href="AlterarProduto.jsp">Alterar Produto</a>
+        
+        
     </body>
 </html>

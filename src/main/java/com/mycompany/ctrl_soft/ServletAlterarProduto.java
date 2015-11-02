@@ -8,7 +8,6 @@ package com.mycompany.ctrl_soft;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Douglas
+ * @author Eder Rodrigues
  */
-@WebServlet(name = "ServletClienteExcluir", urlPatterns = {"/ServletClienteExcluir"})
-public class ServletClienteExcluir extends HttpServlet {
+@WebServlet(name = "ServletAlterarProduto", urlPatterns = {"/ServletAlterarProduto"})
+public class ServletAlterarProduto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,19 +33,7 @@ public class ServletClienteExcluir extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletExcluirCliente</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletExcluirCliente at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,14 +49,6 @@ public class ServletClienteExcluir extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        ProdutoDAO dao = new ProdutoDAO();
-        List<Produto> listaP = dao.listarProdutos();
-
-        request.setAttribute("produtos", listaP);
-
-        RequestDispatcher disp
-                = request.getRequestDispatcher("Listar.jsp");
-        disp.forward(request, response);
     }
 
     /**
@@ -83,19 +62,39 @@ public class ServletClienteExcluir extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        String idTexto = request.getParameter("idCliente");
+        processRequest(request, response);
+        String idTexto = request.getParameter("idProduto");
+        String botaoValor = request.getParameter("btn-consultar");
         int id = Integer.parseInt(idTexto);
 
-        ClienteDAO cliente = new ClienteDAO();
+        Produto produto = new Produto();
 
-        ClienteDAO dao = new ClienteDAO();
-        dao.excluirCliente(id);
+        ProdutoDAO dao = new ProdutoDAO();
 
-        request.setAttribute("cliente", cliente);
+        if (botaoValor.equals("Pesquisar")) {
+            dao.consultarProduto(produto, id);
+        } else if (botaoValor.equals("Alterar")) {
+            String nome = request.getParameter("nomeProduto");
+            int idfilial = Integer.parseInt(request.getParameter("idFilial"));
+            String marca = request.getParameter("marcaProduto");
+            String preco = request.getParameter("precoProduto");
+            int qtde = Integer.parseInt(request.getParameter("qtdeProduto"));
+
+            produto.setId(id);
+            produto.setNome(nome);
+            produto.setId_filial(idfilial);
+            produto.setMarca(marca);
+            produto.setPreco(Double.parseDouble(preco));
+            produto.setQtde(qtde);
+            produto.setDtCadastro(new Date());
+
+            dao.alterarProduto(produto, id);
+        }
+
+        request.setAttribute("produto", produto);
 
         RequestDispatcher disp
-                = request.getRequestDispatcher("Excluir_Cliente.jsp");
+                = request.getRequestDispatcher("AlterarProduto.jsp");
         disp.forward(request, response);
     }
 
