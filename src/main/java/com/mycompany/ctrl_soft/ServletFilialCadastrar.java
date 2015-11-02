@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Lucas
  */
 @WebServlet(name = "ServletFilial", urlPatterns = {"/ServletFilial"})
-public class ServletFilial extends HttpServlet {
+public class ServletFilialCadastrar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -85,12 +85,12 @@ public class ServletFilial extends HttpServlet {
         filial.setUf(ufFilial);
         filial.setCnpj(cnpjFilial);
         
-        Estoque dao = new Estoque();
+        FilialDAO dao = new FilialDAO();
         dao.cadastrarFilial(filial);
         request.setAttribute("filial", filial);
         
         RequestDispatcher disp
-                = request.getRequestDispatcher("Back_end_filial.jsp");
+                = request.getRequestDispatcher("Cadastrar_Filial.jsp");
         disp.forward(request, response);
         
         

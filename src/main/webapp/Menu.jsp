@@ -22,7 +22,7 @@
             <ul class="nav nav-pills">
                 <li class="dropdown"><a href="#">Cadastrar</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Cadastrar Filial</a></li>
+                        <li><a href="Cadastrar_Filial.jsp">Cadastrar Filial</a></li>
                         <li><a href="#">Cadastrar Funcionário</a></li>
                         <li><a href="Cadastrar_Cliente.jsp">Cadastrar Cliente</a></li> 
                         <li><a href="cadastroProduto">Cadastrar Produto</a></li> 
@@ -46,7 +46,7 @@
                 </li>
                 <li class="dropdown"><a href="#">Excluir</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Excluir Filial</a></li>
+                        <li><a href="Excluir_Filial.jsp">Excluir Filial</a></li>
                         <li><a href="#">Excluir Funcionário</a></li>
                         <li><a href="Excluir_Cliente.jsp">Excluir Cliente</a></li> 
                         <li><a href="#">Excluir Produto</a></li> 

@@ -21,7 +21,7 @@
        
      
 
-        <form action="ServletCliente" method="post">
+        <form action="ServletClienteCadastrar" method="post">
      
             <fieldset>
                 <legend>Cadastrar Cliente </legend>   

@@ -18,7 +18,7 @@
        <a href="cadastroProduto.jsp">Produto</a>
        <a href="Back_end_cliente.jsp">Cliente</a>
       
-        <form action="ServletExcluirCliente" method="post">            
+        <form action="ServletClienteExcluir" method="post">            
       
             <fieldset>
                 <legend>Excluir Cliente </legend>
