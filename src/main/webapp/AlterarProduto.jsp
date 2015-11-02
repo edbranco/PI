@@ -13,7 +13,7 @@
     </head>
     <body>
         <form action="ServletAlterarProduto" method="post">            
-
+            <jsp:include page="Menu.jsp" />
             <fieldset>
                 <legend>Alterar Produtos</legend>  
                 <p>

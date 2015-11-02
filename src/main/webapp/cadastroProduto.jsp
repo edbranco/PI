@@ -13,9 +13,6 @@
     </head>
     <body>
             <jsp:include page="Menu.jsp" />
-        <a href="Back_end_filial.jsp">Filial</a>
-        <a href="cadastroProduto.jsp">Produto</a>
-        <a href="Back_end_cliente.jsp">Cliente</a>
                  
         <form action="Servlet" method="post">            
           
@@ -43,7 +40,7 @@
             
              </fieldset>
         </form>
-            <a href="AlterarProduto.jsp">Alterar Produto</a>
+  
         
         
     </body>

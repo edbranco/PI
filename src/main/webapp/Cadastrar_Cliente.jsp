@@ -15,11 +15,6 @@
    <body>
        <jsp:include page="Menu.jsp" />
        
-       <a href="Back_end_filial.jsp">Filial</a>
-       <a href="cadastroProduto.jsp">Produto</a>
-       <a href="Back_end_cliente.jsp">Cliente</a>
-       
-     
 
         <form action="ServletClienteCadastrar" method="post">
      
@@ -85,9 +80,6 @@
 
             <input type="submit" value="Enviar"/>
         </form>
-        
-        <a href="Back_end_cliente_excluir.jsp">excluir cliente</a>
-        <a href="Alterar_Cliente.jsp">alterar cliente</a>
         
     </body>
 </html>

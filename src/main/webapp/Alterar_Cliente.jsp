@@ -19,9 +19,7 @@
     </head>
     <body> 
         <jsp:include page="Menu.jsp" />
-       <a href="Back_end_filial.jsp">Filial</a>
-       <a href="cadastroProduto.jsp">Produto</a>
-       <a href="Back_end_cliente.jsp">Cliente</a>
+       
         
         <form action="ServletClienteAlterar" method="post">
        
@@ -90,8 +88,7 @@
                 <input type="text" name="cidadeCliente" id="cidadecliente" value="${cliente.cidade}" />
             </p>
           
-            <input type="submit" name="btn-consultar" value="Pesquisar" />
-            <input type="submit" name="btn-consultar" value="Alterar" />
+            
             </fieldset>
           
         </form>

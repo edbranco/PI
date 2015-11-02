@@ -18,38 +18,40 @@
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <div id="menu-header">
+       
+<div id="menu-header">
             <ul class="nav nav-pills">
-                <li class="dropdown"><a href="#">Cadastrar</a>
+                <li class="dropdown"><a href="#">Produto</a>
                     <ul class="dropdown-menu">
-                        <li><a href="Cadastrar_Filial.jsp">Cadastrar Filial</a></li>
-                        <li><a href="#">Cadastrar Funcionário</a></li>
-                        <li><a href="Cadastrar_Cliente.jsp">Cadastrar Cliente</a></li> 
-                        <li><a href="cadastroProduto">Cadastrar Produto</a></li> 
+                        <li><a href="cadastroProduto.jsp">Cadastrar</a></li>
+                        <li><a href="AlterarProduto.jsp">Alterar</a></li>
+                        <li><a href="#">Consultar</a></li>
+                        <li><a href="#">Excluir</a></li>
+                          
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#">Alterar</a>
+                <li class="dropdown"><a href="#">Filial</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Alterar Filial</a></li>
-                        <li><a href="#">Alterar Funcionário</a></li>
-                        <li><a href="Alterar_Cliente.jsp">Alterar Cliente</a></li> 
-                        <li><a href="AlterarProduto">Alterar Produto</a></li> 
+                        <li><a href="Cadastrar_Filial.jsp">Cadastrar</a></li>
+                        <li><a href="#">Alterar</a></li>
+                        <li><a href="#">Consultar</a></li>
+                        <li><a href="Excluir_Filial.jsp">Excluir</a></li> 
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#">Consultar</a>
+                <li class="dropdown"><a href="#">Cliente</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Consultar Filial</a></li>
-                        <li><a href="#">Consultar Funcionário</a></li>
-                        <li><a href="Consultar_Cliente.jsp">Consultar Cliente</a></li> 
-                        <li><a href="#">Consultar Produto</a></li> 
+                        <li><a href="Cadastrar_Cliente.jsp">Cadastrar</a></li>
+                        <li><a href="Alterar_Cliente.jsp">Alterar</a></li>
+                        <li><a href="Consultar_Cliente.jsp">Consultar</a></li> 
+                        <li><a href="Excluir_Cliente.jsp">Excluir</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#">Excluir</a>
+                <li class="dropdown"><a href="#">Funcionário</a>
                     <ul class="dropdown-menu">
-                        <li><a href="Excluir_Filial.jsp">Excluir Filial</a></li>
-                        <li><a href="#">Excluir Funcionário</a></li>
-                        <li><a href="Excluir_Cliente.jsp">Excluir Cliente</a></li> 
-                        <li><a href="#">Excluir Produto</a></li> 
+                        <li><a href="#">Cadastrar</a></li>
+                        <li><a href="#">Alterar</a></li>
+                        <li><a href="#">Consultar</a></li>
+                        <li><a href="#">Excluir</a></li>
                     </ul>
                 </li>
             </ul>   

@@ -14,9 +14,6 @@
     </head>
     <body>
         <jsp:include page="Menu.jsp" />
-       <a href="Back_end_filial.jsp">Filial</a>
-       <a href="cadastroProduto.jsp">Produto</a>
-       <a href="Back_end_cliente.jsp">Cliente</a>
       
         <form action="ServletClienteExcluir" method="post">            
       
