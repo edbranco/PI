@@ -10,6 +10,10 @@ and open the template in the editor.
 
 
 /*Menu*/
+#menu-header {
+    background-color: #008B8B;
+}
+
 li.dropdown:hover ul.dropdown-menu {
     display: block;
 }
@@ -23,3 +27,54 @@ li.dropdown:hover ul.dropdown-menu {
     margin: 0;
 }
 
+.nav-pills>li>a {
+    color: #EEE;
+    font-size: 20px;
+}
+
+.nav-pills>li>a:hover {
+    color: #008B8B;
+    font-size: 20px;
+}
+/*Fim Menu*/
+
+.alert {
+    display: none;
+    width: 250px;
+    font-size: 9px;
+    padding: 7px;
+}
+
+.aparecer {
+    display: block;
+}
+
+span.aviso {
+    font-size: 9px;
+    color: #C0C0C0;
+}
+
+#formulario {
+    width: 700px;
+    margin: 40px auto;
+}
+
+.ipt-largo {
+    width: 450px;
+}
+
+.ipt-curto {
+    display: inline-block;
+}
+
+p.ipt-curto input, p.ipt-curto select {
+    width: 210px;
+}
+
+#p-uf {
+    margin-right: 25px;
+}
+
+#estadocliente {
+    height: 26px;
+}
