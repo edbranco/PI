@@ -7,6 +7,9 @@ package com.mycompany.ctrl_soft;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Lucas
+ * @author eder.lrbranco
  */
-@WebServlet(name = "ServletFilialCadastrar", urlPatterns = {"/ServletFilialCadastrar"})
-public class ServletFilialCadastrar extends HttpServlet {
+@WebServlet(name = "ServletFilialConsultar", urlPatterns = {"/ServletFilialConsultar"})
+public class ServletFilialConsultar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +41,10 @@ public class ServletFilialCadastrar extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletFilial</title>");            
+            out.println("<title>Servlet ServletFilialConsultar</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletFilial at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletFilialConsultar at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,27 +76,17 @@ public class ServletFilialCadastrar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        
-        String nome=request.getParameter("nomefilial");
-        String ufFilial=request.getParameter("uf");
-        String cnpjFilial=request.getParameter("cnpj");
-        
-        Filial filial = new Filial();
-       
-        filial.setNomefilial(nome);
-        filial.setUf(ufFilial);
-        filial.setCnpj(cnpjFilial);
-        
-        FilialDAO dao = new FilialDAO();
-        dao.cadastrarFilial(filial);
-        request.setAttribute("filial", filial);
-        
+          
+        FilialDAO filial = new FilialDAO();
+   
+        List<Filial> listaFilial = filial.listarFilial();
+
+        request.setAttribute("listaFilial", listaFilial);
+
         RequestDispatcher disp
-                = request.getRequestDispatcher("Cadastrar_Filial.jsp");
+                = request.getRequestDispatcher("Consultar_Filial.jsp");
         disp.forward(request, response);
-        
-        
+            
     }
 
     /**
