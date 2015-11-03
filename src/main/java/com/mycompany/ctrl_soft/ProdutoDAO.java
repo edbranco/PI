@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author Eder Rodrigues
  */
 public class ProdutoDAO {
-    
+
     private Connection obterConexao() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         // Passo 1: Registrar driver JDBC.
@@ -154,19 +154,19 @@ public class ProdutoDAO {
             }
         }
     }
-    
-    public Produto consultarProduto(Produto produto, int id){
+
+    public Produto consultarProduto(Produto produto, int id) {
         PreparedStatement stmt = null;
         Statement stmt2 = null;
         Connection conn = null;
 
         String nome = "";
-        String marca ="";
+        String marca = "";
         double preco = 0;
-        int qtde=0;
-        int idf=0;
-        int idp=0;
-        
+        int qtde = 0;
+        int idf = 0;
+        int idp = 0;
+
         String sql2 = "SELECT * FROM TB_Produto WHERE ID_Produto = " + id;
         try {
             conn = obterConexao();
@@ -174,7 +174,7 @@ public class ProdutoDAO {
             ResultSet resultados = stmt2.executeQuery(sql2);
 
             while (resultados.next()) {
-                
+
                 nome = resultados.getString("NomeProduto");
                 marca = resultados.getString("Marca");
                 preco = Double.parseDouble(resultados.getString("preco"));
@@ -189,7 +189,7 @@ public class ProdutoDAO {
             produto.setQtde(qtde);
             produto.setId(idp);
             produto.setId_filial(idf);
-            
+
             return produto;
 
         } catch (SQLException ex) {
@@ -261,6 +261,91 @@ public class ProdutoDAO {
             }
         }
         return null;
-    }   
+    }
+
+    public List<Produto> ConsultProdutos(String nome) {
+        Statement stmt = null;
+        Connection conn = null;
+
+        String sql = "SELECT * FROM TB_PRODUTO WHERE NomeProduto LIKE '%" + nome + "%'";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+
+            DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+
+            List<Produto> listaProdutos = new ArrayList<Produto>();
+            while (resultados.next()) {
+                Produto p = new Produto();
+                p.setId(resultados.getLong("ID_PRODUTO"));
+                p.setId_filial(resultados.getLong("ID_Filial"));
+                p.setNome(resultados.getString("NOMEPRODUTO"));
+                p.setMarca(resultados.getString("MARCA"));
+                p.setPreco(resultados.getDouble("PRECO"));
+                p.setQtde(resultados.getInt("QTDE"));
+                listaProdutos.add(p);
+  
+            }
+            return listaProdutos;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return null;
+    }
     
+    public void ExluirProduto(int id){
+        PreparedStatement stmt = null;
+        Connection conn = null;       
+        
+        String sql = "DELETE FROM TB_Produto WHERE ID_Produto= ?";
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+                       
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("Registro excluídoo com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
 }
