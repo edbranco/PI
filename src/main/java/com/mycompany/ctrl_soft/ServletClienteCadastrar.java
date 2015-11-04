@@ -96,9 +96,10 @@ public class ServletClienteCadastrar extends HttpServlet {
         cliente.setDtCadastro(new Date());
 
         ClienteDAO dao = new ClienteDAO();
-        dao.cadastrarCliente(cliente);
+        boolean cadastrado = dao.cadastrarCliente(cliente);
 
         request.setAttribute("cliente", cliente);
+        request.setAttribute("cadastrado", cadastrado);
 
         RequestDispatcher disp
                 = request.getRequestDispatcher("Cadastrar_Cliente.jsp");

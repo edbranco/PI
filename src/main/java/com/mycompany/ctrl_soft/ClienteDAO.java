@@ -38,7 +38,9 @@ public class ClienteDAO {
     }
     
     //Função de cadastro de Clientes
-    public void cadastrarCliente(Cliente cliente) {
+    public boolean cadastrarCliente(Cliente cliente) {
+        boolean cadastrado = false;
+        
         PreparedStatement stmt = null;
         Connection conn = null;       
         
@@ -58,11 +60,16 @@ public class ClienteDAO {
 //            stmt.setDate(5, new java.sql.Date(p.getDtCadastro().getTime()));
             stmt.executeUpdate();
             System.out.println("Registro incluído com sucesso.");
+            
+            cadastrado = true;
+            return cadastrado;
 
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return cadastrado;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return cadastrado;
         } finally {
             if (stmt != null) {
                 try {

@@ -21,7 +21,7 @@
    <body>
        <jsp:include page="Menu.jsp" />       
      
-       <div id="formulario">
+       <div class="formulario">
             <form id="fr-cad-cliente" action="ServletClienteCadastrar" method="post" onsubmit="return validarCampos();">
 
                 <fieldset>
@@ -55,9 +55,9 @@
                     <label for="enderecocliente">Endereço:</label><br />
                     <input type="text" name="enderecoCliente" id="enderecocliente" class="ipt-largo" />
                 </p>
-                <p id="p-uf" class="ipt-curto">
+                <p class="ipt-curto ipt-curto-1">
                     <label for="estadocliente">UF:</label><br />
-                    <select name="estadoCliente" id="estadocliente">
+                    <select name="estadoCliente" id="estadocliente" class="ipt-select">
                         <option value="0">Selecione o Estado</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -98,10 +98,21 @@
                 </div>
             </form>
         </div>
+        <div id="suc-cad-cliente" class="alert alert-success">
+            Cliente cadastrado com sucesso!
+        </div>
         
         
         <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
-        <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>       
+        <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
+        
+        <!--teste-->
+        <script type="text/javascript">
+            if (${cadastrado} === true) {
+                document.getElementById("suc-cad-cliente").classList.add("aparecer");
+                ${cadastrado} = false;
+            }
+        </script>
     </body>
 </html>

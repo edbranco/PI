@@ -25,8 +25,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="cadastroProduto.jsp">Cadastrar</a></li>
                         <li><a href="AlterarProduto.jsp">Alterar</a></li>
-                        <li><a href="#">Consultar</a></li>
-                        <li><a href="#">Excluir</a></li>
+                        <li><a href="ConsultarProduto.jsp">Consultar</a></li>
+                        <li><a href="ExcluirProduto.jsp">Excluir</a></li>
                           
                     </ul>
                 </li>
@@ -48,8 +48,8 @@
                 </li>
                 <li class="dropdown"><a href="#">Funcionário</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Cadastrar</a></li>
-                        <li><a href="#">Alterar</a></li>
+                        <li><a href="CadastrarUsuario.jsp">Cadastrar</a></li>
+                        <li><a href="Alterar_Usuario.jsp">Alterar</a></li>
                         <li><a href="#">Consultar</a></li>
                         <li><a href="#">Excluir</a></li>
                     </ul>

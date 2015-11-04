@@ -54,7 +54,7 @@ span.aviso {
     color: #C0C0C0;
 }
 
-#formulario {
+.formulario {
     width: 700px;
     margin: 40px auto;
 }
@@ -71,10 +71,27 @@ p.ipt-curto input, p.ipt-curto select {
     width: 210px;
 }
 
-#p-uf {
+.ipt-curto-1 {
     margin-right: 25px;
 }
 
-#estadocliente {
+.ipt-id {
+    width: 295px;
+}
+
+.ipt-id-filial {
+    margin-left: 16px;
+    width: 295px;
+}
+
+.ipt-select {
     height: 26px;
+}
+
+.alert-success {
+    margin: 0 auto;
+}
+
+.ipt-id-func {
+    width: 260px;
 }
