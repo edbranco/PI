@@ -46,7 +46,7 @@
                     </p>
                     
             
-                     <select name="estadoUsuario" id="estadousuario" class="ipt-select">
+                     <select name="nomeFilial" id="nomeFilial" class="ipt-select">
                     
                     <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
                              

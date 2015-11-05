@@ -77,6 +77,103 @@ public class FilialDAO {
 
     }
 
+    public void alterarFiial(Filial filial, int id) {
+        PreparedStatement stmt = null;
+        Connection conn = null;       
+        
+        String sql = "UPDATE TB_Filial SET Nome_Filial=?, UF=?, CNPJ=? "
+                + " WHERE ID_Filial = ?";
+        
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+                       
+            stmt.setString(1, filial.getNomefilial());
+            stmt.setString(2, filial.getUf());
+            stmt.setString(3, filial.getCnpj());
+            
+            stmt.setLong(4, id);
+            stmt.executeUpdate();
+            System.out.println("Registro alterado com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    public Filial consultarFilial(Filial filial, int id) {
+        PreparedStatement stmt = null;
+        Statement stmt2 = null;
+        Connection conn = null;
+
+        String nome = "";
+        String cnpj = "";
+        String uf = "";
+        Long idfilial = null;
+            
+        String sql2 = "SELECT * FROM TB_Filial WHERE ID_Filial = " + id;
+        try {
+            conn = obterConexao();
+            stmt2 = conn.createStatement();
+            ResultSet resultados = stmt2.executeQuery(sql2);
+
+            while (resultados.next()) {
+                idfilial = Long.parseLong(resultados.getString("ID_Filial"));
+                nome = resultados.getString("Nome_Filial");
+                uf = resultados.getString("uf");
+                cnpj = resultados.getString("cnpj");
+                
+            }
+           
+            filial.setIdfilial(idfilial);
+            filial.setCnpj(cnpj);
+            filial.setNomefilial(nome);
+            filial.setUf(uf);
+
+            return filial;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Filial.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Filial.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Filial.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Filial.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    
     public void excluirFilial(int id) {
         PreparedStatement stmt = null;
         Connection conn = null;

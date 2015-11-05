@@ -16,8 +16,6 @@ public class Usuario {
     private String nomeFilial;
     private String nomeUsuario;
     private String senhaUsuario;
-
-   
     private String nomeFuncionario;
     private int ra;
     private String cpf;
@@ -64,17 +62,31 @@ public class Usuario {
     }
 
     /**
-     * @return the senhaUsuario
+     * @return the idFilial
      */
-    public String getSenhaUsuario() {
-        return senhaUsuario;
+    public int getIdFilial() {
+        return idFilial;
     }
 
     /**
-     * @param senhaUsuario the senhaUsuario to set
+     * @param idFilial the idFilial to set
      */
-    public void setSenhaUsuario(String senhaUsuario) {
-        this.senhaUsuario = senhaUsuario;
+    public void setIdFilial(int idFilial) {
+        this.idFilial = idFilial;
+    }
+
+    /**
+     * @return the nomeFilial
+     */
+    public String getNomeFilial() {
+        return nomeFilial;
+    }
+
+    /**
+     * @param nomeFilial the nomeFilial to set
+     */
+    public void setNomeFilial(String nomeFilial) {
+        this.nomeFilial = nomeFilial;
     }
 
     /**
@@ -91,83 +103,145 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
+    /**
+     * @return the senhaUsuario
+     */
+    public String getSenhaUsuario() {
+        return senhaUsuario;
+    }
+
+    /**
+     * @param senhaUsuario the senhaUsuario to set
+     */
+    public void setSenhaUsuario(String senhaUsuario) {
+        this.senhaUsuario = senhaUsuario;
+    }
+
+    /**
+     * @return the nomeFuncionario
+     */
     public String getNomeFuncionario() {
         return nomeFuncionario;
     }
 
+    /**
+     * @param nomeFuncionario the nomeFuncionario to set
+     */
     public void setNomeFuncionario(String nomeFuncionario) {
         this.nomeFuncionario = nomeFuncionario;
     }
 
-    public String getNomeFilial() {
-        return nomeFilial;
-    }
-
-    public void setNomeFilial(String nomeFilial) {
-        this.nomeFilial = nomeFilial;
-    }
-
+    /**
+     * @return the ra
+     */
     public int getRa() {
         return ra;
     }
 
+    /**
+     * @param ra the ra to set
+     */
     public void setRa(int ra) {
         this.ra = ra;
     }
 
+    /**
+     * @return the cpf
+     */
     public String getCpf() {
         return cpf;
     }
 
+    /**
+     * @param cpf the cpf to set
+     */
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
+    /**
+     * @return the telefone
+     */
     public String getTelefone() {
         return telefone;
     }
 
+    /**
+     * @param telefone the telefone to set
+     */
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
+    /**
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * @param email the email to set
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * @return the endereco
+     */
     public String getEndereco() {
         return endereco;
     }
 
+    /**
+     * @param endereco the endereco to set
+     */
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
+    /**
+     * @return the cidade
+     */
     public String getCidade() {
         return cidade;
     }
 
+    /**
+     * @param cidade the cidade to set
+     */
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
 
+    /**
+     * @return the uf
+     */
     public String getUf() {
         return uf;
     }
 
+    /**
+     * @param uf the uf to set
+     */
     public void setUf(String uf) {
         this.uf = uf;
     }
 
+    /**
+     * @return the cargo
+     */
     public String getCargo() {
         return cargo;
     }
 
+    /**
+     * @param cargo the cargo to set
+     */
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+   
 }

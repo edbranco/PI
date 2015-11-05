@@ -33,7 +33,7 @@
                 <li class="dropdown"><a href="#">Filial</a>
                     <ul class="dropdown-menu">
                         <li><a href="Cadastrar_Filial.jsp">Cadastrar</a></li>
-                        <li><a href="#">Alterar</a></li>
+                        <li><a href="Alterar_Filial.jsp">Alterar</a></li>
                         <li><a href="Consultar_Filial.jsp">Consultar</a></li>
                         <li><a href="Excluir_Filial.jsp">Excluir</a></li> 
                     </ul>

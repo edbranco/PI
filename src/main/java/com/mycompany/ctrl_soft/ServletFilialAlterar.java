@@ -7,7 +7,7 @@ package com.mycompany.ctrl_soft;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ude
+ * @author Lucas
  */
-@WebServlet(name = "ServletCadastrarUsuario", urlPatterns = {"/ServletCadastrarUsuario"})
-public class ServletCadastrarUsuario extends HttpServlet {
+@WebServlet(name = "ServletFilialAlterar", urlPatterns = {"/ServletFilialAlterar"})
+public class ServletFilialAlterar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class ServletCadastrarUsuario extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletCadastrarUsuario</title>");
+            out.println("<title>Servlet ServletFilialAlterar</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletCadastrarUsuario at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletFilialAlterar at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,43 +75,36 @@ public class ServletCadastrarUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String idTexto = request.getParameter("idFilial");
+        String botaoValor = request.getParameter("btn-consultar");
+        int id = Integer.parseInt(idTexto);
+
+        Filial filial = new Filial();
+
+        FilialDAO dao = new FilialDAO();
         
-        String nomeUsuario = request.getParameter("nomeUsuario");
-        String senhaUsuario = request.getParameter("senhaUsuario");
-        String nomeFilial = request.getParameter("nomeFilial");
-        String nomeFuncionario = request.getParameter("telefoneUsuario");
-        int ra = Integer.parseInt(request.getParameter("raUsuario"));
-        String cpf = request.getParameter("cpfUsuario");
-        String telefone = request.getParameter("telefoneUsuario");
-        String email = request.getParameter("emailUsuario");
-        String endereco = request.getParameter("enderecoUsuario");
-        String cidade = request.getParameter("cidadeUsuario");
-        String uf = request.getParameter("ufUsuario");
-        String cargo = request.getParameter("cargoUsuario");
+        if (botaoValor.equals("Pesquisar")) {
+            dao.consultarFilial(filial, id);
+        }
+        else if (botaoValor.equals("Alterar")) {
+           
+           
+            String nome = request.getParameter("nomeFilial");
+            String cnpj = request.getParameter("cnpj");
+            String uf = request.getParameter("uf");
+        
+            filial.setNomefilial(nome);
+             filial.setCnpj(cnpj);
+             filial.setUf(uf);
 
-        Usuario usu = new Usuario();
+           dao.alterarFiial(filial, id);
+        }
 
-        usu.setNomeUsuario(nomeUsuario);
-        usu.setSenhaUsuario(senhaUsuario);
-      
-        usu.setNomeFuncionario(nomeFuncionario);
-        usu.setRa(ra);
-        usu.setCpf(cpf);
-        usu.setTelefone(telefone);
-        usu.setEmail(email);
-        usu.setEndereco(endereco);
-        usu.setCidade(cidade);
-        usu.setUf(uf);
-        usu.setCargo(cargo);
+        request.setAttribute("filial", filial);
 
-        ConexaoUsuarioDAO dao = new ConexaoUsuarioDAO();
-        dao.cadastrarUsuario(usu, nomeFilial);
-
-        request.setAttribute("usuario", usu);
-
-        RequestDispatcher disp = request.getRequestDispatcher("PreCadastroUsuario");
+        RequestDispatcher disp
+                = request.getRequestDispatcher("Alterar_Filial.jsp");
         disp.forward(request, response);
-
     }
 
     /**

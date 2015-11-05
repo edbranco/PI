@@ -33,43 +33,44 @@ public class ConexaoUsuarioDAO {
         return conn;
     }
 
-    public void cadastrarUsuario(Usuario usu) {
+    public void cadastrarUsuario(Usuario usu, String nomeFilial) {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT * FROM TB_Funcionario where Nome_filial = ?";
+        String sql = "SELECT id_filial FROM TB_Filial where nome_filial = "+nomeFilial+"";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, usu.getNomeFilial());
             int idFilial = 0;
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 idFilial = rs.getInt("ID_Filial");
             }
+            usu.setIdFilial(idFilial);
 
-            sql = "INSERT INTO TB_FUNCIONARIO (Usuario, Senha, nomeFuncionario, RA, CPF, "
+            
+            
+           String sql2 = "INSERT INTO TB_FUNCIONARIO (id_filial,Usuario, Senha, nomeFuncionario, RA, CPF, "
                     + "Telefone, Email, Endereco, Cidade, UF, Cargo ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             conn = obterConexao();
-            stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql2);
+            stmt.setLong(1, usu.getIdFilial());
+            stmt.setString(2, usu.getNomeUsuario());
+            stmt.setString(3, usu.getSenhaUsuario());
+            stmt.setString(4, usu.getNomeFuncionario());
+            stmt.setInt(5, usu.getRa());
+            stmt.setString(6, usu.getCpf());
+            stmt.setString(7, usu.getTelefone());
+            stmt.setString(8, usu.getEmail());
+            stmt.setString(9, usu.getEndereco());
+            stmt.setString(10, usu.getCidade());
+            stmt.setString(11, usu.getUf());
+            stmt.setString(12, usu.getCargo());
 
-            stmt.setString(1, usu.getNomeUsuario());
-            stmt.setString(2, usu.getSenhaUsuario());
-            stmt.setString(3, usu.getNomeFuncionario());
-            stmt.setInt(4, usu.getRa());
-            stmt.setString(5, usu.getCpf());
-            stmt.setString(6, usu.getTelefone());
-            stmt.setString(7, usu.getEmail());
-            stmt.setString(8, usu.getEndereco());
-            stmt.setString(9, usu.getCidade());
-            stmt.setString(10, usu.getUf());
-            stmt.setString(11, usu.getCargo());
-
-            stmt.execute();
-            stmt.close();
+          stmt.executeUpdate();
 //            stmt.executeUpdate();
             System.out.println("Registro incluido com sucesso.");
 
