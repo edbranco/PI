@@ -40,17 +40,15 @@
                 </li>
                 <li class="dropdown"><a href="#">Cliente</a>
                     <ul class="dropdown-menu">
-                        <li><a href="Cadastrar_Cliente.jsp">Cadastrar</a></li>
+                        <li><a href="ServletClienteCadastrar">Cadastrar</a></li>
                         <li><a href="Alterar_Cliente.jsp">Alterar</a></li>
                         <li><a href="Consultar_Cliente.jsp">Consultar</a></li> 
                         <li><a href="Excluir_Cliente.jsp">Excluir</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#">Funcionário</a>
-                    <ul class="dropdown-menu">
-                      
-                            <li><a href="PreCadastroUsuario"> Cadastrar</a></li>
-                   
+                    <ul class="dropdown-menu">                      
+                        <li><a href="PreCadastroUsuario"> Cadastrar</a></li>                   
                         <li><a href="Alterar_Usuario.jsp">Alterar</a></li>
                         <li><a href="#">Consultar</a></li>
                         <li><a href="#">Excluir</a></li>

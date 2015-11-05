@@ -35,17 +35,40 @@ public class ServletClienteCadastrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletCliente</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletCliente at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String nome = request.getParameter("nomeCliente");
+        String cpf = request.getParameter("cpfCliente");
+        String telefone = request.getParameter("telefoneCliente");
+        String email = request.getParameter("emailCliente");
+        String endereco = request.getParameter("enderecoCliente");
+        String cidade = request.getParameter("cidadeCliente");
+        String uf = request.getParameter("estadoCliente");
+
+        Cliente cliente = new Cliente();
+        
+        cliente.setNome(nome);
+        cliente.setCpf(cpf);
+        cliente.setTelefone(telefone);
+        cliente.setEmail(email);
+        cliente.setEndereco(endereco);
+        cliente.setCidade(cidade);
+        cliente.setUf(uf);
+        cliente.setDtCadastro(new Date());
+
+        ClienteDAO dao = new ClienteDAO();
+        boolean cadastrado = dao.cadastrarCliente(cliente);
+        
+        if (cadastrado == true) {
+            boolean mensagem = true;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
+                = request.getRequestDispatcher("Cadastrar_Cliente.jsp");
+        disp.forward(request, response);
+        } else {
+            boolean mensagem = false;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
+                = request.getRequestDispatcher("Cadastrar_Cliente.jsp");
+        disp.forward(request, response);
         }
     }
 
@@ -97,13 +120,20 @@ public class ServletClienteCadastrar extends HttpServlet {
 
         ClienteDAO dao = new ClienteDAO();
         boolean cadastrado = dao.cadastrarCliente(cliente);
-
-        request.setAttribute("cliente", cliente);        
-        request.setAttribute("cadastrado", cadastrado);
-
-        RequestDispatcher disp
+        
+        if (cadastrado == true) {
+            boolean mensagem = true;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
                 = request.getRequestDispatcher("Cadastrar_Cliente.jsp");
         disp.forward(request, response);
+        } else {
+            boolean mensagem = false;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
+                = request.getRequestDispatcher("Cadastrar_Cliente.jsp");
+        disp.forward(request, response);
+        }
     }
 
     /**

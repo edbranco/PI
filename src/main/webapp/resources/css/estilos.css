@@ -49,6 +49,10 @@ li.dropdown:hover ul.dropdown-menu {
     display: block;
 }
 
+.desaparecer {
+    display: none;
+}
+
 span.aviso {
     font-size: 9px;
     color: #C0C0C0;

@@ -100,6 +100,7 @@
         <div id="suc-cad-cliente" class="alert alert-success">
             Cliente cadastrado com sucesso!
         </div>
+       
         
         
         <!-- Scripts: jQuery e Bootstrap -->
@@ -113,6 +114,13 @@
                 $("#telefonecliente").mask("(99)9999-9999");
                 $("#cpfcliente").mask("999.999.999-99");
             });
+        </script>
+        <script>
+            if (${mensagem} === true) {
+                document.getElementById("suc-cad-cliente").classList.add("aparecer");
+            } else {
+                document.getElementById("suc-cad-cliente").classList.add("desaparecer");
+            }
         </script>
     </body>
 </html>
