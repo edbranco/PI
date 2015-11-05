@@ -89,7 +89,7 @@ public class ServletAlterarUsuario extends HttpServlet {
             String nomeUsuario = request.getParameter("nomeUsuario");
             String senhaUsuario = request.getParameter("senhaUsuario");
             String nomeFuncionario = request.getParameter("telefoneUsuario");
-            String ra = request.getParameter("raUsuario");
+            int ra = Integer.parseInt(request.getParameter("raUsuario"));
             String cpf = request.getParameter("cpfUsuario");
             String telefone = request.getParameter("telefoneUsuario");
             String email = request.getParameter("emailUsuario");

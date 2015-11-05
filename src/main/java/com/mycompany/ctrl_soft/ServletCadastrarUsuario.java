@@ -7,6 +7,7 @@ package com.mycompany.ctrl_soft;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -74,10 +75,18 @@ public class ServletCadastrarUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        
+        FilialDAO filial = new FilialDAO();
+   
+        List<Filial> listaFilial = filial.listarFilial();
+
+        request.setAttribute("listaFilial", listaFilial);
+        
         String nomeUsuario = request.getParameter("nomeUsuario");
         String senhaUsuario = request.getParameter("senhaUsuario");
+        String nomeFilial = request.getParameter("nomeFilial");
         String nomeFuncionario = request.getParameter("telefoneUsuario");
-        String ra = request.getParameter("raUsuario");
+        int ra = Integer.parseInt(request.getParameter("raUsuario"));
         String cpf = request.getParameter("cpfUsuario");
         String telefone = request.getParameter("telefoneUsuario");
         String email = request.getParameter("emailUsuario");
@@ -90,6 +99,7 @@ public class ServletCadastrarUsuario extends HttpServlet {
 
         usu.setNomeUsuario(nomeUsuario);
         usu.setSenhaUsuario(senhaUsuario);
+        usu.setNomeFilial(nomeFilial);
         usu.setNomeFuncionario(nomeFuncionario);
         usu.setRa(ra);
         usu.setCpf(cpf);

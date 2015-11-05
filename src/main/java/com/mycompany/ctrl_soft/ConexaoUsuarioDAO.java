@@ -37,17 +37,29 @@ public class ConexaoUsuarioDAO {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "INSERT INTO TB_FUNCIONARIO (NomeUsuario, Senha, nomeFuncionario, RA, CPF, "
-                + "Telefone, Email, Endereco, Cidade, UF, Cargo ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "SELECT * FROM TB_Funcionario where Nome_filial = ?";
 
         try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, usu.getNomeFilial());
+            int idFilial = 0;
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                idFilial = rs.getInt("ID_Filial");
+            }
+
+            sql = "INSERT INTO TB_FUNCIONARIO (Usuario, Senha, nomeFuncionario, RA, CPF, "
+                    + "Telefone, Email, Endereco, Cidade, UF, Cargo ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, usu.getNomeUsuario());
             stmt.setString(2, usu.getSenhaUsuario());
             stmt.setString(3, usu.getNomeFuncionario());
-            stmt.setString(4, usu.getRa());
+            stmt.setInt(4, usu.getRa());
             stmt.setString(5, usu.getCpf());
             stmt.setString(6, usu.getTelefone());
             stmt.setString(7, usu.getEmail());
@@ -55,28 +67,29 @@ public class ConexaoUsuarioDAO {
             stmt.setString(9, usu.getCidade());
             stmt.setString(10, usu.getUf());
             stmt.setString(11, usu.getCargo());
+
             stmt.execute();
             stmt.close();
 //            stmt.executeUpdate();
             System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -96,7 +109,7 @@ public class ConexaoUsuarioDAO {
             stmt.setString(1, usu.getNomeUsuario());
             stmt.setString(2, usu.getSenhaUsuario());
             stmt.setString(3, usu.getNomeFuncionario());
-            stmt.setString(4, usu.getRa());
+            stmt.setInt(4, usu.getRa());
             stmt.setString(5, usu.getCpf());
             stmt.setString(6, usu.getTelefone());
             stmt.setString(7, usu.getEmail());
@@ -111,22 +124,22 @@ public class ConexaoUsuarioDAO {
             System.out.println("Alterado Com Sucesso!");
 
         } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -187,7 +200,7 @@ public class ConexaoUsuarioDAO {
                 usu.setNomeUsuario(resultado.getString("nomeUsuario"));
                 usu.setSenhaUsuario(resultado.getString("senhaUsuario"));
                 usu.setNomeFuncionario(resultado.getString("nomeFuncionario"));
-                usu.setRa(resultado.getString("ra"));
+                usu.setRa(resultado.getInt("ra"));
                 usu.setCpf(resultado.getString("cpf"));
                 usu.setTelefone(resultado.getString("telefone"));
                 usu.setEndereco(resultado.getString("endereco"));
@@ -199,7 +212,7 @@ public class ConexaoUsuarioDAO {
             System.out.println("Busca Realizada!");
 
         } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -207,14 +220,14 @@ public class ConexaoUsuarioDAO {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

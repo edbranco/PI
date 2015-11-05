@@ -12,10 +12,14 @@ package com.mycompany.ctrl_soft;
 public class Usuario {
 
     private int idUsuario;
+    private int idFilial;
+    private String nomeFilial;
     private String nomeUsuario;
     private String senhaUsuario;
+
+   
     private String nomeFuncionario;
-    private String ra;
+    private int ra;
     private String cpf;
     private String telefone;
     private String email;
@@ -29,7 +33,7 @@ public class Usuario {
     }
 
     public Usuario(String nomeUsuario, String senhaUsuario, String nomeFuncionario,
-            String ra, String cpf, String telefone, String email, String endereco, String cidade,
+            int ra, String cpf, String telefone, String email, String endereco, String cidade,
             String uf, String cargo) {
 
         this.nomeUsuario = nomeUsuario;
@@ -95,11 +99,19 @@ public class Usuario {
         this.nomeFuncionario = nomeFuncionario;
     }
 
-    public String getRa() {
+    public String getNomeFilial() {
+        return nomeFilial;
+    }
+
+    public void setNomeFilial(String nomeFilial) {
+        this.nomeFilial = nomeFilial;
+    }
+
+    public int getRa() {
         return ra;
     }
 
-    public void setRa(String ra) {
+    public void setRa(int ra) {
         this.ra = ra;
     }
 

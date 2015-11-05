@@ -44,6 +44,17 @@
                         <label for="cpfusuario">CPF:</label><br />
                         <input type="text" name="cpfUsuario" id="cpfusuario" class="ipt-largo" />
                     </p>
+                    
+            
+                     <select name="estadoUsuario" id="estadousuario" class="ipt-select">
+                    
+                    <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
+                             
+                    <option>${filial.nomefilial}</option>
+                         
+                    </c:forEach>
+                    
+                     </select>
                     <p>
                         <label for="telefoneusuario">Telefone:</label><br />
                         <input type="number" name="telefoneUsuario" id="telefoneusuario" class="ipt-largo" />
