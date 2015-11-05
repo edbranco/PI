@@ -23,37 +23,36 @@
      
        <div class="formulario">
             <form id="fr-cad-cliente" action="ServletClienteCadastrar" method="post" onsubmit="return validarCampos();">
-
                 <fieldset>
                     <legend>Cadastrar Cliente </legend>   
                 <p>
                     <label for="nomecliente">Nome:</label><br />
-                    <input type="text" name="nomeCliente" id="nomecliente" class="ipt-largo" />
+                    <input type="text" maxlength="100" name="nomeCliente" id="nomecliente" class="ipt-largo" required />
                 </p>
                 <div id="err-campo-nome" class="alert alert-danger">
                     <strong>Atenção!</strong> Digite apenas letras.
                 </div>
                 <p>
                     <label for="cpfcliente">CPF:</label><br />
-                    <input type="number" name="cpfCliente" id="cpfcliente" class="ipt-largo" /><span class="aviso"> * Digite apenas números</span>
+                    <input type="cpf" name="cpfCliente" id="cpfcliente" class="ipt-largo" required /><span class="aviso"> * Digite apenas números</span>
                 </p>
                 <div id="err-campo-cpf" class="alert alert-danger">
                     <strong>Atenção!</strong> CPF inválido.
                 </div>
                 <p>
                     <label for="telefonecliente">Telefone:</label><br />
-                    <input type="number" name="telefoneCliente" id="telefonecliente" class="ipt-largo" /><span class="aviso"> * Digite apenas números (DDDnumero)</span>
+                    <input type="text" name="telefoneCliente" id="telefonecliente" class="ipt-largo" required /><span class="aviso"> * Digite apenas números (DDDnumero)</span>
                 </p>
                 <div id="err-campo-fone" class="alert alert-danger">
                     <strong>Atenção!</strong> Telefone inválido.
                 </div>
                 <p>
                     <label for="emailcliente">E-mail:</label><br />
-                    <input type="email" name="emailCliente" id="emailcliente" class="ipt-largo" />
+                    <input type="email" name="emailCliente" id="emailcliente" class="ipt-largo" required />
                 </p>
                 <p>
                     <label for="enderecocliente">Endereço:</label><br />
-                    <input type="text" name="enderecoCliente" id="enderecocliente" class="ipt-largo" />
+                    <input type="text" maxlength="200" name="enderecoCliente" id="enderecocliente" class="ipt-largo" required />
                 </p>
                 <p class="ipt-curto ipt-curto-1">
                     <label for="estadocliente">UF:</label><br />
@@ -90,7 +89,7 @@
                 </p>            
                 <p class="ipt-curto">
                     <label for="cidadecliente">Cidade:</label><br />
-                    <input type="text" name="cidadeCliente" id="cidadecliente" />
+                    <input type="text" maxlength="80" name="cidadeCliente" id="cidadecliente" required />
                 </p>
                 
                 <div>
@@ -106,13 +105,14 @@
         <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>
         
-        <!--teste-->
-        <script type="text/javascript">
-            if (${cadastrado} === true) {
-                document.getElementById("suc-cad-cliente").classList.add("aparecer");
-                ${cadastrado} = false;
-            }
+        <!--Máscaras-->
+        <script>
+            jQuery(function($){
+                $("#telefonecliente").mask("(99)9999-9999");
+                $("#cpfcliente").mask("999.999.999-99");
+            });
         </script>
     </body>
 </html>

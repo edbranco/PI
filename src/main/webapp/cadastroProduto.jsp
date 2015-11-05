@@ -27,19 +27,19 @@
                     <legend>Cadastrar Produtos</legend>           
                     <p>
                         <label for="txtNome">Nome:</label><br />
-                        <input type="text" name="nomeProduto" id="nomeproduto" class="ipt-largo" />
+                        <input type="text" maxlength="100" name="nomeProduto" id="nomeproduto" class="ipt-largo" required />
                     </p>
                     <p>
                         <label for="txtNome">Marca:</label><br />
-                        <input type="text" name="marcaProduto" id="marcaproduto" class="ipt-largo" />
+                        <input type="text" maxlength="80" name="marcaProduto" id="marcaproduto" class="ipt-largo" required />
                     </p>
                     <p class="ipt-curto ipt-curto-1">
                         <label for="numberNome">Preço R$:</label><br />
-                        <input type="number" step=0.01 name="precoProduto" id="precoproduto" />
+                        <input type="number" step=0.01 name="precoProduto" id="precoproduto" required />
                     </p>
                     <p class="ipt-curto">
                         <label for="numberNome">Quantidade:</label><br />
-                        <input type="number" name="qtdeProduto" id="qtdeproduto" />
+                        <input type="number" name="qtdeProduto" id="qtdeproduto" required />
                     </p><br />
                     <input type="submit" value="Cadastrar"/>            
                 </fieldset>
@@ -50,5 +50,6 @@
         <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>
     </body>
 </html>

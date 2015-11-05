@@ -16,6 +16,7 @@
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="${pathResources}/js/validacao.js"></script>
     </head>
     <body> 
         <jsp:include page="Menu.jsp" />
@@ -23,9 +24,9 @@
         <div class="formulario">
             <form action="ServletClienteAlterar" method="post">
                 <fieldset>
-                    <legend>Alterar cliente</legend>
+                    <legend>Alterar Cliente</legend>
                     <p>
-                        <label for="idcliente">Digite o ID do Cliente:</label<br />
+                        <label for="idcliente">Digite o ID do Cliente:</label><br />
                         <input type="number" name="idCliente" id="idcliente" class="ipt-id" />
                     </p>
                     <p>
@@ -96,5 +97,6 @@
         <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>
     </body>
 </html>

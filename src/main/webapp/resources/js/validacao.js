@@ -11,8 +11,7 @@ function validarCampos() {
     
     //Mensagem de campos em branco e validacao
     var brancobool;
-    if (nome === "" || cpf === "" || telefone === "" || email === "" || endereco === "" 
-            || cidade === "" || estado === "0") {
+    if (estado === "0") {
         brancobool = false;
         alert("Todos os campos devem ser preenchidos!");        
         return false;
@@ -31,25 +30,25 @@ function validarCampos() {
     }
 
     //Validar CPF
-    var cpfbool;    
-    if (cpf.length !== 11) {
-        cpfbool = false;
-        document.getElementById("err-campo-cpf").classList.add("aparecer");
-    } else {
-        cpfbool = true;
-    }
+//    var cpfbool;    
+//    if (cpf.length < 14) {
+//        cpfbool = false;
+//        document.getElementById("err-campo-cpf").classList.add("aparecer");
+//    } else {
+//        cpfbool = true;
+//    }
     
     //Validar Telefone
-    var telefonebool;    
-    if (telefone.length < 10 || telefone.length > 11) {
-        telefonebool = false;
-        document.getElementById("err-campo-fone").classList.add("aparecer");
-    } else {
-        telefonebool = true;
-    }
+//    var telefonebool;    
+//    if (telefone.length < 10 || telefone.length > 11) {
+//        telefonebool = false;
+//        document.getElementById("err-campo-fone").classList.add("aparecer");
+//    } else {
+//        telefonebool = true;
+//    }
     
     //Checa todos os campos
-    if (nomebool === true && cpfbool === true && telefonebool === true && brancobool === true) {
+    if (nomebool === true && brancobool === true) {
         return true;
     }
     else {
@@ -58,3 +57,25 @@ function validarCampos() {
 };
 
 
+function validarIdAlterar() {
+    //Campos
+    var id = document.querySelector( ".id-pesquisar");value; 
+    
+    //Validar id
+    var idbool;    
+    var numeros = /[0-9]/;
+    if(id.match(numeros)) {
+        idbool = true;
+    } else {
+        document.querySelector( ".erro-id").classList.add("aparecer");
+        idbool = false;
+    }
+    
+    //Checa todos os campos
+    if (idbool === true) {
+        return true;
+    }
+    else {
+        return false;
+    }
+};

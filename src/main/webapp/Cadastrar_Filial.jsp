@@ -27,7 +27,7 @@
                     <legend>Cadastrar Filial</legend>  
                     <p>
                         <label for="txtNome">Nome:</label><br />
-                        <input type="text" name="nomefilial" id="nomefilial" class="ipt-largo" />
+                        <input type="text" maxlength="20" name="nomefilial" id="nomefilial" class="ipt-largo" required />
                     </p>
                     <p>
                         <label for="txtNome">UF:</label><br />
@@ -46,5 +46,6 @@
         <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>
     </body>
 </html>
