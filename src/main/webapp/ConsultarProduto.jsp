@@ -31,12 +31,12 @@
         <table>
             <tr>
                 <!-- <th>#</th> -->
-                <th>ID</th>
-                <th>Filial</th>
-                <th>Nome</th>
-                <th>Marca</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
+                <th class="cpo-id">ID</th>
+                <th class="cpo-id">Filial</th>
+                <th class="cpo-id">Nome</th>
+                <th class="cpo-id">Marca</th>
+                <th class="cpo-id">Preço</th>
+                <th class="cpo-id">Quantidade</th>
                 
             </tr>
             <c:forEach items="${listProduto}" var="produto" varStatus="stat">

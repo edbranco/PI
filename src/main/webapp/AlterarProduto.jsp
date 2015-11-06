@@ -31,7 +31,7 @@
                     </p>
                     <p>
                         <label for="txtId">Digite o ID da Filial:</label>
-                        <input type="number" name="idFilial" id="idfilial" value="${produto.id_filial}" class="ipt-id-filial" />
+                        <input disabled type="number" name="idFilial" id="idfilial" value="${produto.id_filial}" class="ipt-id-filial" />
                     </p>
                     <p>
                         <label for="txtNome">Nome:</label><br />

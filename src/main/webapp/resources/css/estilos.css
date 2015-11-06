@@ -99,3 +99,7 @@ p.ipt-curto input, p.ipt-curto select {
 .ipt-id-func {
     width: 260px;
 }
+
+.cpo-id {
+    padding-right: 80px;
+}
