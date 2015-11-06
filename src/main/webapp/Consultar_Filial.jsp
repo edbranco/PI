@@ -24,10 +24,7 @@
           
             <fieldset>
                 <legend>Consultar Filial</legend>              
-                <p>
-                    <label for="txtNome"> Nome: </label>
-                    
-                </p>
+             
                 <input type="submit" value="Listar"/>
             </fieldset>
         </form>
@@ -36,12 +33,16 @@
             <tr>
                 <!-- <th>#</th> -->
    
-                <th>Nome</th>
+                <th>Nome  </th>
+                 <th>Cnpj </th>
+                  <th>UF  </th>
                
             </tr>
             <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
                 <tr>                
-                    <td><c:out value="${filial.nomefilial}" /></td>
+                    <td><c:out value="${filial.nomefilial}   " /></td>
+                    <td><c:out value="${filial.cnpj}   " /></td>
+                    <td><c:out value="${filial.uf}   " /></td>
                     
                 </tr>
             </c:forEach>

@@ -242,8 +242,9 @@ public class FilialDAO {
                 Filial filial = new Filial();
 
                 filial.setNomefilial(resultados.getString("nome_filial"));
-      
-
+                filial.setCnpj(resultados.getString("cnpj"));
+                filial.setUf(resultados.getString("uf"));
+                
                 listaFilial.add(filial);
             }
             return listaFilial;

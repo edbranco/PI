@@ -24,7 +24,7 @@
         <div class="formulario">
             <form action="ServletFilialAlterar" method="post">  
                 <fieldset>
-                    <legend>Alterar Produtos</legend>  
+                    <legend>Alterar Filial</legend>  
                     <p>
                         <label for="txtId">Digite o ID da Filial:</label>
                         <input type="number" name="idFilial" id="idFilial" value="${filial.idfilial}" class="ipt-id" />
