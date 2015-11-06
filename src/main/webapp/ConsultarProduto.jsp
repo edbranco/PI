@@ -15,10 +15,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <jsp:include page="Menu.jsp" />
         <form action="ServletConsultarProduto" method="post">            
           
             <fieldset>
-                <legend>Consultar Cliente</legend>              
+                <legend>Consultar Produto</legend>              
                 <p>
                     <label for="txtNome">Nome:</label>
                     <input type="text" name="nomeProduto" id="nomeproduto">

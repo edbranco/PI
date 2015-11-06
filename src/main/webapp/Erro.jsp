@@ -12,8 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <fieldset>
-            <h1>Erro 404 Página não Encontrada!</h1>
-        </fieldset>
+        
+            <h4>Login ou Senha Incorreto!</h4>
+        
+        <a href="Login_Usuario.jsp">Tentar Novamente?</a>
     </body>
 </html>

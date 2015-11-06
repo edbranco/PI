@@ -25,7 +25,7 @@
                 <fieldset>
                     <legend>Alterar Produtos</legend>  
                     <p>
-                        <label for="txtId">Digite o ID do Cliente:</label>
+                        <label for="txtId">Digite o ID do Produto:</label>
                         <input type="number" name="idProduto" id="idproduto" value="${produto.id}" class="ipt-id" />
                     </p>
                     <p>
