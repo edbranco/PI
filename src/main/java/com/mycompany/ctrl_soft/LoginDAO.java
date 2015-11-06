@@ -19,7 +19,27 @@ import java.util.logging.Logger;
  * @author Eder Rodrigues
  */
 public class LoginDAO {
+    protected int idf;
+    protected boolean k;
 
+    public boolean getK() {
+        return k;
+    }
+
+   
+
+    public void setK(boolean k) {
+        this.k = k;
+    }
+    
+    public long getIdf() {
+        return idf;
+    }
+
+    public void setIdf(int idf) {
+        this.idf = idf;
+    }
+    
     private Connection obterConexao() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         // Passo 1: Registrar driver JDBC.
@@ -32,14 +52,15 @@ public class LoginDAO {
         return conn;
     }
 
-    public Login Autenticar(String usuario, String senha, Login login) {
+    public boolean Autenticar(String usuario, String senha, Login login) {
         PreparedStatement stmt = null;
         Statement stmt2 = null;
         Connection conn = null;
-        long id = 0;
+        k =false;
+        int id=0;
         
 
-        String sql = "Select ID_Funcionario FROM TB_Funcionario WHERE Senha= 'admin'  AND Usuario = 'admin' ";
+        String sql = "Select ID_Funcionario FROM TB_Funcionario WHERE USUARIO= '"+usuario+"'  AND Senha = '"+senha+"' ";
         try {
             conn = obterConexao();
             stmt2 = conn.createStatement();
@@ -47,14 +68,15 @@ public class LoginDAO {
 
             while (resultados.next()) {
 
-                id = Long.parseLong(resultados.getString("ID_Funcionario"));
-             
+                id = Integer.parseInt(resultados.getString("ID_Funcionario"));
+                this.k=true;
             }
             //seta o id_filial para a classe de produto
             login.setId(id);
             
+            
 
-            return login;
+            return k;
 
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,6 +100,6 @@ public class LoginDAO {
                 }
             }
         }
-            return null;
+          return false;  
     }
 }

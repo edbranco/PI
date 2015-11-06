@@ -65,19 +65,18 @@ public class ServletLogin extends HttpServlet {
         String valorBotao = request.getParameter("valor");
         String usuario;
         String senha;
-        Login login = new Login();
-
+        
         if (valorBotao.equals("OK")) {
             usuario = request.getParameter("usuario");
             senha = request.getParameter("senha");
+            Login login = new Login(usuario,senha);
             
-            login.setUsuario(usuario);
-            login.setSenha(senha);
+            
             
             LoginDAO log = new LoginDAO();
             log.Autenticar(usuario,senha,login);
             
-            if (login.getId() != null) {
+            if (log.getK() == true) {
                 request.setAttribute("login", login);
 
                 RequestDispatcher disp
