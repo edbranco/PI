@@ -193,24 +193,24 @@ public class ProdutoDAO {
             return produto;
 
         } catch (SQLException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -313,7 +313,9 @@ public class ProdutoDAO {
         return null;
     }
     
-    public void ExluirProduto(int id){
+    public boolean ExluirProduto(int id){
+        boolean cadastrado = false;
+        
         PreparedStatement stmt = null;
         Connection conn = null;       
         
@@ -325,11 +327,16 @@ public class ProdutoDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
             System.out.println("Registro excluídoo com sucesso.");
+            
+            cadastrado = true;
+            return cadastrado;
 
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } finally {
             if (stmt != null) {
                 try {

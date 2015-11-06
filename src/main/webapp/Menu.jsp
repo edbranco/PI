@@ -23,27 +23,27 @@
             <ul class="nav nav-pills">
                 <li class="dropdown"><a href="#">Produto</a>
                     <ul class="dropdown-menu">
-                        <li><a href="cadastroProduto.jsp">Cadastrar</a></li>
-                        <li><a href="AlterarProduto.jsp">Alterar</a></li>
+                        <li><a href="Servlet">Cadastrar</a></li>
+                        <li><a href="ServletAlterarProduto">Alterar</a></li>
                         <li><a href="ConsultarProduto.jsp">Consultar</a></li>
-                        <li><a href="ExcluirProduto.jsp">Excluir</a></li>
+                        <li><a href="ServletExcluirProduto">Excluir</a></li>
                           
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#">Filial</a>
                     <ul class="dropdown-menu">
-                        <li><a href="Cadastrar_Filial.jsp">Cadastrar</a></li>
-                        <li><a href="Alterar_Filial.jsp">Alterar</a></li>
+                        <li><a href="ServletFilialCadastrar">Cadastrar</a></li>
+                        <li><a href="ServletFilialAlterar">Alterar</a></li>
                         <li><a href="Consultar_Filial.jsp">Consultar</a></li>
-                        <li><a href="Excluir_Filial.jsp">Excluir</a></li> 
+                        <li><a href="ServletFilialExcluir">Excluir</a></li> 
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#">Cliente</a>
                     <ul class="dropdown-menu">
                         <li><a href="ServletClienteCadastrar">Cadastrar</a></li>
-                        <li><a href="Alterar_Cliente.jsp">Alterar</a></li>
+                        <li><a href="ServletClienteAlterar">Alterar</a></li>
                         <li><a href="Consultar_Cliente.jsp">Consultar</a></li> 
-                        <li><a href="Excluir_Cliente.jsp">Excluir</a></li>
+                        <li><a href="ServletClienteExcluir">Excluir</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#">Funcionário</a>

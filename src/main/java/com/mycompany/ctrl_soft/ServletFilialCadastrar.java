@@ -33,18 +33,33 @@ public class ServletFilialCadastrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletFilial</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletFilial at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String nome=request.getParameter("nomefilial");
+        String ufFilial=request.getParameter("uf");
+        String cnpjFilial=request.getParameter("cnpj");
+        
+        Filial filial = new Filial();
+       
+        filial.setNomefilial(nome);
+        filial.setUf(ufFilial);
+        filial.setCnpj(cnpjFilial);
+        
+        FilialDAO dao = new FilialDAO();
+        boolean cadastrado = dao.cadastrarFilial(filial);
+        
+        if (cadastrado == true) {
+            boolean mensagem = true;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
+                = request.getRequestDispatcher("Cadastrar_Filial.jsp");
+            disp.forward(request, response);
+        } else {
+            boolean mensagem = false;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
+                = request.getRequestDispatcher("Cadastrar_Filial.jsp");
+            disp.forward(request, response);
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -86,12 +101,21 @@ public class ServletFilialCadastrar extends HttpServlet {
         filial.setCnpj(cnpjFilial);
         
         FilialDAO dao = new FilialDAO();
-        dao.cadastrarFilial(filial);
-        request.setAttribute("filial", filial);
+        boolean cadastrado = dao.cadastrarFilial(filial);
         
-        RequestDispatcher disp
+        if (cadastrado == true) {
+            boolean mensagem = true;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
                 = request.getRequestDispatcher("Cadastrar_Filial.jsp");
-        disp.forward(request, response);
+            disp.forward(request, response);
+        } else {
+            boolean mensagem = false;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
+                = request.getRequestDispatcher("Cadastrar_Filial.jsp");
+            disp.forward(request, response);
+        }
         
         
     }

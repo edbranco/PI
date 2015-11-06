@@ -16,6 +16,7 @@
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="${pathResources}/js/validacao.js"></script>
     </head>
     <body>
         <jsp:include page="Menu.jsp" />
@@ -32,11 +33,23 @@
                 </fieldset>
             </form>
         </div>
+        <div id="suc-exc-produto" class="alert alert-success">
+            Produto excluído com sucesso!
+        </div>
             
             
             
         <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script> 
+        <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>
+        
+        <script>
+            if (${mensagem} === true) {
+                document.getElementById("suc-exc-produto").classList.add("aparecer");
+            } else {
+                document.getElementById("suc-exc-produto").classList.add("desaparecer");
+            }
+        </script>
     </body>
 </html>

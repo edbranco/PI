@@ -35,18 +35,13 @@ public class Servlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Servlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Servlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        boolean mensagem = false;
+
+        request.setAttribute("mensagem", mensagem);
+
+        RequestDispatcher disp
+                = request.getRequestDispatcher("cadastroProduto.jsp");
+        disp.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,7 +57,7 @@ public class Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        ProdutoDAO dao = new ProdutoDAO();
+//        ProdutoDAO dao = new ProdutoDAO();
 //        List<Produto> listaP = dao.listarProdutos();
 //
 //        request.setAttribute("produtos", listaP);
@@ -100,8 +95,10 @@ public class Servlet extends HttpServlet {
 
         ProdutoDAO dao = new ProdutoDAO();
         dao.cadastrarProduto(p1);
+        
+        boolean mensagem = true;
 
-        request.setAttribute("produto", p1);
+        request.setAttribute("mensagem", mensagem);
 
         RequestDispatcher disp
                 = request.getRequestDispatcher("cadastroProduto.jsp");

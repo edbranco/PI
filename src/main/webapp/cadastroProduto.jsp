@@ -45,11 +45,22 @@
                 </fieldset>
             </form>
         </div>
+        <div id="suc-cad-produto" class="alert alert-success">
+            Produto cadastrado com sucesso!
+        </div>
   
         
         <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>
+        
+        <script>
+            if (${mensagem} === true) {
+                document.getElementById("suc-cad-produto").classList.add("aparecer");
+            } else {
+                document.getElementById("suc-cad-produto").classList.add("desaparecer");
+            }
+        </script>
     </body>
 </html>

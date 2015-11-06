@@ -27,7 +27,7 @@
                     <legend>Alterar Cliente</legend>
                     <p>
                         <label for="idcliente">Digite o ID do Cliente:</label><br />
-                        <input type="number" name="idCliente" id="idcliente" class="ipt-id" />
+                        <input type="number" name="idCliente" id="idcliente" value="${cliente.id}" class="ipt-id" />
                     </p>
                     <p>
                         <label for="nomecliente">Nome:</label><br />
@@ -91,6 +91,9 @@
                 </fieldset>
             </form>
         </div>
+        <div id="suc-alt-cliente" class="alert alert-success">
+            Cliente alterado com sucesso!
+        </div>            
             
             
             
@@ -98,5 +101,13 @@
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>
+        
+        <script>
+            if (${mensagem} === true) {
+                document.getElementById("suc-alt-cliente").classList.add("aparecer");
+            } else {
+                document.getElementById("suc-alt-cliente").classList.add("desaparecer");
+            }
+        </script>
     </body>
 </html>

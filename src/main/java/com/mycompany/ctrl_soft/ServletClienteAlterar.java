@@ -35,18 +35,14 @@ public class ServletClienteAlterar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletClienteAlterar</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletClienteAlterar at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+        boolean mensagem = false;
+        
+        request.setAttribute("mensagem", mensagem);
+
+        RequestDispatcher disp
+                = request.getRequestDispatcher("Alterar_Cliente.jsp");
+        disp.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -76,33 +72,7 @@ public class ServletClienteAlterar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-//        String nome = request.getParameter("nomeCliente");
-//        String cpf = request.getParameter("cpfCliente");
-//        String telefone = request.getParameter("telefoneCliente");
-//        String email = request.getParameter("emailCliente");
-//        String endereco = request.getParameter("enderecoCliente");
-//        String cidade = request.getParameter("cidadeCliente");
-//        String uf = request.getParameter("estadoCliente");
-//
-//        ClienteDAO cliente = new ClienteDAO();
-//        
-//        cliente.setNome(nome);
-//        cliente.setCpf(cpf);
-//        cliente.setTelefone(telefone);
-//        cliente.setEmail(email);
-//        cliente.setEndereco(endereco);
-//        cliente.setCidade(cidade);
-//        cliente.setUf(uf);
-//        cliente.setDtCadastro(new Date());
-//
-//        Estoque dao = new Estoque();
-//        dao.cadastrarCliente(cliente);
-//
-//        request.setAttribute("cliente", cliente);
-//
-//        RequestDispatcher disp
-//                = request.getRequestDispatcher("Back_end_cliente.jsp");
-//        disp.forward(request, response);
+        
         String idTexto = request.getParameter("idCliente");
         String botaoValor = request.getParameter("btn-consultar");
         int id = Integer.parseInt(idTexto);
@@ -123,6 +93,7 @@ public class ServletClienteAlterar extends HttpServlet {
             String cidade = request.getParameter("cidadeCliente");
             String uf = request.getParameter("estadoCliente");
 
+            cliente.setId(id);
             cliente.setNome(nome);
             cliente.setCpf(cpf);
             cliente.setTelefone(telefone);
@@ -130,9 +101,11 @@ public class ServletClienteAlterar extends HttpServlet {
             cliente.setEndereco(endereco);
             cliente.setCidade(cidade);
             cliente.setUf(uf);
-            cliente.setDtCadastro(new Date());
 
             dao.alterarCliente(cliente, id);
+            
+            boolean mensagem = true;
+            request.setAttribute("mensagem", mensagem);
         }
 
         request.setAttribute("cliente", cliente);

@@ -32,7 +32,14 @@ public class ServletExcluirProduto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         
+        boolean mensagem = false;
+        request.setAttribute("mensagem", mensagem);
+
+        RequestDispatcher disp
+                = request.getRequestDispatcher("ExcluirProduto.jsp");
+        disp.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,20 +68,29 @@ public class ServletExcluirProduto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        
         String idTexto = request.getParameter("idProduto");
         int id = Integer.parseInt(idTexto);
 
         Produto produto = new Produto();
 
         ProdutoDAO dao = new ProdutoDAO();
-        dao.ExluirProduto(id);
+        boolean cadastrado = dao.ExluirProduto(id);
 
-        request.setAttribute("produto", produto);
-
-        RequestDispatcher disp
+        if (cadastrado == true) {
+            boolean mensagem = true;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
                 = request.getRequestDispatcher("ExcluirProduto.jsp");
-        disp.forward(request, response);
+            disp.forward(request, response);
+        } else {
+            boolean mensagem = false;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
+                = request.getRequestDispatcher("ExcluirProduto.jsp");
+            disp.forward(request, response);
+        }
     }
 
     /**

@@ -35,18 +35,13 @@ public class ServletClienteExcluir extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletExcluirCliente</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletExcluirCliente at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+        boolean mensagem = false;
+        request.setAttribute("mensagem", mensagem);
+
+        RequestDispatcher disp
+                = request.getRequestDispatcher("Excluir_Cliente.jsp");
+        disp.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,14 +57,6 @@ public class ServletClienteExcluir extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        ProdutoDAO dao = new ProdutoDAO();
-        List<Produto> listaP = dao.listarProdutos();
-
-        request.setAttribute("produtos", listaP);
-
-        RequestDispatcher disp
-                = request.getRequestDispatcher("Listar.jsp");
-        disp.forward(request, response);
     }
 
     /**
@@ -90,13 +77,21 @@ public class ServletClienteExcluir extends HttpServlet {
         ClienteDAO cliente = new ClienteDAO();
 
         ClienteDAO dao = new ClienteDAO();
-        dao.excluirCliente(id);
-
-        request.setAttribute("cliente", cliente);
-
-        RequestDispatcher disp
+        boolean cadastrado = dao.excluirCliente(id);
+        
+        if (cadastrado == true) {
+            boolean mensagem = true;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
                 = request.getRequestDispatcher("Excluir_Cliente.jsp");
-        disp.forward(request, response);
+            disp.forward(request, response);
+        } else {
+            boolean mensagem = false;
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher disp
+                = request.getRequestDispatcher("Excluir_Cliente.jsp");
+            disp.forward(request, response);
+        }
     }
 
     /**

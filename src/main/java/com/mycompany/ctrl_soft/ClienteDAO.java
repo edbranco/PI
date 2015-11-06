@@ -89,7 +89,9 @@ public class ClienteDAO {
     }
     
     //Função de exclusão de Clientes
-    public void excluirCliente(int id) {
+    public boolean excluirCliente(int id) {
+        boolean cadastrado = false;
+        
         PreparedStatement stmt = null;
         Connection conn = null;       
         
@@ -101,11 +103,16 @@ public class ClienteDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
             System.out.println("Registro excluídoo com sucesso.");
+            
+            cadastrado = true;
+            return cadastrado;
 
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } finally {
             if (stmt != null) {
                 try {
@@ -129,7 +136,7 @@ public class ClienteDAO {
         PreparedStatement stmt = null;
         Statement stmt2 = null;
         Connection conn = null;
-
+        
         String nome = "";
         String cpf = "";
         String telefone = "";
@@ -155,6 +162,7 @@ public class ClienteDAO {
                 uf = resultados.getString("UF");
             }
             //seta o id_filial para a classe de produto
+            cliente.setId(id);
             cliente.setNome(nome);
             cliente.setCpf(cpf);
             cliente.setTelefone(telefone);

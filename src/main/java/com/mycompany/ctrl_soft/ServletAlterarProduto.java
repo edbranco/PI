@@ -33,7 +33,15 @@ public class ServletAlterarProduto extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         
+        boolean mensagem = false;
+        
+        request.setAttribute("mensagem", mensagem);
+
+        RequestDispatcher disp
+                = request.getRequestDispatcher("AlterarProduto.jsp");
+        disp.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,7 +70,7 @@ public class ServletAlterarProduto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
         String idTexto = request.getParameter("idProduto");
         String botaoValor = request.getParameter("btn-consultar");
         int id = Integer.parseInt(idTexto);
@@ -89,6 +97,10 @@ public class ServletAlterarProduto extends HttpServlet {
             produto.setDtCadastro(new Date());
 
             dao.alterarProduto(produto, id);
+            
+            boolean mensagem = true;
+        
+            request.setAttribute("mensagem", mensagem);
         }
 
         request.setAttribute("produto", produto);

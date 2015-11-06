@@ -34,18 +34,14 @@ public class ServletFilialAlterar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletFilialAlterar</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletFilialAlterar at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+        boolean mensagem = false;
+        
+        request.setAttribute("mensagem", mensagem);
+
+        RequestDispatcher disp
+                = request.getRequestDispatcher("Alterar_Filial.jsp");
+        disp.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -94,10 +90,14 @@ public class ServletFilialAlterar extends HttpServlet {
             String uf = request.getParameter("uf");
         
             filial.setNomefilial(nome);
-             filial.setCnpj(cnpj);
-             filial.setUf(uf);
+            filial.setCnpj(cnpj);
+            filial.setUf(uf);
 
-           dao.alterarFiial(filial, id);
+            dao.alterarFiial(filial, id);
+           
+            boolean mensagem = true;
+        
+            request.setAttribute("mensagem", mensagem);
         }
 
         request.setAttribute("filial", filial);

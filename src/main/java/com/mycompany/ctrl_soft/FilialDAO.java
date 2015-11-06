@@ -38,7 +38,10 @@ public class FilialDAO {
         return conn;
     }
 
-    public void cadastrarFilial(Filial f) {
+    public boolean cadastrarFilial(Filial f) {
+        boolean cadastrado = false;
+        
+        
         PreparedStatement stmt = null;
         Connection conn = null;
 
@@ -54,10 +57,15 @@ public class FilialDAO {
             stmt.setString(3, f.getCnpj());
             stmt.executeUpdate();
             
+            cadastrado = true;
+            return cadastrado;
+            
          } catch (SQLException ex) {
             Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } finally {
             if (stmt != null) {
                 try {
@@ -174,7 +182,9 @@ public class FilialDAO {
     }
 
     
-    public void excluirFilial(int id) {
+    public boolean excluirFilial(int id) {
+        boolean cadastrado = false;
+        
         PreparedStatement stmt = null;
         Connection conn = null;
 
@@ -186,11 +196,16 @@ public class FilialDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
             System.out.println("Registro excluídoo com sucesso.");
+            
+            cadastrado = true;
+            return cadastrado;
 
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } finally {
             if (stmt != null) {
                 try {

@@ -79,3 +79,27 @@ function validarIdAlterar() {
         return false;
     }
 };
+
+function validarFilialCadastrar() {
+    //Campos
+    var estado = document.getElementById('uf').value;
+    
+    
+    //Mensagem de campos em branco e validacao
+    var brancobool;
+    if (estado === "0") {
+        brancobool = false;
+        document.getElementById("err-campo-estado").classList.add("aparecer");
+    } else {
+        brancobool = true;
+    } 
+    
+    
+    //Checa todos os campos
+    if (brancobool === true) {
+        return true;
+    }
+    else {
+        return false;
+    }
+};
