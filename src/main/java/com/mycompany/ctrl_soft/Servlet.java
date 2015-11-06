@@ -84,6 +84,7 @@ public class Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        
         String nome = request.getParameter("nomeProduto");
         String marca = request.getParameter("marcaProduto");
         double preco = Double.valueOf(request.getParameter("precoProduto"));

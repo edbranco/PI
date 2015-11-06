@@ -7,19 +7,19 @@ package com.mycompany.ctrl_soft;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Ude
+ * @author Eder Rodrigues
  */
-@WebServlet(name = "Login_Usuario", urlPatterns = {"/Login_Usuario"})
-public class Login_Usuario extends HttpServlet {
+@WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin"})
+public class ServletLogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,17 +32,7 @@ public class Login_Usuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        String usuario = request.getParameter("usuario");
-        String senha = request.getParameter("senha");
-        HttpSession sessao = request.getSession();
-        if (usuario.equals("admin") && senha.equals("adm")) {
-            sessao.setAttribute("usuario", usuario);
-            request.getRequestDispatcher("Menu.jsp").forward(request, response);
-        } else {
-            request.setAttribute("falha ", "Erro de autenticação");
-            request.getRequestDispatcher("Erro.jsp").forward(request, response);
-        }
+     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,6 +62,35 @@ public class Login_Usuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String valorBotao = request.getParameter("valor");
+        String usuario;
+        String senha;
+        Login login = new Login();
+
+        if (valorBotao.equals("OK")) {
+            usuario = request.getParameter("usuario");
+            senha = request.getParameter("senha");
+            
+            login.setUsuario(usuario);
+            login.setSenha(senha);
+            
+            LoginDAO log = new LoginDAO();
+            log.Autenticar(usuario,senha,login);
+            
+            if (login.getId() != null) {
+                request.setAttribute("login", login);
+
+                RequestDispatcher disp
+                        = request.getRequestDispatcher("Menu.jsp");
+                disp.forward(request, response);
+            } else {
+                request.setAttribute("login", login);
+                RequestDispatcher disp
+                        = request.getRequestDispatcher("Back_end.jsp");
+                disp.forward(request, response);
+            }
+
+        }
     }
 
     /**

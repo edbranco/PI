@@ -22,27 +22,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action = "Logout_Servlet" method ="post">
-            <fieldset>
-                <h3> Login </h3>
-                <p>
-                    <label for="nomeusuario">Nome:</label>
-                    <input type="text" name="nomeUsuario" id="nomeusuario">
-                </p>
-                <p>
-                    Senha: <input type="password"/>
-                </p>
 
-                <p>
-                    <input type ="submit" name ="menu.jsp"/> 
-                </p>
+        <form action="ServletLogin" method="post">
+            <label>Usuário</label>
+            <input type="text" name="usuario"/>
+            <label>Senha</label>
+            <input type="password" name="senha"/>
 
-                <p>
-                    <input type="reset" name ="Limpar"/>
-                </p>
-                
-                <p>
-            </fieldset>
+            <input type="submit" name="valor" value="OK"/>
         </form>
     </body>
 </html>
