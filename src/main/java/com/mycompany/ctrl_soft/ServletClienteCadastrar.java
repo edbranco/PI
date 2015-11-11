@@ -35,41 +35,13 @@ public class ServletClienteCadastrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String nome = request.getParameter("nomeCliente");
-        String cpf = request.getParameter("cpfCliente");
-        String telefone = request.getParameter("telefoneCliente");
-        String email = request.getParameter("emailCliente");
-        String endereco = request.getParameter("enderecoCliente");
-        String cidade = request.getParameter("cidadeCliente");
-        String uf = request.getParameter("estadoCliente");
-
-        Cliente cliente = new Cliente();
+        boolean mensagem = false;
         
-        cliente.setNome(nome);
-        cliente.setCpf(cpf);
-        cliente.setTelefone(telefone);
-        cliente.setEmail(email);
-        cliente.setEndereco(endereco);
-        cliente.setCidade(cidade);
-        cliente.setUf(uf);
-        cliente.setDtCadastro(new Date());
+        request.setAttribute("mensagem", mensagem);
 
-        ClienteDAO dao = new ClienteDAO();
-        boolean cadastrado = dao.cadastrarCliente(cliente);
-        
-        if (cadastrado == true) {
-            boolean mensagem = true;
-            request.setAttribute("mensagem", mensagem);
-            RequestDispatcher disp
+        RequestDispatcher disp
                 = request.getRequestDispatcher("Cadastrar_Cliente.jsp");
         disp.forward(request, response);
-        } else {
-            boolean mensagem = false;
-            request.setAttribute("mensagem", mensagem);
-            RequestDispatcher disp
-                = request.getRequestDispatcher("Cadastrar_Cliente.jsp");
-        disp.forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -116,7 +88,7 @@ public class ServletClienteCadastrar extends HttpServlet {
         cliente.setEndereco(endereco);
         cliente.setCidade(cidade);
         cliente.setUf(uf);
-        cliente.setDtCadastro(new Date());
+//        cliente.setDtCadastro(new Date());
 
         ClienteDAO dao = new ClienteDAO();
         boolean cadastrado = dao.cadastrarCliente(cliente);
@@ -126,13 +98,13 @@ public class ServletClienteCadastrar extends HttpServlet {
             request.setAttribute("mensagem", mensagem);
             RequestDispatcher disp
                 = request.getRequestDispatcher("Cadastrar_Cliente.jsp");
-        disp.forward(request, response);
+            disp.forward(request, response);
         } else {
             boolean mensagem = false;
             request.setAttribute("mensagem", mensagem);
             RequestDispatcher disp
                 = request.getRequestDispatcher("Cadastrar_Cliente.jsp");
-        disp.forward(request, response);
+            disp.forward(request, response);
         }
     }
 

@@ -17,14 +17,16 @@
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="${pathResources}/js/validacao.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/validacaoAlterar.js"></script>
     </head>
     <body> 
         <jsp:include page="Menu.jsp" />
        
         <div class="formulario">
-            <form action="ServletClienteAlterar" method="post">
+            <form action="ServletClienteAlterar" method="post" onsubmit="return validarAlterarCliente();">
                 <fieldset>
                     <legend>Alterar Cliente</legend>
+                    <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <p>
                         <label for="idcliente">Digite o ID do Cliente:</label><br />
                         <input type="number" name="idCliente" id="idcliente" value="${cliente.id}" class="ipt-id" />
@@ -33,13 +35,16 @@
                         <label for="nomecliente">Nome:</label><br />
                         <input type="text" name="nomeCliente" id="nomecliente" value="${cliente.nome}" class="ipt-largo" />
                     </p>
+                    <div id="err-campo-nome" class="alert alert-danger">
+                        <strong>Atenção!</strong> Digite apenas letras.
+                    </div>
                     <p>
                         <label for="cpfcliente">CPF:</label><br />
-                        <input type="number" name="cpfCliente" id="cpfcliente" value="${cliente.cpf}" class="ipt-largo" />
+                        <input type="text" name="cpfCliente" id="cpfcliente" value="${cliente.cpf}" class="ipt-largo" />
                     </p>
                     <p>
                         <label for="telefonecliente">Telefone:</label><br />
-                        <input type="number" name="telefoneCliente" id="telefonecliente" value="${cliente.telefone}" class="ipt-largo" />
+                        <input type="text" name="telefoneCliente" id="telefonecliente" value="${cliente.telefone}" class="ipt-largo" />
                     </p>
                     <p>
                         <label for="emailcliente">E-mail:</label><br />
@@ -51,8 +56,8 @@
                     </p>
                     <p class="ipt-curto ipt-curto-1">
                         <label for="estadocliente">UF:</label><br />
-                        <select name="estadoCliente" id="estadocliente" value="${cliente.uf}">
-                            <option value="0">Selecione o Estado</option>
+                        <select name="estadoCliente" id="estadocliente" class="ipt-select">
+                            <option value="${cliente.uf}">${cliente.uf}</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
                             <option value="AP">Amapá</option>
@@ -86,8 +91,8 @@
                         <label for="cidadecliente">Cidade:</label><br />
                         <input type="text" name="cidadeCliente" id="cidadecliente" value="${cliente.cidade}" />
                     </p><br />
-                    <input type="submit" name="btn-consultar" value="Pesquisar" />
-                    <input type="submit" name="btn-consultar" value="Alterar" />
+                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                    <input type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
                 </fieldset>
             </form>
         </div>
@@ -101,6 +106,14 @@
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>
+        
+        <!--Máscaras-->
+        <script>
+            jQuery(function($){
+                $("#telefonecliente").mask("(99)9999-9999");
+                $("#cpfcliente").mask("999.999.999-99");
+            });
+        </script>
         
         <script>
             if (${mensagem} === true) {

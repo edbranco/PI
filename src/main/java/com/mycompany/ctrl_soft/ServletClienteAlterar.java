@@ -37,8 +37,10 @@ public class ServletClienteAlterar extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         boolean mensagem = false;
+        boolean habilitado = false;
         
         request.setAttribute("mensagem", mensagem);
+        request.setAttribute("habilitado", habilitado);
 
         RequestDispatcher disp
                 = request.getRequestDispatcher("Alterar_Cliente.jsp");
@@ -83,6 +85,8 @@ public class ServletClienteAlterar extends HttpServlet {
         
         if (botaoValor.equals("Pesquisar")) {
             dao.consultarCliente(cliente, id);
+            boolean habilitado = true;
+            request.setAttribute("habilitado", habilitado);
         }
         else {
             String nome = request.getParameter("nomeCliente");
