@@ -79,9 +79,9 @@ public class ServletAlterarUsuario extends HttpServlet {
         String botaoValor = request.getParameter("btn-consultar");
         int id = Integer.parseInt(idTexto);
 
-        Usuario usu = new Usuario();
+        Funcionario usu = new Funcionario();
 
-        ConexaoUsuarioDAO dao = new ConexaoUsuarioDAO();
+        FuncionarioDAO dao = new FuncionarioDAO();
 
         if (botaoValor.equals("Pesquisar")) {
             dao.alterarUsuario(usu, id);

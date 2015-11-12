@@ -7,6 +7,7 @@ package com.mycompany.ctrl_soft;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ude
  */
-@WebServlet(name = "ServletCadastrarUsuario", urlPatterns = {"/ServletCadastrarUsuario"})
-public class ServletCadastrarUsuario extends HttpServlet {
+@WebServlet(name = "ServletFuncionarioCadastrar", urlPatterns = {"/ServletFuncionarioCadastrar"})
+public class ServletFuncionarioCadastrar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -73,45 +74,44 @@ public class ServletCadastrarUsuario extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {        
         
-        
-        String nomeUsuario = request.getParameter("nomeUsuario");
-        String senhaUsuario = request.getParameter("senhaUsuario");
-        String nomeFilial = request.getParameter("nomeFilial");
-        String nomeFuncionario = request.getParameter("telefoneUsuario");
-        int ra = Integer.parseInt(request.getParameter("raUsuario"));
-        String cpf = request.getParameter("cpfUsuario");
-        String telefone = request.getParameter("telefoneUsuario");
-        String email = request.getParameter("emailUsuario");
-        String endereco = request.getParameter("enderecoUsuario");
-        String cidade = request.getParameter("cidadeUsuario");
-        String uf = request.getParameter("ufUsuario");
-        String cargo = request.getParameter("cargoUsuario");
+        String nome = request.getParameter("nomefuncionario");
+        String usuario = request.getParameter("usuariofuncionario");
+        String senha = request.getParameter("senhafuncionario");
+        int filial = Integer.valueOf(request.getParameter("filialfuncionario"));
+        int ra = Integer.valueOf(request.getParameter("rafuncionario"));
+        String cpf = request.getParameter("cpffuncionario");
+        String telefone = request.getParameter("telefonefuncionario");
+        String email = request.getParameter("emailfuncionario");
+        String endereco = request.getParameter("enderecofuncionario");
+        String cidade = request.getParameter("cidadefuncionario");
+        String uf = request.getParameter("uffuncionario");
+        String cargo = request.getParameter("cargofuncionario");
 
-        Usuario usu = new Usuario();
+        Funcionario funcionario = new Funcionario();
 
-        usu.setNomeUsuario(nomeUsuario);
-        usu.setSenhaUsuario(senhaUsuario);
-      
-        usu.setNomeFuncionario(nomeFuncionario);
-        usu.setRa(ra);
-        usu.setCpf(cpf);
-        usu.setTelefone(telefone);
-        usu.setEmail(email);
-        usu.setEndereco(endereco);
-        usu.setCidade(cidade);
-        usu.setUf(uf);
-        usu.setCargo(cargo);
+        funcionario.setNome(nome);
+        funcionario.setUsuario(usuario);      
+        funcionario.setSenha(senha);
+        funcionario.setIdFilial(filial);
+        funcionario.setRa(ra);
+        funcionario.setCpf(cpf);
+        funcionario.setTelefone(telefone);
+        funcionario.setEmail(email);
+        funcionario.setEndereco(endereco);
+        funcionario.setCidade(cidade);
+        funcionario.setUf(uf);
+        funcionario.setCargo(cargo);
 
-        ConexaoUsuarioDAO dao = new ConexaoUsuarioDAO();
-        dao.cadastrarUsuario(usu, nomeFilial);
+        FuncionarioDAO dao = new FuncionarioDAO();
+        dao.cadastrarFuncionario(funcionario);
 
-        request.setAttribute("usuario", usu);
+        request.setAttribute("funcionario", funcionario);
 
-        RequestDispatcher disp = request.getRequestDispatcher("PreCadastroUsuario");
+        RequestDispatcher disp
+            = request.getRequestDispatcher("Cadastrar_Funcionario.jsp");
         disp.forward(request, response);
-
     }
 
     /**

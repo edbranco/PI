@@ -1,5 +1,5 @@
 <%-- 
-    Document   : CadastrarUsuario
+    Document   : Cadastrar_Funcionario
     Created on : 02/11/2015, 23:02:41
     Author     : Ude
 --%>
@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro de Funcionário</title>
+        <title>Cadastro de Funcionários</title>
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
@@ -21,55 +21,49 @@
         <jsp:include page="Menu.jsp" />    
         
         <div class="formulario">
-            <form action="ServletCadastrarUsuario" method="post">
+            <form action="ServletFuncionarioCadastrar" method="post">
                 <fieldset>
                     <legend>Cadastrar Funcionário</legend>   
                     <p>
+                        <label for="nomefuncionario">Nome:</label><br />
+                        <input type="text" name="nomefuncionario" id="nomefuncionario" class="ipt-largo" />
+                    </p>
+                    <p>
                         <label for="nomeusuario">Usuario:</label><br />
-                        <input type="text" name="nomeUsuario" id="nomeusuario" class="ipt-largo" />
+                        <input type="text" name="nomeusuario" id="nomeusuario" class="ipt-largo" />
                     </p>
                     <p>
                         <label for="senhausuario">Senha:</label><br />
-                        <input type="password" name="senhaUsuario" id="senhausuario" class="ipt-largo" />
+                        <input type="password" name="senhausuario" id="senhausuario" class="ipt-largo" />
+                    </p>                    
+                    <p>
+                        <label for="rafuncionario">RA:</label><br />
+                        <input type="text" name="rafuncionario" id="rafuncionario" class="ipt-largo" />
                     </p>
                     <p>
-                        <label for="nomeusuario">Funcionario:</label><br />
-                        <input type="text" name="nomeUsuario" id="nomeusuario" class="ipt-largo" />
-                    </p>
-                    <p>
-                        <label for="rausuario">RA:</label><br />
-                        <input type="text" name="raUsuario" id="rausuario" class="ipt-largo" />
-                    </p>
-                    <p>
-                        <label for="cpfusuario">CPF:</label><br />
-                        <input type="text" name="cpfUsuario" id="cpfusuario" class="ipt-largo" />
-                    </p>
-                    
-            
-                     <select name="nomeFilial" id="nomeFilial" class="ipt-select">
-                    
-                    <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
-                             
-                    <option>${filial.nomefilial}</option>
-                         
-                    </c:forEach>
-                    
+                        <label for="cpffuncionario">CPF:</label><br />
+                        <input type="text" name="cpffuncionario" id="cpffuncionario" class="ipt-largo" />
+                    </p>            
+                     <select name="filialfuncionario" id="filialfuncionario" class="ipt-select">                    
+                        <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
+                            <option value="${filial.idfilial}">${filial.nomefilial}</option>
+                        </c:forEach>                    
                      </select>
                     <p>
-                        <label for="telefoneusuario">Telefone:</label><br />
-                        <input type="number" name="telefoneUsuario" id="telefoneusuario" class="ipt-largo" />
+                        <label for="telefonefuncionario">Telefone:</label><br />
+                        <input type="text" name="telefonefuncionario" id="telefonefuncionario" class="ipt-largo" />
                     </p>
                     <p>
-                        <label for="emailusuario">Email:</label><br />
-                        <input type="email" name="emailUsuario" id="emailusuario" class="ipt-largo" />
+                        <label for="emailfuncionario">Email:</label><br />
+                        <input type="email" name="emailfuncionario" id="emailfuncionario" class="ipt-largo" />
                     </p>
                     <p>
-                        <label for="enderecousuario">Endereco:</label><br />
-                        <input type="text" name="enderecoUsuario" id="enderecousuario" class="ipt-largo" />
+                        <label for="enderecofuncionario">Endereco:</label><br />
+                        <input type="text" name="enderecofuncionario" id="enderecofuncionario" class="ipt-largo" />
                     </p>
                     <p>
-                        <label for="cargousuario">Cargo:</label><br />
-                        <select name="cargoUsuario" id="cargousuario" class="ipt-select ipt-largo">
+                        <label for="cargofuncionario">Cargo:</label><br />
+                        <select name="cargofuncionario" id="cargofuncionario" class="ipt-select ipt-largo">
                             <option value="0">Selecione o Cargo</option>
                             <option value="gerente">Gerente</option>
                             <option value="vendedor">Vendedor</option>
@@ -77,8 +71,8 @@
                     </p>
 
                     <p class="ipt-curto ipt-curto-1">
-                        <label for="estadousuario">UF:</label><br />
-                        <select name="estadoUsuario" id="estadousuario" class="ipt-select">
+                        <label for="estadofuncionario">UF:</label><br />
+                        <select name="estadofuncionario" id="estadofuncionario" class="ipt-select">
                             <option value="0">Selecione o Estado</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -110,8 +104,8 @@
                         </select>
                     </p>            
                     <p class="ipt-curto">
-                        <label for="cidadeusuario">Cidade:</label><br />
-                        <input type="text" name="cidadeUsuario" id="cidadeusuario">
+                        <label for="cidadefuncionario">Cidade:</label><br />
+                        <input type="text" name="cidadefuncionario" id="cidadefuncionario">
                     </p><br />
                     <input type="submit" value="Cadastrar"/>
                 </fieldset>
@@ -121,6 +115,15 @@
         
         <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
-        <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script> 
+        <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>
+        
+        <!--Máscaras-->
+        <script>
+            jQuery(function($){
+                $("#telefonefuncionario").mask("(99)9999-9999");
+                $("#cpffuncionario").mask("999.999.999-99");
+            });
+        </script>
     </body>
 </html>

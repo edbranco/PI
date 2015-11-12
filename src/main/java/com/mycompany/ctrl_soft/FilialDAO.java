@@ -240,7 +240,8 @@ public class FilialDAO {
             while (resultados.next()) {
                 //Cliente temporário
                 Filial filial = new Filial();
-
+                
+                filial.setIdfilial(resultados.getLong("ID_Filial"));
                 filial.setNomefilial(resultados.getString("nome_filial"));
                 filial.setCnpj(resultados.getString("cnpj"));
                 filial.setUf(resultados.getString("uf"));

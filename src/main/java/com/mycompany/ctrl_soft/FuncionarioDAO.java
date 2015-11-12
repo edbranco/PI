@@ -5,11 +5,15 @@
  */
 package com.mycompany.ctrl_soft;
 
+import java.util.Date;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,7 +23,7 @@ import java.util.logging.Logger;
  *
  * @author Ude
  */
-public class ConexaoUsuarioDAO {
+public class FuncionarioDAO {
 
     private Connection obterConexao() throws SQLException, ClassNotFoundException {
         Connection conn = null;
@@ -33,70 +37,63 @@ public class ConexaoUsuarioDAO {
         return conn;
     }
 
-    public void cadastrarUsuario(Usuario usu, String nomeFilial) {
+    public boolean cadastrarFuncionario(Funcionario funcionario) {
+        boolean cadastrado = false;
+        
         PreparedStatement stmt = null;
         Connection conn = null;
-
-        String sql = "SELECT id_filial FROM TB_Filial where nome_filial = "+nomeFilial+"";
+        
+        String sql = "INSERT INTO TB_Funcionario (ID_Filial, Usuario, Senha, NomeFuncionario, RA, CPF, "
+                    + "Telefone, Email, Endereco, Cidade, UF, Cargo) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            int idFilial = 0;
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                idFilial = rs.getInt("ID_Filial");
-            }
-            usu.setIdFilial(idFilial);
-
             
+            stmt.setLong(1, funcionario.getIdFilial());
+            stmt.setString(2, funcionario.getUsuario());
+            stmt.setString(3, funcionario.getSenha());
+            stmt.setString(4, funcionario.getNome());
+            stmt.setInt(5, funcionario.getRa());
+            stmt.setString(6, funcionario.getCpf());
+            stmt.setString(7, funcionario.getTelefone());
+            stmt.setString(8, funcionario.getEmail());
+            stmt.setString(9, funcionario.getEndereco());
+            stmt.setString(10, funcionario.getCidade());
+            stmt.setString(11, funcionario.getUf());
+            stmt.setString(12, funcionario.getCargo());
+
+            stmt.executeUpdate();
             
-           String sql2 = "INSERT INTO TB_FUNCIONARIO (id_filial,Usuario, Senha, nomeFuncionario, RA, CPF, "
-                    + "Telefone, Email, Endereco, Cidade, UF, Cargo ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-            conn = obterConexao();
-            stmt = conn.prepareStatement(sql2);
-            stmt.setLong(1, usu.getIdFilial());
-            stmt.setString(2, usu.getNomeUsuario());
-            stmt.setString(3, usu.getSenhaUsuario());
-            stmt.setString(4, usu.getNomeFuncionario());
-            stmt.setInt(5, usu.getRa());
-            stmt.setString(6, usu.getCpf());
-            stmt.setString(7, usu.getTelefone());
-            stmt.setString(8, usu.getEmail());
-            stmt.setString(9, usu.getEndereco());
-            stmt.setString(10, usu.getCidade());
-            stmt.setString(11, usu.getUf());
-            stmt.setString(12, usu.getCargo());
-
-          stmt.executeUpdate();
-//            stmt.executeUpdate();
-            System.out.println("Registro incluido com sucesso.");
+            cadastrado = true;
+            return cadastrado;
 
         } catch (SQLException ex) {
-            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
 
-    public void alterarUsuario(Usuario usu, int id) {
+    public void alterarFuncionario(Funcionario usu, int id) {
         PreparedStatement stmt = null;
         Connection conn = null;
 
@@ -125,28 +122,28 @@ public class ConexaoUsuarioDAO {
             System.out.println("Alterado Com Sucesso!");
 
         } catch (SQLException ex) {
-            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
 
-    public void excluirUsuario(Usuario usu, int id) {
+    public void excluirFuncionario(Funcionario usu, int id) {
         PreparedStatement stmt = null;
         Connection conn = null;
 
@@ -160,34 +157,34 @@ public class ConexaoUsuarioDAO {
             System.out.println("Registro excluído com sucesso.");
 
         } catch (SQLException ex) {
-            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
 
-    public List<Usuario> ListarUsuarios() {
+    public List<Funcionario> ListarFuncionarios() {
         PreparedStatement stmt = null;
         Connection conn = null;
 
         String sql = "SELECT * FROM TF_Funcionario";
 
-        List<Usuario> lista = new ArrayList<Usuario>();
+        List<Funcionario> lista = new ArrayList<Funcionario>();
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
@@ -195,7 +192,7 @@ public class ConexaoUsuarioDAO {
 
             while (resultado.next()) {
 
-                Usuario usu = new Usuario();
+                Funcionario usu = new Funcionario();
 
                 usu.setIdUsuario(resultado.getInt("id"));
                 usu.setNomeUsuario(resultado.getString("nomeUsuario"));
@@ -213,22 +210,22 @@ public class ConexaoUsuarioDAO {
             System.out.println("Busca Realizada!");
 
         } catch (SQLException ex) {
-            Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(ConexaoUsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
