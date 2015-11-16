@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Douglas
  */
-@WebServlet(name = "ServletClienteAlterar", urlPatterns = {"/ServletClienteAlterar"})
-public class ServletClienteAlterar extends HttpServlet {
+@WebServlet(name = "ServletFuncionarioExcluir", urlPatterns = {"/ServletFuncionarioExcluir"})
+public class ServletFuncionarioExcluir extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,15 +37,15 @@ public class ServletClienteAlterar extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         boolean mensagem = false;
-        boolean habilitado = false;
         boolean semRegistro = false;
+        boolean funcionarioExiste = false;
         
         request.setAttribute("mensagem", mensagem);
-        request.setAttribute("habilitado", habilitado);
         request.setAttribute("semRegistro", semRegistro);
+        request.setAttribute("funcionarioExiste", funcionarioExiste);
 
         RequestDispatcher disp
-                = request.getRequestDispatcher("Alterar_Cliente.jsp");
+                = request.getRequestDispatcher("Excluir_Funcionario.jsp");
         disp.forward(request, response);
     }
 
@@ -76,60 +76,51 @@ public class ServletClienteAlterar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
-        String idTexto = request.getParameter("idCliente");
-        String botaoValor = request.getParameter("btn-consultar");
+        String idTexto = request.getParameter("idfuncionario");
         int id = Integer.parseInt(idTexto);
+        String botaoValor = request.getParameter("btn-consultar");
 
-        Cliente cliente = new Cliente();
-        Cliente clienteTeste = new Cliente();
+        Funcionario funcionario = new Funcionario();
+        Funcionario funcionarioTeste = new Funcionario();        
 
-        ClienteDAO dao = new ClienteDAO();
+        FuncionarioDAO dao = new FuncionarioDAO();        
         boolean semRegistro;
+        boolean funcionarioExiste;
         
         if (botaoValor.equals("Pesquisar")) {   
-            clienteTeste = dao.consultarCliente(cliente, id);
+            funcionarioTeste = dao.consultarFuncionario(funcionario, id);
             
-            if (clienteTeste.uf.equals("")) {
+            if (funcionarioTeste.uf.equals("")) {
                 semRegistro = true;
-                boolean habilitado = false;
-                request.setAttribute("habilitado", habilitado);
+                funcionarioExiste = false;
                 request.setAttribute("semRegistro", semRegistro);
+                request.setAttribute("funcionarioExiste", funcionarioExiste);
             } else {
-                semRegistro = false;                
-                boolean habilitado = true;
-                request.setAttribute("habilitado", habilitado);
+                semRegistro = false;
+                funcionarioExiste = true;
                 request.setAttribute("semRegistro", semRegistro);
+                request.setAttribute("funcionarioExiste", funcionarioExiste);
+                request.setAttribute("funcionario", funcionario);
             }
         }
-        else {
-            String nome = request.getParameter("nomeCliente");
-            String cpf = request.getParameter("cpfCliente");
-            String telefone = request.getParameter("telefoneCliente");
-            String email = request.getParameter("emailCliente");
-            String endereco = request.getParameter("enderecoCliente");
-            String cidade = request.getParameter("cidadeCliente");
-            String uf = request.getParameter("estadoCliente");
-
-            cliente.setId(id);
-            cliente.setNome(nome);
-            cliente.setCpf(cpf);
-            cliente.setTelefone(telefone);
-            cliente.setEmail(email);
-            cliente.setEndereco(endereco);
-            cliente.setCidade(cidade);
-            cliente.setUf(uf);
-
-            dao.alterarCliente(cliente, id);
+        else {            
+            boolean excluido = dao.excluirFuncionario(funcionario, id);
             
-            boolean mensagem = true;
-            request.setAttribute("mensagem", mensagem);
-        }
-
-        request.setAttribute("cliente", cliente);
-
+            if (excluido == true) {
+                boolean mensagem = true;
+                semRegistro = false;
+                request.setAttribute("mensagem", mensagem); 
+                request.setAttribute("semRegistro", semRegistro);
+            } else {
+                boolean mensagem = false;
+                semRegistro = true;
+                request.setAttribute("mensagem", mensagem);
+                request.setAttribute("semRegistro", semRegistro);
+            }
+        }       
+        
         RequestDispatcher disp
-                = request.getRequestDispatcher("Alterar_Cliente.jsp");
+            = request.getRequestDispatcher("Excluir_Funcionario.jsp");
         disp.forward(request, response);
     }
 

@@ -26,7 +26,7 @@
                  <fieldset>
                     <legend>Cadastrar Filial</legend>  
                     <p>
-                        <label for="txtNome">Nome:</label><br />
+                        <label for="nomefilial">Nome:</label><br />
                         <input type="text" maxlength="20" name="nomefilial" id="nomefilial" class="ipt-largo" required />
                     </p>
                     <p class="ipt-largo">
@@ -66,7 +66,7 @@
                     <strong>Atenção!</strong> Escolha um Estado.
                 </div>
                     <p>
-                        <label for="txtNome">CNPJ:</label><br />
+                        <label for="cnpj">CNPJ:</label><br />
                         <input type="text" name="cnpj" id="cnpj" class="ipt-largo" required />
                     </p>
                     <input type="submit" value="Cadastrar"/>

@@ -13,23 +13,15 @@ var idErrado;
 
 function carregar (evt) {
     pesquisa = "false";
-    document.getElementById('nomecliente').disabled = true;
-    document.getElementById('cpfcliente').disabled = true;
-    document.getElementById('telefonecliente').disabled = true;
-    document.getElementById('emailcliente').disabled = true;
-    document.getElementById('enderecocliente').disabled = true;
-    document.getElementById('cidadecliente').disabled = true;
-    document.getElementById('estadocliente').disabled = true;
+    document.getElementById('nomeFilial').disabled = true;
+    document.getElementById('cnpj').disabled = true;
+    document.getElementById('uf').disabled = true;
     
     pesquisa = document.getElementById('habilitado').value;  
     if (pesquisa === "true") {
-        document.getElementById('nomecliente').disabled = false;
-        document.getElementById('cpfcliente').disabled = false;
-        document.getElementById('telefonecliente').disabled = false;
-        document.getElementById('emailcliente').disabled = false;
-        document.getElementById('enderecocliente').disabled = false;
-        document.getElementById('cidadecliente').disabled = false;
-        document.getElementById('estadocliente').disabled = false;
+        document.getElementById('nomeFilial').disabled = false;
+        document.getElementById('cnpj').disabled = false;
+        document.getElementById('uf').disabled = false;
     }
     
     //Mensagem caso pesquisa não retorne nada     
@@ -47,7 +39,7 @@ function alteraEFalso() {
     altera = false;
     
     //Validar id
-    var id = document.getElementById('idcliente').value;
+    var id = document.getElementById('idFilial').value;
     
     if (id !== "") {
         var idbool;    
@@ -65,10 +57,10 @@ function alteraEFalso() {
 }
 
 function alteraEVerdadeiro() {
-    altera = true;   
+    altera = true;
     
     //Validar id
-    var id = document.getElementById('idcliente').value;
+    var id = document.getElementById('idFilial').value;
     
     if (id !== "") {
         var idbool;    
@@ -85,23 +77,10 @@ function alteraEVerdadeiro() {
     }
 }
 
-function validarAlterarCliente() {
+function validarAlterarFilial() {
     if (altera === true && idErrado === false) {
         //Campos
-        var estado = document.getElementById('estadocliente').value;
-        var id = document.getElementById('idcliente').value;
-        var nome = document.getElementById('nomecliente').value;
-
-
-        //Mensagem de campos em branco e validacao
-    //    var brancobool;
-    //    if (estado === "0") {
-    //        brancobool = false;
-    //        alert("Todos os campos devem ser preenchidos!");        
-    //        return false;
-    //    } else {
-    //        brancobool = true;
-    //    }    
+        var id = document.getElementById('idFilial').value;
     
         //Validar id
         var idbool;    
@@ -114,18 +93,8 @@ function validarAlterarCliente() {
             idbool = false;
         }
 
-        //Validar nome
-        var nomebool;    
-        var letters = /^[A-Za-z]+$/;
-        if(nome.match(letters)) {
-            nomebool = true;
-        } else {
-            document.getElementById("err-campo-nome").classList.add("aparecer");
-            nomebool = false;
-        }
-
         //Checa todos os campos
-        if (nomebool === true && idbool === true) {
+        if (idbool === true) {
             return true;
         }
         else {
@@ -139,19 +108,6 @@ function validarAlterarCliente() {
         return false;
     }
 };
-
-function erroNome() {
-    var nome = document.getElementById('nomecliente').value;
-    
-    //Validar nome
-    var nomebool;    
-    var letters = /^[A-Za-z]+$/;
-    if(nome.match(letters)) {
-        
-    } else {
-        document.getElementById("err-campo-nome").classList.add("aparecer");
-    }
-}
 
 
 

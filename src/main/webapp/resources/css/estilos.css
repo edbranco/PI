@@ -103,3 +103,7 @@ p.ipt-curto input, p.ipt-curto select {
 .cpo-id {
     padding-right: 80px;
 }
+
+.consulta-excluir {
+    display: none;
+}

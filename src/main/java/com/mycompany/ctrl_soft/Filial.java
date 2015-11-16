@@ -3,10 +3,10 @@ package com.mycompany.ctrl_soft;
 
 public class Filial {
 
-    private Long idfilial;
-    private String nomefilial;
-    private String uf;
-    private String cnpj;
+    protected Long idfilial;
+    protected String nomefilial;
+    protected String uf;
+    protected String cnpj;
 
     public Filial(Long idfilial, String nomefilial, String uf, String cnpj) {
         this.idfilial = idfilial;
@@ -22,14 +22,14 @@ public class Filial {
     /**
      * @return the idfilial
      */
-    public Long getIdfilial() {
+    public long getIdfilial() {
         return idfilial;
     }
 
     /**
      * @param idfilial the idfilial to set
      */
-    public void setIdfilial(Long idfilial) {
+    public void setIdfilial(long idfilial) {
         this.idfilial = idfilial;
     }
 

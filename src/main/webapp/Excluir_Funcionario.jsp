@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Back_end_cliente_excluir
-    Created on : Oct 26, 2015, 2:06:45 AM
+    Document   : Excluir_Funcionario
+    Created on : Nov 15, 2015, 10:29:50 PM
     Author     : Douglas
 --%>
 
@@ -12,24 +12,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Exclusão de Clientes</title>
+        <title>Exclusão de Funcionários</title>
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="${pathResources}/js/validacaoExcluir.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/validacaoExcluirFuncionario.js"></script>
     </head>
     <body>
         <jsp:include page="Menu.jsp" />
         
         <div class="formulario">
-            <form action="ServletClienteExcluir" method="post" onsubmit="return validarExcluirCliente();">         
+            <form action="ServletFuncionarioExcluir" method="post" onsubmit="return validarExcluirFuncionario();">         
                 <fieldset>
-                    <legend>Excluir Cliente</legend>
+                    <legend>Excluir Funcionário</legend>
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
-                    <input type="hidden" name="clienteExiste" id="clienteExiste" value="${clienteExiste}">
+                    <input type="hidden" name="funcionarioExiste" id="funcionarioExiste" value="${funcionarioExiste}">
                     <p>
-                        <label for="idcliente">Digite o ID do Cliente:</label>
-                        <input type="text" name="idcliente" id="idcliente" value="${cliente.id}" required />
+                        <label for="idfuncionario">Digite o ID do Funcionário:</label>
+                        <input type="text" name="idfuncionario" id="idfuncionario" value="${funcionario.id}" required />
                     </p>
                     <div id="err-campo-id" class="alert alert-danger">
                         <strong>Atenção!</strong> Digite apenas números inteiros.
@@ -40,21 +40,23 @@
                 </fieldset>
             </form>
         </div>
-        <div id="suc-exc-cliente" class="alert alert-success">
-            Cliente excluído com sucesso!
+        <div id="suc-exc-funcionario" class="alert alert-success">
+            Funcionário excluído com sucesso!
         </div>
         <div id="exc-alert-reg" class="alert alert-warning">
-            <strong>Atenção!</strong> Este cliente não existe!
+            <strong>Atenção!</strong> Este funcionário não existe!
         </div>
                     
         <div class="consulta-excluir">
-            <p>Nome: ${cliente.nome}</p>
-            <p>CPF: ${cliente.cpf}</p>
-            <p>Telefone: ${cliente.telefone}</p>
-            <p>E-mail: ${cliente.email}</p>
-            <p>Endereco: ${cliente.endereco}</p>
-            <p>UF: ${cliente.uf}</p>
-            <p>Cidade: ${cliente.cidade}</p>
+            <p>Nome: ${funcionario.nome}</p>
+            <p>RA: ${funcionario.ra}</p>
+            <p>CPF: ${funcionario.cpf}</p>
+            <p>Telefone: ${funcionario.telefone}</p>
+            <p>E-mail: ${funcionario.email}</p>
+            <p>Endereco: ${funcionario.endereco}</p>
+            <p>UF: ${funcionario.uf}</p>
+            <p>Cidade: ${funcionario.cidade}</p>
+            <p>Cargo: ${funcionario.cargo}</p>
         </div>
         
         
@@ -66,9 +68,9 @@
         
         <script>
             if (${mensagem} === true) {
-                document.getElementById("suc-exc-cliente").classList.add("aparecer");
+                document.getElementById("suc-exc-funcionario").classList.add("aparecer");
             } else {
-                document.getElementById("suc-exc-cliente").classList.add("desaparecer");
+                document.getElementById("suc-exc-funcionario").classList.add("desaparecer");
             }           
         </script>
     </body>

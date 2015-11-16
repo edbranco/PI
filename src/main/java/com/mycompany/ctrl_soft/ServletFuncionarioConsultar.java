@@ -8,6 +8,7 @@ package com.mycompany.ctrl_soft;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ude
+ * @author Douglas
  */
-@WebServlet(name = "AlterarUsuario", urlPatterns = {"/AlterarUsuario"})
-public class ServletAlterarUsuario extends HttpServlet {
+@WebServlet(name = "ServletFuncionarioConsultar", urlPatterns = {"/ServletFuncionarioConsultar"})
+public class ServletFuncionarioConsultar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +40,10 @@ public class ServletAlterarUsuario extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AlterarUsuario</title>");
+            out.println("<title>Servlet ServletFuncionarioConsultar</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AlterarUsuario at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletFuncionarioConsultar at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,49 +75,20 @@ public class ServletAlterarUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //processRequest(request, response);
+        String nome = request.getParameter("nomefuncionario");
 
-        String idTexto = request.getParameter("idUsuario");
-        String botaoValor = request.getParameter("btn-consultar");
-        int id = Integer.parseInt(idTexto);
-
-        Funcionario usu = new Funcionario();
+        Funcionario funcionario = new Funcionario();
+        
+        funcionario.setNome(nome);
 
         FuncionarioDAO dao = new FuncionarioDAO();
+        List<Funcionario> listaFuncionarios = dao.ListarFuncionarios(nome);
 
-        if (botaoValor.equals("Pesquisar")) {
-            dao.alterarUsuario(usu, id);
-        } else {
-            String nomeUsuario = request.getParameter("nomeUsuario");
-            String senhaUsuario = request.getParameter("senhaUsuario");
-            String nomeFuncionario = request.getParameter("telefoneUsuario");
-            int ra = Integer.parseInt(request.getParameter("raUsuario"));
-            String cpf = request.getParameter("cpfUsuario");
-            String telefone = request.getParameter("telefoneUsuario");
-            String email = request.getParameter("emailUsuario");
-            String endereco = request.getParameter("enderecoUsuario");
-            String cidade = request.getParameter("cidadeUsuario");
-            String uf = request.getParameter("ufUsuario");
-            String cargo = request.getParameter("cargoUsuario");
-
-            usu.setNomeUsuario(nomeUsuario);
-            usu.setSenhaUsuario(senhaUsuario);
-            usu.setNomeFuncionario(nomeFuncionario);
-            usu.setRa(ra);
-            usu.setCpf(cpf);
-            usu.setTelefone(telefone);
-            usu.setEmail(email);
-            usu.setEndereco(endereco);
-            usu.setCidade(cidade);
-            usu.setUf(uf);
-            usu.setCargo(cargo);
-
-            dao.alterarUsuario(usu, id);
-        }
-
-        request.setAttribute("usu", usu);
+        request.setAttribute("listaFuncionarios", listaFuncionarios);
 
         RequestDispatcher disp
-                = request.getRequestDispatcher("Alterar_Usuario.jsp");
+                = request.getRequestDispatcher("Consultar_Funcionario.jsp");
         disp.forward(request, response);
     }
 

@@ -16,32 +16,37 @@
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="${pathResources}/js/validacao.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/validacaoAlterarFilial.js"></script>
     </head>
     <body>                  
         <jsp:include page="Menu.jsp" />
             
         <div class="formulario">
-            <form action="ServletFilialAlterar" method="post">  
+            <form action="ServletFilialAlterar" method="post" onsubmit="return validarAlterarFilial();">  
                 <fieldset>
-                    <legend>Alterar Filial</legend>  
+                    <legend>Alterar Filial</legend> 
+                    <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
+                    <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
                     <p>
-                        <label for="txtId">Digite o ID da Filial:</label>
-                        <input type="number" name="idFilial" id="idFilial" value="${filial.idfilial}" class="ipt-id" />
+                        <label for="idFilial">Digite o ID da Filial:</label>
+                        <input type="text" name="idFilial" id="idFilial" value="${filial.idfilial}" class="ipt-id" required />
                     </p>
+                    <div id="err-campo-id" class="alert alert-danger">
+                        <strong>Atenção!</strong> Digite apenas números inteiros.
+                    </div>
      
                     <p>
-                        <label for="txtNome">Nome da Filial:</label><br />
-                        <input type="text" name="nomeFilial" id="nomeFilial" value="${filial.nomefilial}" class="ipt-largo" />
+                        <label for="nomeFilial">Nome da Filial:</label><br />
+                        <input type="text" name="nomeFilial" id="nomeFilial" value="${filial.nomefilial}" class="ipt-largo" required />
                     </p>
                     <p>
-                        <label for="txtNome">Cnpj:</label><br />
-                        <input type="text" name="cnpj" id="cnpj" value="${filial.cnpj}" class="ipt-largo" />
+                        <label for="cnpj">Cnpj:</label><br />
+                        <input type="text" name="cnpj" id="cnpj" value="${filial.cnpj}" class="ipt-largo" required/>
                     </p>
                     <p class="ipt-largo">
                     <label for="uf">UF:</label><br />
                     <select name="uf" id="uf" class="ipt-largo">
-                        <option value="0">Selecione o Estado</option>
+                        <option value="${filial.uf}">${filial.uf}</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
                         <option value="AP">Amapá</option>
@@ -72,13 +77,16 @@
                     </select>
                 </p>
                     
-                    <input type="submit" name="btn-consultar" value="Pesquisar" />
-                    <input type="submit" name="btn-consultar" value="Alterar" />
+                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                    <input type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
                 </fieldset>
             </form>
         </div>
         <div id="suc-alt-filial" class="alert alert-success">
             Filial alterada com sucesso!
+        </div>
+        <div id="alerta-registro" class="alert alert-warning">
+            <strong>Atenção!</strong> Esta filial não existe!
         </div>
                     
                     
@@ -86,6 +94,13 @@
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>    
         <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>
+        
+        <!--Máscaras-->
+        <script>
+            jQuery(function($){
+                $("#cnpj").mask("999999999999");
+            });
+        </script>
         
         <script>
             if (${mensagem} === true) {

@@ -13,23 +13,29 @@ var idErrado;
 
 function carregar (evt) {
     pesquisa = "false";
-    document.getElementById('nomecliente').disabled = true;
-    document.getElementById('cpfcliente').disabled = true;
-    document.getElementById('telefonecliente').disabled = true;
-    document.getElementById('emailcliente').disabled = true;
-    document.getElementById('enderecocliente').disabled = true;
-    document.getElementById('cidadecliente').disabled = true;
-    document.getElementById('estadocliente').disabled = true;
+    document.getElementById('nomefuncionario').disabled = true;
+    document.getElementById('rafuncionario').disabled = true;
+    document.getElementById('cpffuncionario').disabled = true;
+    document.getElementById('filialfuncionario').disabled = true;
+    document.getElementById('telefonefuncionario').disabled = true;
+    document.getElementById('emailfuncionario').disabled = true;
+    document.getElementById('enderecofuncionario').disabled = true;
+    document.getElementById('cargofuncionario').disabled = true;
+    document.getElementById('estadofuncionario').disabled = true;
+    document.getElementById('cidadefuncionario').disabled = true;
     
     pesquisa = document.getElementById('habilitado').value;  
     if (pesquisa === "true") {
-        document.getElementById('nomecliente').disabled = false;
-        document.getElementById('cpfcliente').disabled = false;
-        document.getElementById('telefonecliente').disabled = false;
-        document.getElementById('emailcliente').disabled = false;
-        document.getElementById('enderecocliente').disabled = false;
-        document.getElementById('cidadecliente').disabled = false;
-        document.getElementById('estadocliente').disabled = false;
+        document.getElementById('nomefuncionario').disabled = false;
+    document.getElementById('rafuncionario').disabled = false;
+    document.getElementById('cpffuncionario').disabled = false;
+    document.getElementById('filialfuncionario').disabled = false;
+    document.getElementById('telefonefuncionario').disabled = false;
+    document.getElementById('emailfuncionario').disabled = false;
+    document.getElementById('enderecofuncionario').disabled = false;
+    document.getElementById('cargofuncionario').disabled = false;
+    document.getElementById('estadofuncionario').disabled = false;
+    document.getElementById('cidadefuncionario').disabled = false;
     }
     
     //Mensagem caso pesquisa não retorne nada     
@@ -47,7 +53,7 @@ function alteraEFalso() {
     altera = false;
     
     //Validar id
-    var id = document.getElementById('idcliente').value;
+    var id = document.getElementById('idfuncionario').value;
     
     if (id !== "") {
         var idbool;    
@@ -68,7 +74,7 @@ function alteraEVerdadeiro() {
     altera = true;   
     
     //Validar id
-    var id = document.getElementById('idcliente').value;
+    var id = document.getElementById('idfuncionario').value;
     
     if (id !== "") {
         var idbool;    
@@ -85,23 +91,12 @@ function alteraEVerdadeiro() {
     }
 }
 
-function validarAlterarCliente() {
+function validarAlterarFuncionario() {
     if (altera === true && idErrado === false) {
         //Campos
         var estado = document.getElementById('estadocliente').value;
-        var id = document.getElementById('idcliente').value;
-        var nome = document.getElementById('nomecliente').value;
-
-
-        //Mensagem de campos em branco e validacao
-    //    var brancobool;
-    //    if (estado === "0") {
-    //        brancobool = false;
-    //        alert("Todos os campos devem ser preenchidos!");        
-    //        return false;
-    //    } else {
-    //        brancobool = true;
-    //    }    
+        var id = document.getElementById('idfuncionario').value;
+        var nome = document.getElementById('nomefuncionario').value;
     
         //Validar id
         var idbool;    
@@ -141,7 +136,7 @@ function validarAlterarCliente() {
 };
 
 function erroNome() {
-    var nome = document.getElementById('nomecliente').value;
+    var nome = document.getElementById('nomefuncionario').value;
     
     //Validar nome
     var nomebool;    

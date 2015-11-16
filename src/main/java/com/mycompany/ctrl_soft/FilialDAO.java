@@ -11,7 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,7 +93,7 @@ public class FilialDAO {
         Connection conn = null;       
         
         String sql = "UPDATE TB_Filial SET Nome_Filial=?, UF=?, CNPJ=? "
-                + " WHERE ID_Filial = ?";
+                + "WHERE ID_Filial = ?";
         
         try {
             conn = obterConexao();
@@ -98,11 +101,9 @@ public class FilialDAO {
                        
             stmt.setString(1, filial.getNomefilial());
             stmt.setString(2, filial.getUf());
-            stmt.setString(3, filial.getCnpj());
-            
-            stmt.setLong(4, id);
+            stmt.setString(3, filial.getCnpj());            
+            stmt.setLong(4, filial.getIdfilial());
             stmt.executeUpdate();
-            System.out.println("Registro alterado com sucesso.");
 
         } catch (SQLException ex) {
             Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,11 +147,10 @@ public class FilialDAO {
                 idfilial = Long.parseLong(resultados.getString("ID_Filial"));
                 nome = resultados.getString("Nome_Filial");
                 uf = resultados.getString("uf");
-                cnpj = resultados.getString("cnpj");
-                
+                cnpj = resultados.getString("cnpj");                
             }
            
-            filial.setIdfilial(idfilial);
+            filial.setIdfilial(id);
             filial.setCnpj(cnpj);
             filial.setNomefilial(nome);
             filial.setUf(uf);
@@ -158,24 +158,24 @@ public class FilialDAO {
             return filial;
 
         } catch (SQLException ex) {
-            Logger.getLogger(Filial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Filial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Filial.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(Filial.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -183,7 +183,7 @@ public class FilialDAO {
 
     
     public boolean excluirFilial(int id) {
-        boolean cadastrado = false;
+        boolean cadastrado;
         
         PreparedStatement stmt = null;
         Connection conn = null;
@@ -194,10 +194,14 @@ public class FilialDAO {
             stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, id);
-            stmt.executeUpdate();
-            System.out.println("Registro excluídoo com sucesso.");
+            int retorno = stmt.executeUpdate();
             
-            cadastrado = true;
+            if (retorno == 1){
+                cadastrado = true;
+            }else{
+                cadastrado = false;
+            }
+            
             return cadastrado;
 
         } catch (SQLException ex) {

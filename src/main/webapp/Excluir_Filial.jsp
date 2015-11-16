@@ -16,25 +16,41 @@
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="${pathResources}/js/validacao.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/validacaoExcluirFilial.js"></script>
     </head>
     <body>        
         <jsp:include page="Menu.jsp" />
         
         <div class="formulario">
-            <form action="ServletFilialExcluir" method="post">        
+            <form action="ServletFilialExcluir" method="post" onsubmit="return validarExcluirFilial();">        
                 <fieldset>
                     <legend>Excluir Filial</legend>
+                    <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
+                    <input type="hidden" name="filialExiste" id="filialExiste" value="${filialExiste}">
                     <p>
                         <label for="idfilial">Digite o ID da Filial:</label>
-                        <input type="number" name="idfilial" id="idfilial">
+                        <input type="text" name="idfilial" id="idfilial" value="${filial.idfilial}" required>
                     </p>
-                    <input type="submit" value="Excluir"/>
+                    <div id="err-campo-id" class="alert alert-danger">
+                        <strong>Atenção!</strong> Digite apenas números inteiros.
+                    </div>
+                    
+                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                    <input type="submit" name="btn-consultar" id="btn-excluir" value="Excluir"/>  
                 </fieldset>
             </form>
         </div>
         <div id="suc-exc-filial" class="alert alert-success">
             Filial excluída com sucesso!
+        </div>
+        <div id="exc-alert-reg" class="alert alert-warning">
+            <strong>Atenção!</strong> Esta filial não existe!
+        </div>
+                    
+        <div class="consulta-excluir">
+            <p>Nome: ${filial.nomefilial}</p>
+            <p>CNPJ: ${filial.cnpj}</p>
+            <p>UF: ${filial.uf}</p>
         </div>
         
         

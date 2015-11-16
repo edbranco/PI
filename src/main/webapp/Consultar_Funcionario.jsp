@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Consultar_Cliente
-    Created on : Oct 31, 2015, 9:04:43 PM
+    Document   : Consultar_Funcionario
+    Created on : Nov 15, 2015, 11:01:37 PM
     Author     : Douglas
 --%>
 
@@ -12,22 +12,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Consulta de Clientes</title>
+        <title>Consulta de Funcionários</title>
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />        
+        <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />  
     </head>
     
     <body>
         <jsp:include page="Menu.jsp" />
         
-        <form action="ServletClienteConsultar" method="post">            
-          
+        <form action="ServletFuncionarioConsultar" method="post">          
             <fieldset>
-                <legend>Consultar Cliente</legend>              
+                <legend>Consultar Funcionário</legend>              
                 <p>
-                    <label for="nomecliente">Nome:</label>
-                    <input type="text" name="nomeCliente" id="nomecliente">
+                    <label for="nomefuncionario">Nome:</label>
+                    <input type="text" name="nomefuncionario" id="nomefuncionario">
                 </p>
                 <input type="submit" value="Listar" />
             </fieldset>
@@ -38,23 +37,27 @@
                 <!-- <th>#</th> -->
                 <th>ID</th>
                 <th>Nome</th>
+                <th>RA</th>
                 <th>CPF</th>
                 <th>Telefone</th>
                 <th>E-mail</th>
                 <th>Endereco</th>
                 <th>Cidade</th>
                 <th>UF</th>
+                <th>Cargo</th>
             </tr>
-            <c:forEach items="${listaClientes}" var="cliente" varStatus="stat">
+            <c:forEach items="${listaFuncionarios}" var="funcionario" varStatus="stat">
                 <tr>                
-                    <td><c:out value="${cliente.id}" /></td>
-                    <td><c:out value="${cliente.nome}" /></td>
-                    <td><c:out value="${cliente.cpf}" /></td>
-                    <td><c:out value="${cliente.telefone}" /></td>
-                    <td><c:out value="${cliente.email}" /></td>
-                    <td><c:out value="${cliente.endereco}" /></td>
-                    <td><c:out value="${cliente.cidade}" /></td>
-                    <td><c:out value="${cliente.uf}" /></td>
+                    <td><c:out value="${funcionario.id}" /></td>
+                    <td><c:out value="${funcionario.nome}" /></td>
+                    <td><c:out value="${funcionario.ra}" /></td>
+                    <td><c:out value="${funcionario.cpf}" /></td>
+                    <td><c:out value="${funcionario.telefone}" /></td>
+                    <td><c:out value="${funcionario.email}" /></td>
+                    <td><c:out value="${funcionario.endereco}" /></td>
+                    <td><c:out value="${funcionario.cidade}" /></td>
+                    <td><c:out value="${funcionario.uf}" /></td>
+                    <td><c:out value="${funcionario.cargo}" /></td>
                 </tr>
             </c:forEach>
         </table>

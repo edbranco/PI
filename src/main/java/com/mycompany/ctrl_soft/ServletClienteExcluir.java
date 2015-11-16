@@ -37,7 +37,12 @@ public class ServletClienteExcluir extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         boolean mensagem = false;
+        boolean semRegistro = false;
+        boolean clienteExiste = false;
+        
         request.setAttribute("mensagem", mensagem);
+        request.setAttribute("semRegistro", semRegistro);
+        request.setAttribute("clienteExiste", clienteExiste);
 
         RequestDispatcher disp
                 = request.getRequestDispatcher("Excluir_Cliente.jsp");
@@ -71,27 +76,54 @@ public class ServletClienteExcluir extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String idTexto = request.getParameter("idCliente");
+        String idTexto = request.getParameter("idcliente");
         int id = Integer.parseInt(idTexto);
+        String botaoValor = request.getParameter("btn-consultar");
 
-        ClienteDAO cliente = new ClienteDAO();
+        Cliente cliente = new Cliente();
+        Cliente clienteTeste = new Cliente();        
 
-        ClienteDAO dao = new ClienteDAO();
-        boolean cadastrado = dao.excluirCliente(id);
+        ClienteDAO dao = new ClienteDAO();        
+        boolean semRegistro;
+        boolean clienteExiste;
         
-        if (cadastrado == true) {
-            boolean mensagem = true;
-            request.setAttribute("mensagem", mensagem);
-            RequestDispatcher disp
-                = request.getRequestDispatcher("Excluir_Cliente.jsp");
-            disp.forward(request, response);
-        } else {
-            boolean mensagem = false;
-            request.setAttribute("mensagem", mensagem);
-            RequestDispatcher disp
-                = request.getRequestDispatcher("Excluir_Cliente.jsp");
-            disp.forward(request, response);
+        if (botaoValor.equals("Pesquisar")) {   
+            clienteTeste = dao.consultarCliente(cliente, id);
+            
+            if (clienteTeste.uf.equals("")) {
+                semRegistro = true;
+                clienteExiste = false;
+                request.setAttribute("semRegistro", semRegistro);
+                request.setAttribute("clienteExiste", clienteExiste);
+            } else {
+                semRegistro = false;
+                clienteExiste = true;
+                request.setAttribute("semRegistro", semRegistro);
+                request.setAttribute("clienteExiste", clienteExiste);
+                request.setAttribute("cliente", cliente);
+            }
         }
+        else {            
+            boolean excluido = dao.excluirCliente(id);
+            
+            if (excluido == true) {
+                boolean mensagem = true;
+                semRegistro = false;
+                request.setAttribute("mensagem", mensagem); 
+                request.setAttribute("semRegistro", semRegistro);
+            } else {
+                boolean mensagem = false;
+                semRegistro = true;
+                request.setAttribute("mensagem", mensagem);
+                request.setAttribute("semRegistro", semRegistro);
+            }
+        }
+        
+        
+        
+        RequestDispatcher disp
+            = request.getRequestDispatcher("Excluir_Cliente.jsp");
+        disp.forward(request, response);
     }
 
     /**

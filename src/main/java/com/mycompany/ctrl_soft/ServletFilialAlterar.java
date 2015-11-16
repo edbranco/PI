@@ -8,6 +8,7 @@ package com.mycompany.ctrl_soft;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,8 +37,12 @@ public class ServletFilialAlterar extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         boolean mensagem = false;
+        boolean habilitado = false;
+        boolean semRegistro = false;
         
         request.setAttribute("mensagem", mensagem);
+        request.setAttribute("habilitado", habilitado);
+        request.setAttribute("semRegistro", semRegistro);
 
         RequestDispatcher disp
                 = request.getRequestDispatcher("Alterar_Filial.jsp");
@@ -76,27 +81,39 @@ public class ServletFilialAlterar extends HttpServlet {
         int id = Integer.parseInt(idTexto);
 
         Filial filial = new Filial();
+        Filial filialTeste = new Filial();
 
         FilialDAO dao = new FilialDAO();
+        boolean semRegistro;
         
         if (botaoValor.equals("Pesquisar")) {
-            dao.consultarFilial(filial, id);
+            filialTeste = dao.consultarFilial(filial, id);
+            
+            if (filialTeste.uf.equals("")) {
+                semRegistro = true;
+                boolean habilitado = false;
+                request.setAttribute("habilitado", habilitado);
+                request.setAttribute("semRegistro", semRegistro);
+            } else {
+                semRegistro = false;                
+                boolean habilitado = true;
+                request.setAttribute("habilitado", habilitado);
+                request.setAttribute("semRegistro", semRegistro);
+            }
         }
-        else if (botaoValor.equals("Alterar")) {
-           
-           
+        else if (botaoValor.equals("Alterar")) {          
             String nome = request.getParameter("nomeFilial");
             String cnpj = request.getParameter("cnpj");
             String uf = request.getParameter("uf");
         
+            filial.setIdfilial(id);
             filial.setNomefilial(nome);
             filial.setCnpj(cnpj);
             filial.setUf(uf);
 
             dao.alterarFiial(filial, id);
            
-            boolean mensagem = true;
-        
+            boolean mensagem = true;        
             request.setAttribute("mensagem", mensagem);
         }
 

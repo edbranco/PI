@@ -7,6 +7,8 @@ package com.mycompany.ctrl_soft;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +37,12 @@ public class ServletFilialExcluir extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         boolean mensagem = false;
+        boolean semRegistro = false;
+        boolean filialExiste = false;
+        
         request.setAttribute("mensagem", mensagem);
+        request.setAttribute("semRegistro", semRegistro);
+        request.setAttribute("filialExiste", filialExiste);
 
         RequestDispatcher disp
                 = request.getRequestDispatcher("Excluir_Filial.jsp");
@@ -67,31 +74,49 @@ public class ServletFilialExcluir extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-       
-        
+            throws ServletException, IOException {        
 
-        String idTexto = request.getParameter("idfilial");
-        
+        String idTexto = request.getParameter("idfilial");        
         int id = Integer.parseInt(idTexto);
+        String botaoValor = request.getParameter("btn-consultar");        
         
-        
-        FilialDAO filial = new FilialDAO();
+        Filial filial = new Filial();
+        Filial filialTeste = new Filial();
 
-        boolean cadastrado = filial.excluirFilial(id);
+        FilialDAO dao = new FilialDAO();        
+        boolean semRegistro;
+        boolean filialExiste;
         
-        if (cadastrado == true) {
-            boolean mensagem = true;
-            request.setAttribute("mensagem", mensagem);
-            RequestDispatcher disp
-                = request.getRequestDispatcher("Excluir_Filial.jsp");
-            disp.forward(request, response);
-        } else {
-            boolean mensagem = false;
-            request.setAttribute("mensagem", mensagem);
-            RequestDispatcher disp
-                = request.getRequestDispatcher("Excluir_Filial.jsp");
-            disp.forward(request, response);
+        if (botaoValor.equals("Pesquisar")) {   
+            filialTeste = dao.consultarFilial(filial, id);
+            
+            if (filialTeste.uf.equals("")) {
+                semRegistro = true;
+                filialExiste = false;
+                request.setAttribute("semRegistro", semRegistro);
+                request.setAttribute("filialExiste", filialExiste);
+            } else {
+                semRegistro = false;
+                filialExiste = true;
+                request.setAttribute("semRegistro", semRegistro);
+                request.setAttribute("filialExiste", filialExiste);
+                request.setAttribute("filial", filial);
+            }
+        }
+        else {            
+            boolean excluido = dao.excluirFilial(id);
+            
+            if (excluido == true) {
+                boolean mensagem = true;
+                semRegistro = false;
+                request.setAttribute("mensagem", mensagem); 
+                request.setAttribute("semRegistro", semRegistro);
+            } else {
+                boolean mensagem = false;
+                semRegistro = true;
+                request.setAttribute("mensagem", mensagem);
+                request.setAttribute("semRegistro", semRegistro);
+            }
         }
 
         RequestDispatcher disp

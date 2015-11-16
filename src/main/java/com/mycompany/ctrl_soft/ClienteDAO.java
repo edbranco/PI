@@ -90,7 +90,7 @@ public class ClienteDAO {
     
     //Função de exclusão de Clientes
     public boolean excluirCliente(int id) {
-        boolean cadastrado = false;
+        boolean cadastrado;
         
         PreparedStatement stmt = null;
         Connection conn = null;       
@@ -101,10 +101,14 @@ public class ClienteDAO {
             stmt = conn.prepareStatement(sql);
                        
             stmt.setInt(1, id);
-            stmt.executeUpdate();
-            System.out.println("Registro excluídoo com sucesso.");
+            int retorno = stmt.executeUpdate();
             
-            cadastrado = true;
+            if (retorno == 1){
+                cadastrado = true;
+            }else{
+                cadastrado = false;
+            }
+            
             return cadastrado;
 
         } catch (SQLException ex) {
@@ -150,9 +154,12 @@ public class ClienteDAO {
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
+            
+            if(resultados == null){
+                return null;
+            }
 
-            while (resultados.next()) {
-                
+            while (resultados.next()) {                
                 nome = resultados.getString("NomeCliente");
                 cpf = resultados.getString("CPF");
                 telefone = resultados.getString("Telefone");
@@ -218,7 +225,6 @@ public class ClienteDAO {
             stmt.setString(7, cliente.getUf());
             stmt.setLong(8, id);
             stmt.executeUpdate();
-            System.out.println("Registro alterado com sucesso.");
 
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -248,7 +254,7 @@ public class ClienteDAO {
         Statement stmt2 = null;
         Connection conn = null;
         
-        String sql2 = "SELECT * FROM TB_Cliente WHERE NomeCliente LIKE '%" + nome + "%'";
+        String sql2 = "SELECT * FROM TB_Cliente WHERE NomeCliente LIKE LOWER('%" + nome + "%')";
         try {
             conn = obterConexao();
             stmt2 = conn.createStatement();

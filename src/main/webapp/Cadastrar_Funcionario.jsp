@@ -43,12 +43,15 @@
                     <p>
                         <label for="cpffuncionario">CPF:</label><br />
                         <input type="text" name="cpffuncionario" id="cpffuncionario" class="ipt-largo" />
-                    </p>            
-                     <select name="filialfuncionario" id="filialfuncionario" class="ipt-select">                    
-                        <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
-                            <option value="${filial.idfilial}">${filial.nomefilial}</option>
-                        </c:forEach>                    
-                     </select>
+                    </p>         
+                    <p>
+                        <label for="filialfuncionario">Filial:</label><br />
+                        <select name="filialfuncionario" id="filialfuncionario" class="ipt-select">                    
+                           <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
+                               <option value="${filial.idfilial}">${filial.nomefilial}</option>
+                           </c:forEach>                    
+                        </select>
+                    </p>
                     <p>
                         <label for="telefonefuncionario">Telefone:</label><br />
                         <input type="text" name="telefonefuncionario" id="telefonefuncionario" class="ipt-largo" />

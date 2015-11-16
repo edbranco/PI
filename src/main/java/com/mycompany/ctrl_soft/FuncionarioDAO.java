@@ -93,33 +93,29 @@ public class FuncionarioDAO {
         }
     }
 
-    public void alterarFuncionario(Funcionario usu, int id) {
+    public void alterarFuncionario(Funcionario funcionario, int id) {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE TB_FUNCIONARIO SET NomeUsuario = ?, Senha = ?, nomeFuncionario = ?, RA = ?, CPF = ?, "
-                + "Telefone = ?, Email = ?, Endereco = ?, Cidade = ?, UF = ?, Cargo = ?) WHERE id ?";
+        String sql = "UPDATE TB_Funcionario SET ID_Filial=?, NomeFuncionario=?, RA=?, CPF=?, Telefone=?, "
+                + "Email=?, Endereco=?, Cidade=?, UF=?, Cargo=? WHERE ID_Funcionario=?";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1, usu.getNomeUsuario());
-            stmt.setString(2, usu.getSenhaUsuario());
-            stmt.setString(3, usu.getNomeFuncionario());
-            stmt.setInt(4, usu.getRa());
-            stmt.setString(5, usu.getCpf());
-            stmt.setString(6, usu.getTelefone());
-            stmt.setString(7, usu.getEmail());
-            stmt.setString(8, usu.getEndereco());
-            stmt.setString(9, usu.getCidade());
-            stmt.setString(10, usu.getUf());
-            stmt.setString(11, usu.getCargo());
-            stmt.setInt(12, usu.getIdUsuario());
-            stmt.execute();
-            stmt.close();
-//            stmt.executeUpdate();
-            System.out.println("Alterado Com Sucesso!");
+            stmt.setLong(1, funcionario.getIdFilial());
+            stmt.setString(2, funcionario.getNome());
+            stmt.setInt(3, funcionario.getRa());
+            stmt.setString(4, funcionario.getCpf());
+            stmt.setString(5, funcionario.getTelefone());
+            stmt.setString(6, funcionario.getEmail());
+            stmt.setString(7, funcionario.getEndereco());
+            stmt.setString(8, funcionario.getCidade());
+            stmt.setString(9, funcionario.getUf());
+            stmt.setString(10, funcionario.getCargo());
+            stmt.setLong(11, id);
+            stmt.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -143,23 +139,34 @@ public class FuncionarioDAO {
         }
     }
 
-    public void excluirFuncionario(Funcionario usu, int id) {
+    public boolean excluirFuncionario(Funcionario funcionario, int id) {
+        boolean cadastrado;
+        
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "DELETE FROM TB_Funcionario WHERE ID_Usuario = ?";
+        String sql = "DELETE FROM TB_Funcionario WHERE ID_Funcionario = ?";
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, id);
-            stmt.executeUpdate();
-            System.out.println("Registro excluído com sucesso.");
+            int retorno = stmt.executeUpdate();
+            
+            if (retorno == 1){
+                cadastrado = true;
+            }else{
+                cadastrado = false;
+            }
+            
+            return cadastrado;
 
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } finally {
             if (stmt != null) {
                 try {
@@ -178,41 +185,66 @@ public class FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> ListarFuncionarios() {
+    //Função de consulta de Funcionarios
+    public Funcionario consultarFuncionario(Funcionario funcionario, int id) {
         PreparedStatement stmt = null;
+        Statement stmt2 = null;
         Connection conn = null;
-
-        String sql = "SELECT * FROM TF_Funcionario";
-
-        List<Funcionario> lista = new ArrayList<Funcionario>();
+        
+        long idfilial = 0;
+        String nome = "";
+        int ra = 0;
+        String cpf = "";
+        String telefone = "";
+        String email = "";
+        String endereco = "";
+        String cidade = "";
+        String uf = "";
+        String cargo = "";
+        
+        String sql2 = "SELECT * FROM TB_Funcionario WHERE ID_Funcionario = " + id;
         try {
             conn = obterConexao();
-            stmt = conn.prepareStatement(sql);
-            ResultSet resultado = stmt.executeQuery();
-
-            while (resultado.next()) {
-
-                Funcionario usu = new Funcionario();
-
-                usu.setIdUsuario(resultado.getInt("id"));
-                usu.setNomeUsuario(resultado.getString("nomeUsuario"));
-                usu.setSenhaUsuario(resultado.getString("senhaUsuario"));
-                usu.setNomeFuncionario(resultado.getString("nomeFuncionario"));
-                usu.setRa(resultado.getInt("ra"));
-                usu.setCpf(resultado.getString("cpf"));
-                usu.setTelefone(resultado.getString("telefone"));
-                usu.setEndereco(resultado.getString("endereco"));
-                usu.setCidade(resultado.getString("cidade"));
-                usu.setUf(resultado.getString("uf"));
-                usu.setCargo(resultado.getString("cargo"));
-                lista.add(usu);
+            stmt2 = conn.createStatement();
+            ResultSet resultados = stmt2.executeQuery(sql2);
+            
+            if(resultados == null){
+                return null;
             }
-            System.out.println("Busca Realizada!");
+
+            while (resultados.next()) {   
+                idfilial = Long.parseLong(resultados.getString("ID_Filial"));
+                nome = resultados.getString("NomeFuncionario");
+                ra = resultados.getInt("RA");
+                cpf = resultados.getString("CPF");
+                telefone = resultados.getString("Telefone");
+                email = resultados.getString("Email");
+                endereco = resultados.getString("Endereco");
+                cidade = resultados.getString("Cidade");
+                uf = resultados.getString("UF");
+                cargo = resultados.getString("Cargo");
+            }
+            
+            funcionario.setId(id);
+            funcionario.setIdFilial(idfilial);
+            funcionario.setNome(nome);
+            funcionario.setRa(ra);
+            funcionario.setCpf(cpf);
+            funcionario.setTelefone(telefone);
+            funcionario.setEmail(email);
+            funcionario.setEndereco(endereco);
+            funcionario.setCidade(cidade);
+            funcionario.setUf(uf);
+            funcionario.setCargo(cargo);
+            
+            return funcionario;
 
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         } finally {
             if (stmt != null) {
                 try {
@@ -229,7 +261,63 @@ public class FuncionarioDAO {
                 }
             }
         }
-        return lista;
+    }
+    public List<Funcionario> ListarFuncionarios(String nome) {
+        PreparedStatement stmt = null;
+        Statement stmt2 = null;
+        Connection conn = null;
+
+        String sql2 = "SELECT * FROM TB_Funcionario WHERE NomeFuncionario LIKE LOWER('%" + nome + "%')";
+        try {
+            conn = obterConexao();
+            stmt2 = conn.createStatement();
+            ResultSet resultados = stmt2.executeQuery(sql2);
+            
+            List<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
+
+            while (resultados.next()) {
+                //Cliente temporário
+                Funcionario funcionarioTemp = new Funcionario();
+
+                funcionarioTemp.setId(resultados.getInt("ID_Funcionario"));
+                funcionarioTemp.setNome(resultados.getString("NomeFuncionario"));
+                funcionarioTemp.setRa(resultados.getInt("RA"));
+                funcionarioTemp.setCpf(resultados.getString("CPF"));
+                funcionarioTemp.setTelefone(resultados.getString("Telefone"));
+                funcionarioTemp.setEmail(resultados.getString("Email"));
+                funcionarioTemp.setEndereco(resultados.getString("Endereco"));
+                funcionarioTemp.setCidade(resultados.getString("Cidade"));
+                funcionarioTemp.setUf(resultados.getString("UF"));
+                funcionarioTemp.setCargo(resultados.getString("Cargo"));
+                
+                //Adiciona na lista o cliente temporário
+                listaFuncionarios.add(funcionarioTemp);
+            }
+            
+            return listaFuncionarios;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
 }

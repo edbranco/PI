@@ -49,9 +49,9 @@
                 <li class="dropdown"><a href="#">Funcionário</a>
                     <ul class="dropdown-menu">                      
                         <li><a href="PreCadastroUsuario">Cadastrar</a></li>                   
-                        <li><a href="Alterar_Usuario.jsp">Alterar</a></li>
-                        <li><a href="#">Consultar</a></li>
-                        <li><a href="#">Excluir</a></li>
+                        <li><a href="ServletFuncionarioAlterar">Alterar</a></li>
+                        <li><a href="Consultar_Funcionario.jsp">Consultar</a></li>
+                        <li><a href="ServletFuncionarioExcluir">Excluir</a></li>
                     </ul>
                 </li>
             </ul>   

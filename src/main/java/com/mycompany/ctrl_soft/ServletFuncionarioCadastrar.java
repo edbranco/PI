@@ -77,16 +77,16 @@ public class ServletFuncionarioCadastrar extends HttpServlet {
             throws ServletException, IOException {        
         
         String nome = request.getParameter("nomefuncionario");
-        String usuario = request.getParameter("usuariofuncionario");
-        String senha = request.getParameter("senhafuncionario");
-        int filial = Integer.valueOf(request.getParameter("filialfuncionario"));
+        String usuario = request.getParameter("nomeusuario");
+        String senha = request.getParameter("senhausuario");
+        long filial = Long.valueOf(request.getParameter("filialfuncionario"));
         int ra = Integer.valueOf(request.getParameter("rafuncionario"));
         String cpf = request.getParameter("cpffuncionario");
         String telefone = request.getParameter("telefonefuncionario");
         String email = request.getParameter("emailfuncionario");
         String endereco = request.getParameter("enderecofuncionario");
         String cidade = request.getParameter("cidadefuncionario");
-        String uf = request.getParameter("uffuncionario");
+        String uf = request.getParameter("estadofuncionario");
         String cargo = request.getParameter("cargofuncionario");
 
         Funcionario funcionario = new Funcionario();
