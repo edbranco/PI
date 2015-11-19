@@ -319,5 +319,61 @@ public class FuncionarioDAO {
             }
         }
     }
+    public Funcionario validarFuncionario(Funcionario funcionario, String usuario, String senha ) {
+        PreparedStatement stmt = null;
+        Statement stmt2 = null;
+        Connection conn = null;
+        
+        long idfilial = 0;
+        long id;
+        String nome = "";
+        String cargo = "";
+        
+        String sql2 = "SELECT ID_FILIAL, NOMEFUNCIONARIO, CARGO FROM TB_Funcionario WHERE usuario = '" + usuario + 
+                "' and  senha ='"+senha+"'";
+        try {
+            conn = obterConexao();
+            stmt2 = conn.createStatement();
+            ResultSet resultados = stmt2.executeQuery(sql2);
+            
+            if(resultados == null){
+                return null;
+            }
+
+            while (resultados.next()) {   
+                idfilial = Long.parseLong(resultados.getString("ID_Filial"));
+                nome = resultados.getString("NomeFuncionario");
+                cargo = resultados.getString("Cargo");
+            }
+            
+            funcionario.setIdFilial(idfilial);
+            funcionario.setNome(nome);
+            funcionario.setCargo(cargo);
+            
+            return funcionario;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
 
 }
