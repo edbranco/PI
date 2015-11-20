@@ -26,6 +26,7 @@
                 <label>Senha</label>
                 <input type="password" name="senha" />
 
+                <input type="submit" name="valor" value="OK" />
             </fieldset>
         </form>
         
@@ -34,4 +35,3 @@
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
     </body>
 </html>
-                <input type="submit" name="valor" value="OK" />
