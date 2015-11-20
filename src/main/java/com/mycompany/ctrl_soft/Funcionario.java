@@ -149,5 +149,16 @@ public class Funcionario {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+    
+     public boolean autenticar(String usuario, String senha) {
+        if (this.usuario != null) {
+
+        }
+        return false;
+    }
+
+    public boolean autorizar(String cargo) {
+        return this.cargo.equals(cargo);
+    }
    
 }

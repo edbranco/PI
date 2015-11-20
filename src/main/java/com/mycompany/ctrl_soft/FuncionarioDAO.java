@@ -319,5 +319,157 @@ public class FuncionarioDAO {
             }
         }
     }
+    
+    //Métodos para autenticação
+    
+    public boolean autenticar(String usuarioLogin, String senha) {
+        Statement stmt = null;
+        Connection conn = null;
+
+        String sql = "SELECT Usuario,Senha from TB_Funcionario\n"
+                + "WHERE Usuario = '" + usuarioLogin
+                + "' AND  Senha = '" + senha + "'";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+
+            while (resultados.next()) {
+                String usuarioBanco = resultados.getString("Usuario");
+                String senhaBanco = resultados.getString("Senha");
+
+                if (senhaBanco.equals(senha)) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return false;
+    }
+    
+    public Funcionario buscarUsuario(String email, String senha) {
+        Statement stmt = null;
+        Connection conn = null;
+
+        String sql = "select * from TB_Funcionario\n"
+                + "WHERE Usuario = '" + email
+                + "' AND  Senha = '" + senha + "'";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+
+            while (resultados.next()) {
+                String emailBanco = resultados.getString("Usuario");
+                String senhaBanco = resultados.getString("Senha");
+                int filialBanco = resultados.getInt("ID_Filial");
+                String nomeCompleto = resultados.getString("NomeFuncionario");
+                String cargoBanco = resultados.getString("cargo");
+
+                if (senhaBanco.equals(senha)) {
+                    Funcionario User = new Funcionario();
+                    
+                    User.setIdFilial(filialBanco);
+                    User.setUsuario(emailBanco);
+                    User.setSenha(senhaBanco);
+                    User.setNome(nomeCompleto);
+                    User.setCargo(cargoBanco);
+            
+                    return User;
+                }
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public Funcionario buscarUsuario(String email) {
+        Statement stmt = null;
+        Connection conn = null;
+
+        String sql = "select * from TB_Funcionario\n"
+                + "WHERE Usuario = '" + email + "'";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+
+            while (resultados.next()) {
+                String emailBanco = resultados.getString("Usuario");
+                String senhaBanco = resultados.getString("Senha");
+                int filialBanco = resultados.getInt("ID_Filial");
+                String nomeCompleto = resultados.getString("NomeFuncionario");
+                String cargoBanco = resultados.getString("cargo");
+                if (emailBanco.equals(email)) {
+                    Funcionario User = new Funcionario();
+                    
+                    User.setIdFilial(filialBanco);
+                    User.setUsuario(emailBanco);
+                    User.setSenha(senhaBanco);
+                    User.setNome(nomeCompleto);
+                    User.setCargo(cargoBanco);
+                }
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Funcionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return null;
+    }
 
 }
