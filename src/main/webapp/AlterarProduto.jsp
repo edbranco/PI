@@ -17,45 +17,50 @@
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="${pathResources}/js/validacao.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/validacaoAlterarProduto.js"></script>
     </head>
     <body>                  
         <jsp:include page="Menu.jsp" />
             
         <div class="formulario">
-            <form action="ServletAlterarProduto" method="post">  
+            <form action="ServletAlterarProduto" method="post" onsubmit="return validarAlterarProduto();">  
                 <fieldset>
                     <legend>Alterar Produtos</legend>  
+                    <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
+                    <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
                     <p>
-                        <label for="txtId">Digite o ID do Produto:</label>
-                        <input type="number" name="idProduto" id="idproduto" value="${produto.id}" class="ipt-id" />
+                        <label for="idproduto">Digite o ID do Produto:</label>
+                        <input type="text" name="idProduto" id="idproduto" value="${produto.id}" class="ipt-id" required />
                     </p>
+                    <div id="err-campo-id" class="alert alert-danger">
+                        <strong>Atenção!</strong> Digite apenas números inteiros.
+                    </div>
                     <p>
-                        <label for="txtId">Digite o ID da Filial:</label>
-                        <input disabled type="number" name="idFilial" id="idfilial" value="${produto.id_filial}" class="ipt-id-filial" />
-                    </p>
-                    <p>
-                        <label for="txtNome">Nome:</label><br />
+                        <label for="nomeproduto">Nome:</label><br />
                         <input type="text" name="nomeProduto" id="nomeproduto" value="${produto.nome}" class="ipt-largo" />
                     </p>
                     <p>
-                        <label for="txtNome">Marca:</label><br />
+                        <label for="marcaproduto">Marca:</label><br />
                         <input type="text" name="marcaProduto" id="marcaproduto" value="${produto.marca}" class="ipt-largo" />
                     </p>
                     <p class="ipt-curto ipt-curto-1">
-                        <label for="numberNome">Preço R$:</label><br />
+                        <label for="precoproduto">Preço R$:</label><br />
                         <input type="number" step=0.01 name="precoProduto" id="precoproduto" value="${produto.preco}" />
                     </p>
                     <p class="ipt-curto">
-                        <label for="numberNome">Quantidade:</label><br />
+                        <label for="qtdeproduto">Quantidade:</label><br />
                         <input type="number" name="qtdeProduto" id="qtdeproduto" value="${produto.qtde}" />
                     </p><br />
-                    <input type="submit" name="btn-consultar" value="Pesquisar" />
-                    <input type="submit" name="btn-consultar" value="Alterar" />
+                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                    <input type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
                 </fieldset>
             </form>
         </div>
         <div id="suc-alt-produto" class="alert alert-success">
             Produto alterado com sucesso!
+        </div>
+        <div id="alerta-registro" class="alert alert-warning">
+            <strong>Atenção!</strong> Este produto não existe!
         </div>
                     
                     

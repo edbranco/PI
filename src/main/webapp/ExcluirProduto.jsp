@@ -16,25 +16,42 @@
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="${pathResources}/js/validacao.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/validacaoExcluirProduto.js"></script>
     </head>
     <body>
         <jsp:include page="Menu.jsp" />
         
         <div class="formulario">
-            <form action="ServletExcluirProduto" method="post">   
+            <form action="ServletExcluirProduto" method="post" onsubmit="return validarExcluirProduto();">   
                 <fieldset>
-                    <legend>Excluir Produto </legend>
+                    <legend>Excluir Produto</legend>
+                    <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
+                    <input type="hidden" name="produtoExiste" id="produtoExiste" value="${produtoExiste}">
                     <p>
                         <label for="idproduto">Digite o ID do Produto:</label>
-                        <input type="number" name="idProduto" id="idproduto">
+                        <input type="text" name="idProduto" id="idproduto" value="${produto.id}" required />
                     </p>
-                    <input type="submit" value="Excluir"/>
+                    <div id="err-campo-id" class="alert alert-danger">
+                        <strong>Atenção!</strong> Digite apenas números inteiros.
+                    </div>
+                    
+                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                    <input type="submit" name="btn-consultar" id="btn-excluir" value="Excluir"/> 
                 </fieldset>
             </form>
         </div>
         <div id="suc-exc-produto" class="alert alert-success">
             Produto excluído com sucesso!
+        </div>
+        <div id="exc-alert-pro" class="alert alert-warning">
+            <strong>Atenção!</strong> Este produto não existe!
+        </div>
+                    
+        <div class="consulta-excluir">
+            <p>Nome: ${produto.nome}</p>
+            <p>Marca: ${produto.marca}</p>
+            <p>Preço: ${produto.preco}</p>
+            <p>Quantidade: ${produto.qtde}</p>
         </div>
             
             

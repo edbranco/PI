@@ -8,6 +8,7 @@ package com.mycompany.ctrl_soft;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,8 +37,12 @@ public class ServletAlterarProduto extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         boolean mensagem = false;
+        boolean habilitado = false;
+        boolean semRegistro = false;
         
         request.setAttribute("mensagem", mensagem);
+        request.setAttribute("habilitado", habilitado);
+        request.setAttribute("semRegistro", semRegistro);
 
         RequestDispatcher disp
                 = request.getRequestDispatcher("AlterarProduto.jsp");
@@ -71,35 +76,48 @@ public class ServletAlterarProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        
         String idTexto = request.getParameter("idProduto");
         String botaoValor = request.getParameter("btn-consultar");
         int id = Integer.parseInt(idTexto);
 
         Produto produto = new Produto();
+        Produto produtoTeste = new Produto();
 
         ProdutoDAO dao = new ProdutoDAO();
-
-        if (botaoValor.equals("Pesquisar")) {
-            dao.consultarProduto(produto, id);
-        } else if (botaoValor.equals("Alterar")) {
+        boolean semRegistro;
+        
+        if (botaoValor.equals("Pesquisar")) {   
+            produtoTeste = dao.consultarProduto(produto, id);
+            
+            if (produtoTeste.nome.equals("")) {
+                semRegistro = true;
+                boolean habilitado = false;
+                request.setAttribute("habilitado", habilitado);
+                request.setAttribute("semRegistro", semRegistro);
+            } else {
+                semRegistro = false;                
+                boolean habilitado = true;
+                request.setAttribute("habilitado", habilitado);
+                request.setAttribute("semRegistro", semRegistro);
+            }
+        }
+        else {
             String nome = request.getParameter("nomeProduto");
-            int idfilial = Integer.parseInt(request.getParameter("idFilial"));
             String marca = request.getParameter("marcaProduto");
             String preco = request.getParameter("precoProduto");
             int qtde = Integer.parseInt(request.getParameter("qtdeProduto"));
+            
 
             produto.setId(id);
             produto.setNome(nome);
-            produto.setId_filial(idfilial);
             produto.setMarca(marca);
             produto.setPreco(Double.parseDouble(preco));
             produto.setQtde(qtde);
-            produto.setDtCadastro(new Date());
 
             dao.alterarProduto(produto, id);
             
             boolean mensagem = true;
-        
             request.setAttribute("mensagem", mensagem);
         }
 

@@ -7,6 +7,8 @@ package com.mycompany.ctrl_soft;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +37,12 @@ public class ServletExcluirProduto extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         boolean mensagem = false;
+        boolean semRegistro = false;
+        boolean produtoExiste = false;
+        
         request.setAttribute("mensagem", mensagem);
+        request.setAttribute("semRegistro", semRegistro);
+        request.setAttribute("produtoExiste", produtoExiste);
 
         RequestDispatcher disp
                 = request.getRequestDispatcher("ExcluirProduto.jsp");
@@ -70,27 +77,52 @@ public class ServletExcluirProduto extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         
-        String idTexto = request.getParameter("idProduto");
-        int id = Integer.parseInt(idTexto);
+            String idTexto = request.getParameter("idProduto");
+            int id = Integer.parseInt(idTexto);
+            String botaoValor = request.getParameter("btn-consultar");
 
-        Produto produto = new Produto();
+            Produto produto = new Produto();
+            Produto produtoTeste = new Produto();
 
-        ProdutoDAO dao = new ProdutoDAO();
-        boolean cadastrado = dao.ExluirProduto(id);
+            ProdutoDAO dao = new ProdutoDAO();
+            boolean semRegistro;
+            boolean produtoExiste;
 
-        if (cadastrado == true) {
-            boolean mensagem = true;
-            request.setAttribute("mensagem", mensagem);
+            if (botaoValor.equals("Pesquisar")) {   
+                produtoTeste = dao.consultarProduto(produto, id);
+
+                if (produtoTeste.nome.equals("")) {
+                    semRegistro = true;
+                    produtoExiste = false;
+                    request.setAttribute("semRegistro", semRegistro);
+                    request.setAttribute("produtoExiste", produtoExiste);
+                } else {
+                    semRegistro = false;
+                    produtoExiste = true;
+                    request.setAttribute("semRegistro", semRegistro);
+                    request.setAttribute("produtoExiste", produtoExiste);
+                    request.setAttribute("produto", produto);
+                }
+            }
+            else {            
+                boolean excluido = dao.exluirProduto(id);
+
+                if (excluido == true) {
+                    boolean mensagem = true;
+                    semRegistro = false;
+                    request.setAttribute("mensagem", mensagem); 
+                    request.setAttribute("semRegistro", semRegistro);
+                } else {
+                    boolean mensagem = false;
+                    semRegistro = true;
+                    request.setAttribute("mensagem", mensagem);
+                    request.setAttribute("semRegistro", semRegistro);
+                }
+            }        
+        
             RequestDispatcher disp
                 = request.getRequestDispatcher("ExcluirProduto.jsp");
-            disp.forward(request, response);
-        } else {
-            boolean mensagem = false;
-            request.setAttribute("mensagem", mensagem);
-            RequestDispatcher disp
-                = request.getRequestDispatcher("ExcluirProduto.jsp");
-            disp.forward(request, response);
-        }
+            disp.forward(request, response);        
     }
 
     /**

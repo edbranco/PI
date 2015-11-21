@@ -7,6 +7,7 @@ package com.mycompany.ctrl_soft;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -70,7 +71,7 @@ public class ServletConsultarProduto extends HttpServlet {
         produto.setNome(nome);
 
         ProdutoDAO dao = new ProdutoDAO();
-        List<Produto> listProduto = dao.ConsultProdutos(nome);
+        List<Produto> listProduto = dao.listaProdutos(nome);
 
         request.setAttribute("listProduto", listProduto);
 

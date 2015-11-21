@@ -12,7 +12,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Consulta de Produtos</title>
+        <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
+        <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />  
     </head>
     <body>
         <jsp:include page="Menu.jsp" />
@@ -21,7 +24,7 @@
             <fieldset>
                 <legend>Consultar Produto</legend>              
                 <p>
-                    <label for="txtNome">Nome:</label>
+                    <label for="nomeproduto">Nome:</label>
                     <input type="text" name="nomeProduto" id="nomeproduto">
                 </p>
                 <input type="submit" value="Listar"/>

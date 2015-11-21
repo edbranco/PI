@@ -263,11 +263,11 @@ public class ProdutoDAO {
         return null;
     }
 
-    public List<Produto> ConsultProdutos(String nome) {
+    public List<Produto> listaProdutos(String nome) {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT * FROM TB_PRODUTO WHERE NomeProduto LIKE '%" + nome + "%'";
+        String sql = "SELECT * FROM TB_PRODUTO WHERE NomeProduto LIKE LOWER('%" + nome + "%')";
 
         try {
             conn = obterConexao();
@@ -313,7 +313,7 @@ public class ProdutoDAO {
         return null;
     }
     
-    public boolean ExluirProduto(int id){
+    public boolean exluirProduto(int id){
         boolean cadastrado = false;
         
         PreparedStatement stmt = null;
@@ -325,10 +325,14 @@ public class ProdutoDAO {
             stmt = conn.prepareStatement(sql);
                        
             stmt.setInt(1, id);
-            stmt.executeUpdate();
-            System.out.println("Registro excluídoo com sucesso.");
+            int retorno = stmt.executeUpdate();
             
-            cadastrado = true;
+            if (retorno == 1){
+                cadastrado = true;
+            }else{
+                cadastrado = false;
+            }
+            
             return cadastrado;
 
         } catch (SQLException ex) {
