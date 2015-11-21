@@ -42,40 +42,40 @@ public class ProdutoDAO {
         Statement stmt2 = null;
         Connection conn = null;
 
-        int id_filial_user_logado = 0;
+        long id_filial_user_logado = p.id_filial;
 
-        String sql2 = "SELECT ID_FILIAL FROM TB_Funcionario WHERE ID_Funcionario = 1";
-        try {
-            conn = obterConexao();
-            stmt2 = conn.createStatement();
-            ResultSet resultados = stmt2.executeQuery(sql2);
-
-            while (resultados.next()) {
-                id_filial_user_logado = resultados.getInt("ID_FILIAL");
-            }
-            //seta o id_filial para a classe de produto
-            p.setId_filial(id_filial_user_logado);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
+//        String sql2 = "SELECT ID_FILIAL FROM TB_Funcionario WHERE ID_Funcionario = 1";
+//        try {
+//            conn = obterConexao();
+//            stmt2 = conn.createStatement();
+//            ResultSet resultados = stmt2.executeQuery(sql2);
+//
+//            while (resultados.next()) {
+//                id_filial_user_logado = resultados.getInt("ID_FILIAL");
+//            }
+//            //seta o id_filial para a classe de produto
+//            p.setId_filial(id_filial_user_logado);
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            if (stmt != null) {
+//                try {
+//                    stmt.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//            if (conn != null) {
+//                try {
+//                    conn.close();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
 
         String sql = "INSERT INTO TB_PRODUTO (ID_FILIAL, NOMEPRODUTO, MARCA, " // ESPACO ANTES DO "
                 + "PRECO, QTDE) VALUES (?, ?, ?, ?, ?)";

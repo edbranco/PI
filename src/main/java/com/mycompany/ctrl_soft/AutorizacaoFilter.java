@@ -76,7 +76,7 @@ public class AutorizacaoFilter implements Filter {
         String pagina = req.getRequestURI();
         if (pagina.endsWith("Menu.jsp") && usuario.autorizar("vendedor")) {
             return true;
-        } else if (pagina.endsWith("Menu.jsp") && usuario.autorizar("teste")) {
+        } else if (pagina.endsWith("Menu.jsp") && usuario.autorizar("gerente")) {
             return true;
         }
         return false;

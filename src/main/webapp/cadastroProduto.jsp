@@ -24,7 +24,8 @@
         <div class="formulario">
             <form action="Servlet" method="post">         
                 <fieldset>
-                    <legend>Cadastrar Produtos</legend>           
+                    <legend>Cadastrar Produtos</legend>
+                    <input type="hidden" name="idfilial" id="idfilial" value="${usuario.idFilial}">
                     <p>
                         <label for="txtNome">Nome:</label><br />
                         <input type="text" maxlength="100" name="nomeProduto" id="nomeproduto" class="ipt-largo" required />
@@ -48,6 +49,7 @@
         <div id="suc-cad-produto" class="alert alert-success">
             Produto cadastrado com sucesso!
         </div>
+        
   
         
         <!-- Scripts: jQuery e Bootstrap -->

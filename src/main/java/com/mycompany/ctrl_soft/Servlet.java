@@ -84,9 +84,11 @@ public class Servlet extends HttpServlet {
         String marca = request.getParameter("marcaProduto");
         double preco = Double.valueOf(request.getParameter("precoProduto"));
         int qtde = Integer.valueOf(request.getParameter("qtdeProduto"));
+        long idfilial = Long.valueOf(request.getParameter("idfilial"));
 
         Produto p1 = new Produto();
         
+        p1.setId_filial(idfilial);
         p1.setNome(nome);
         p1.setMarca(marca);
         p1.setPreco(preco);
