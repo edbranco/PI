@@ -42,7 +42,10 @@ public class VendaDAO {
         boolean cadastrado = false;
         
         PreparedStatement stmt = null;
-        Connection conn = null;       
+        Connection conn = null;      
+        double precototal = venda.getPreco();
+        precototal *= qtde;
+        
         
         String sql = "INSERT INTO TB_Venda (ID_Filial, ID_Produto, ID_Cliente, ID_Funcionario, "
                 + "DataVenda, PrecoTotal) VALUES (?, ?, ?, ?, ?, ?)";
@@ -55,7 +58,7 @@ public class VendaDAO {
             stmt.setLong(3, venda.getId_cliente());
             stmt.setLong(4, venda.getId_funcionario());
             stmt.setDate(5, new java.sql.Date(venda.getDt_cadastro().getTime()));
-            stmt.setDouble(6, venda.getPreco());
+            stmt.setDouble(6, precototal);
             stmt.executeUpdate();
             
             cadastrado = true;
@@ -251,5 +254,6 @@ public class VendaDAO {
             }
         }
     }
+    
     
 }
