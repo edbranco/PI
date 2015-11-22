@@ -54,7 +54,10 @@
                         <li><a href="ServletFuncionarioExcluir">Excluir</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="PreVendaProduto.jsp">Venda</a>
+                <li class="dropdown"><a href="#">Venda</a>
+                 <ul class="dropdown-menu">     
+                <li><a <a href="PreVendaProduto.jsp">Efetuar Venda</a></li>
+                     <li><a <a href="RelatorioVenda.jsp">Relatorio</a></li> 
                 </li>
             </ul>   
         </div>

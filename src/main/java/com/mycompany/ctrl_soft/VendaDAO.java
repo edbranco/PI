@@ -90,6 +90,62 @@ public class VendaDAO {
         }
     }
     
+    public List<Venda> relatorio() {
+        PreparedStatement stmt = null;
+        Statement stmt2 = null;
+        Connection conn = null;
+
+        String sql2 = "Select tb_produto.NOMEPRODUTO,tb_filial.Nome_Filial,tb_funcionario.NomeFuncionario, tb_venda.precototal, tb_venda.DATAVENDA\n" +
+            "from TB_PRODUTO \n" +
+            "inner join tb_venda on tb_produto.id_produto = tb_venda.id_produto\n" +
+            "inner join tb_Filial on tb_filial.id_filial = tb_venda.id_filial\n" +
+            "inner join tb_funcionario on tb_funcionario.id_funcionario = tb_venda.id_funcionario"
+                + " Order by tb_filial.NOME_FILIAL";
+        try {
+            conn = obterConexao();
+            stmt2 = conn.createStatement();
+            ResultSet resultados = stmt2.executeQuery(sql2);
+
+            ArrayList<Venda> relatorio = new ArrayList<Venda>();
+
+            
+            
+            while (resultados.next()) {
+            Venda venda = new Venda();  
+                venda.setNomeProduto(resultados.getString("NOMEPRODUTO"));
+                venda.setNomeFilial(resultados.getString("NOME_FILIAL"));
+                venda.setNomeFuncionario(resultados.getString("NOMEFUNCIONARIO"));
+                venda.setPreco(resultados.getDouble("PRECOTOTAL"));
+                venda.setDt_cadastro(resultados.getDate("DATAVENDA"));
+                relatorio.add(venda);
+            }
+            return relatorio;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Venda.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Venda.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Venda.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Venda.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    
     //Função de consulta de Clientes
     public Cliente consultarCpfCliente(Cliente cliente, String cpf) {
         PreparedStatement stmt = null;
