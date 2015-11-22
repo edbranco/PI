@@ -380,6 +380,7 @@ public class FuncionarioDAO {
             ResultSet resultados = stmt.executeQuery(sql);
 
             while (resultados.next()) {
+                int id = resultados.getInt("ID_Funcionario");
                 String emailBanco = resultados.getString("Usuario");
                 String senhaBanco = resultados.getString("Senha");
                 int filialBanco = resultados.getInt("ID_Filial");
@@ -389,6 +390,7 @@ public class FuncionarioDAO {
                 if (senhaBanco.equals(senha)) {
                     Funcionario User = new Funcionario();
                     
+                    User.setId(id);
                     User.setIdFilial(filialBanco);
                     User.setUsuario(emailBanco);
                     User.setSenha(senhaBanco);
@@ -434,6 +436,7 @@ public class FuncionarioDAO {
             ResultSet resultados = stmt.executeQuery(sql);
 
             while (resultados.next()) {
+                int id = resultados.getInt("ID_Funcionario");
                 String emailBanco = resultados.getString("Usuario");
                 String senhaBanco = resultados.getString("Senha");
                 int filialBanco = resultados.getInt("ID_Filial");
@@ -442,6 +445,7 @@ public class FuncionarioDAO {
                 if (emailBanco.equals(email)) {
                     Funcionario User = new Funcionario();
                     
+                    User.setId(id);
                     User.setIdFilial(filialBanco);
                     User.setUsuario(emailBanco);
                     User.setSenha(senhaBanco);

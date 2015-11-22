@@ -54,6 +54,8 @@
                         <li><a href="ServletFuncionarioExcluir">Excluir</a></li>
                     </ul>
                 </li>
+                <li class="dropdown"><a href="ServletVendaEfetuar">Venda</a>
+                </li>
             </ul>   
         </div>
         

@@ -220,7 +220,7 @@ public class ProdutoDAO {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT ID_PRODUTO, NOME_PRODUTO, MARCA_PRODUTO, VL_PRECO, VL_QTDE FROM PRODUTO";
+        String sql = "SELECT * FROM TB_Produto";
         try {
             conn = obterConexao();
             stmt = conn.createStatement();
@@ -232,10 +232,11 @@ public class ProdutoDAO {
             while (resultados.next()) {
                 Produto p = new Produto();
                 p.setId(resultados.getLong("ID_PRODUTO"));
-                p.setNome(resultados.getString("NOME_PRODUTO"));
-                p.setMarca(resultados.getString("MARCA_PRODUTO"));
-                p.setPreco(resultados.getDouble("VL_PRECO"));
-                p.setQtde(resultados.getInt("VL_QTDE"));
+                p.setId_filial(resultados.getLong("ID_Filial"));
+                p.setNome(resultados.getString("NOMEPRODUTO"));
+                p.setMarca(resultados.getString("MARCA"));
+                p.setPreco(resultados.getDouble("PRECO"));
+                p.setQtde(resultados.getInt("QTDE"));
                 listaProdutos.add(p);
             }
             return listaProdutos;
