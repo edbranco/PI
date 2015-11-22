@@ -29,17 +29,17 @@
                     <input type="hidden" name="idfuncionario" id="idfuncionario" value="${usuario.id}">
                     
                     <p>
-                        <label for="vendaproduto">Nome:</label><br />
+                        <label for="vendaproduto">ID:</label><br />
                         <select name="vendaproduto" id="vendaproduto" class="ipt-select">                    
-                           <c:forEach items="${listaProduto}" var="produto" varStatus="stat">
-                               <option value="${produto.id}">${produto.nome}</option>
-                           </c:forEach>                    
+                           
+                               <option value="${produto.id}">${produto.id}</option>
+                                            
                         </select>
                     </p>
                     
                     <p class="ipt-curto ipt-curto-1">
                         <label for="vendapreco">Preço R$:</label><br />
-                        <input type="text" name="vendapreco" id="vendapreco" required />
+                        <input type="text" name="vendapreco" id="vendapreco" value="${produto.preco}"  required />
                     </p>
                     
                     <p>

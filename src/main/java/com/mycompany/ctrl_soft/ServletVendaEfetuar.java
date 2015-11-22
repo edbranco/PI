@@ -39,13 +39,11 @@ public class ServletVendaEfetuar extends HttpServlet {
         
         ProdutoDAO produtoDAO = new ProdutoDAO();
    
-        List<Produto> listaProduto = produtoDAO.listarProdutos();
         
         boolean mensagem = false;
         boolean mensagem2 = false;
         boolean clienteExiste = true;
 
-        request.setAttribute("listaProduto", listaProduto);
         request.setAttribute("mensagem", mensagem);
         request.setAttribute("mensagem2", mensagem2);
         request.setAttribute("clienteExiste", clienteExiste);
@@ -129,12 +127,7 @@ public class ServletVendaEfetuar extends HttpServlet {
             mensagem = false;
             mensagem2 = false;
         }
-        
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-   
-        List<Produto> listaProduto = produtoDAO.listarProdutos();
-
-        request.setAttribute("listaProduto", listaProduto);        
+               
         request.setAttribute("venda", venda);
         request.setAttribute("clienteExiste", clienteExiste);
         request.setAttribute("mensagem", mensagem);
