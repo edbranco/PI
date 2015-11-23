@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Menu</title>
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
@@ -55,16 +55,29 @@
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#">Venda</a>
-                 <ul class="dropdown-menu">     
-                <li><a <a href="PreVendaProduto.jsp">Efetuar Venda</a></li>
-                     <li><a <a href="RelatorioVenda.jsp">Relatorio</a></li> 
+                    <ul class="dropdown-menu">     
+                        <li><a href="PreVendaProduto.jsp">Efetuar Venda</a></li>
+                        <li id="li-relatorio"><a href="RelatorioVenda.jsp">Relatorio</a></li> 
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="Logout">Sair</a>
                 </li>
             </ul>   
         </div>
+        <input type="hidden" name="cargoUsuario" id="cargoUsuario" value="${usuario.cargo}">
         
         
         <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
+        
+        <script>
+            var cargo = document.getElementById("cargoUsuario").value;
+            if (cargo === "gerente") {
+                document.getElementById("li-relatorio").classList.add("aparecer");
+            } else {
+                document.getElementById("li-relatorio").classList.add("desaparecer");
+            }
+        </script>
     </body>
 </html>

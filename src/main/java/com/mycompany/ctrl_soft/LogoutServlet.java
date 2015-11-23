@@ -33,7 +33,7 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         sessao.invalidate();
-        response.sendRedirect("Login");
+        response.sendRedirect("Login_Usuario.jsp");
     }
 
 }
