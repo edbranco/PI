@@ -25,7 +25,7 @@
                 <fieldset>
                     <legend>Vender Produto</legend>
                     
-                    <input type="hidden" name="idfilial" id="idfilial" value="${usuario.idFilial}">
+                    <input type="hidden" name="idfilial" id="idfilial" value="${produto.id_filial }">
                     <input type="hidden" name="idfuncionario" id="idfuncionario" value="${usuario.id}">
                     
                     <p>

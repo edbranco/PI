@@ -28,6 +28,7 @@
                     <legend>Pre Venda</legend>  
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
+                    <input type="hidden" name="idfilial" id="idfilial" value="${produto.id_filial}">
                     <p>
                         <label for="idproduto">Digite o ID do Produto:</label>
                         <input type="text" name="idProduto" id="idproduto" value="${produto.id}" class="ipt-id" required />

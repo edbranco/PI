@@ -99,13 +99,14 @@ public class ServletPreVendaProduto extends HttpServlet {
             }
         }
         else {
-           
+            String idFilialTexto = request.getParameter("idfilial");
+            int idfilial = Integer.parseInt(idFilialTexto);
             String nome = request.getParameter("nomeProduto");
             String marca = request.getParameter("marcaProduto");
             String preco = request.getParameter("precoProduto");
             int qtde = Integer.parseInt(request.getParameter("qtdeProduto"));
             
-
+            produto.setId_filial(idfilial);
             produto.setId(id);
             produto.setNome(nome);
             produto.setMarca(marca);
