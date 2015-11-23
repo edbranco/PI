@@ -57,7 +57,9 @@
                 <li class="dropdown"><a href="#">Venda</a>
                     <ul class="dropdown-menu">     
                         <li><a href="PreVendaProduto.jsp">Efetuar Venda</a></li>
-                        <li id="li-relatorio"><a href="RelatorioVenda.jsp">Relatorio</a></li> 
+                        <li id="li-relatorio"><a href="RelatorioVenda.jsp">Relatorio Geral</a></li> 
+                        <li id="li-relatorio"><a href="ServletCarregarRelatorio">Relatorio Filial</a></li> 
+                        
                     </ul>
                 </li>
                 <li class="dropdown"><a href="Logout">Sair</a>
