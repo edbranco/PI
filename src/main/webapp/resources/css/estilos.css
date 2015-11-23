@@ -107,3 +107,41 @@ p.ipt-curto input, p.ipt-curto select {
 .consulta-excluir {
     display: none;
 }
+
+/*Tela de Login*/
+#login-box {
+    width: 600px;
+    margin: 120px auto;
+}
+
+#form-login {
+/*    margin: 0 auto;
+    width: 400px;*/
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+
+#form-login-campos {
+    width: 365px;
+    margin: 0 auto;
+    height: 250px;
+    padding-top: 78px;
+}
+
+#login-titulo {
+    border: 3px solid black;
+    height: 40px;
+}
+
+#form-login-botoes {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    height: 55px;
+    padding-top: 8px;
+    padding-right: 31px;
+    text-align: right;
+}
+
+#login-titulo p {
+    margin: 8px 5px 0;
+}

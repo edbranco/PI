@@ -27,36 +27,36 @@
                     <legend>Cadastrar Cliente </legend>   
                 <p>
                     <label for="nomecliente">Nome:</label><br />
-                    <input type="text" maxlength="100" name="nomeCliente" id="nomecliente" class="ipt-largo" required />
+                    <input type="text" maxlength="100" name="nomeCliente" id="nomecliente" class="ipt-largo form-control" required />
                 </p>
                 <div id="err-campo-nome" class="alert alert-danger">
                     <strong>Atenção!</strong> Digite apenas letras.
                 </div>
                 <p>
                     <label for="cpfcliente">CPF:</label><br />
-                    <input type="cpf" name="cpfCliente" id="cpfcliente" class="ipt-largo" required /><span class="aviso"> * Digite apenas números</span>
+                    <input type="cpf" name="cpfCliente" id="cpfcliente" class="ipt-largo form-control" required /><span class="aviso"> * Digite apenas números</span>
                 </p>
                 <div id="err-campo-cpf" class="alert alert-danger">
                     <strong>Atenção!</strong> CPF inválido.
                 </div>
                 <p>
                     <label for="telefonecliente">Telefone:</label><br />
-                    <input type="text" name="telefoneCliente" id="telefonecliente" class="ipt-largo" required /><span class="aviso"> * Digite apenas números (DDDnumero)</span>
+                    <input type="text" name="telefoneCliente" id="telefonecliente" class="ipt-largo form-control" required /><span class="aviso"> * Digite apenas números (DDDnumero)</span>
                 </p>
                 <div id="err-campo-fone" class="alert alert-danger">
                     <strong>Atenção!</strong> Telefone inválido.
                 </div>
                 <p>
                     <label for="emailcliente">E-mail:</label><br />
-                    <input type="email" name="emailCliente" id="emailcliente" class="ipt-largo" required />
+                    <input type="email" name="emailCliente" id="emailcliente" class="ipt-largo form-control" required />
                 </p>
                 <p>
                     <label for="enderecocliente">Endereço:</label><br />
-                    <input type="text" maxlength="200" name="enderecoCliente" id="enderecocliente" class="ipt-largo" required />
+                    <input type="text" maxlength="200" name="enderecoCliente" id="enderecocliente" class="ipt-largo form-control" required />
                 </p>
                 <p class="ipt-curto ipt-curto-1">
                     <label for="estadocliente">UF:</label><br />
-                    <select name="estadoCliente" id="estadocliente" class="ipt-select">
+                    <select name="estadoCliente" id="estadocliente" class="ipt-select form-control">
                         <option value="0">Selecione o Estado</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -89,11 +89,12 @@
                 </p>            
                 <p class="ipt-curto">
                     <label for="cidadecliente">Cidade:</label><br />
-                    <input type="text" maxlength="80" name="cidadeCliente" id="cidadecliente" required />
+                    <input type="text" maxlength="80" name="cidadeCliente" id="cidadecliente" class="form-control" required />
                 </p>
                 
                 <div>
-                    <input type="submit" value="Cadastrar"/>
+                    <input class="btn btn-default" type="submit" value="Cadastrar"/>
+                    <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
                 </div>
             </form>
         </div>

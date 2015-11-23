@@ -26,27 +26,27 @@
                     <legend>Cadastrar Funcionário</legend>   
                     <p>
                         <label for="nomefuncionario">Nome:</label><br />
-                        <input type="text" name="nomefuncionario" id="nomefuncionario" class="ipt-largo" />
+                        <input type="text" name="nomefuncionario" id="nomefuncionario" class="ipt-largo form-control" />
                     </p>
                     <p>
                         <label for="nomeusuario">Usuario:</label><br />
-                        <input type="text" name="nomeusuario" id="nomeusuario" class="ipt-largo" />
+                        <input type="text" name="nomeusuario" id="nomeusuario" class="ipt-largo form-control" />
                     </p>
                     <p>
                         <label for="senhausuario">Senha:</label><br />
-                        <input type="password" name="senhausuario" id="senhausuario" class="ipt-largo" />
+                        <input type="password" name="senhausuario" id="senhausuario" class="ipt-largo form-control" />
                     </p>                    
                     <p>
                         <label for="rafuncionario">RA:</label><br />
-                        <input type="text" name="rafuncionario" id="rafuncionario" class="ipt-largo" />
+                        <input type="text" name="rafuncionario" id="rafuncionario" class="ipt-largo form-control" />
                     </p>
                     <p>
                         <label for="cpffuncionario">CPF:</label><br />
-                        <input type="text" name="cpffuncionario" id="cpffuncionario" class="ipt-largo" />
+                        <input type="text" name="cpffuncionario" id="cpffuncionario" class="ipt-largo form-control" />
                     </p>         
                     <p>
                         <label for="filialfuncionario">Filial:</label><br />
-                        <select name="filialfuncionario" id="filialfuncionario" class="ipt-select">                    
+                        <select name="filialfuncionario" id="filialfuncionario" class="ipt-select form-control">                    
                            <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
                                <option value="${filial.idfilial}">${filial.nomefilial}</option>
                            </c:forEach>                    
@@ -54,19 +54,19 @@
                     </p>
                     <p>
                         <label for="telefonefuncionario">Telefone:</label><br />
-                        <input type="text" name="telefonefuncionario" id="telefonefuncionario" class="ipt-largo" />
+                        <input type="text" name="telefonefuncionario" id="telefonefuncionario" class="ipt-largo form-control" />
                     </p>
                     <p>
                         <label for="emailfuncionario">Email:</label><br />
-                        <input type="email" name="emailfuncionario" id="emailfuncionario" class="ipt-largo" />
+                        <input type="email" name="emailfuncionario" id="emailfuncionario" class="ipt-largo form-control" />
                     </p>
                     <p>
                         <label for="enderecofuncionario">Endereco:</label><br />
-                        <input type="text" name="enderecofuncionario" id="enderecofuncionario" class="ipt-largo" />
+                        <input type="text" name="enderecofuncionario" id="enderecofuncionario" class="ipt-largo form-control" />
                     </p>
                     <p>
                         <label for="cargofuncionario">Cargo:</label><br />
-                        <select name="cargofuncionario" id="cargofuncionario" class="ipt-select ipt-largo">
+                        <select name="cargofuncionario" id="cargofuncionario" class="ipt-select ipt-largo form-control">
                             <option value="0">Selecione o Cargo</option>
                             <option value="gerente">Gerente</option>
                             <option value="vendedor">Vendedor</option>
@@ -75,7 +75,7 @@
 
                     <p class="ipt-curto ipt-curto-1">
                         <label for="estadofuncionario">UF:</label><br />
-                        <select name="estadofuncionario" id="estadofuncionario" class="ipt-select">
+                        <select name="estadofuncionario" id="estadofuncionario" class="ipt-select form-control">
                             <option value="0">Selecione o Estado</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -108,9 +108,10 @@
                     </p>            
                     <p class="ipt-curto">
                         <label for="cidadefuncionario">Cidade:</label><br />
-                        <input type="text" name="cidadefuncionario" id="cidadefuncionario">
+                        <input type="text" name="cidadefuncionario" id="cidadefuncionario" class="form-control">
                     </p><br />
-                    <input type="submit" value="Cadastrar"/>
+                    <input class="btn btn-default" type="submit" value="Cadastrar"/>
+                    <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
                 </fieldset>
             </form> 
         </div>

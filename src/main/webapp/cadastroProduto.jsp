@@ -28,21 +28,22 @@
                     <input type="hidden" name="idfilial" id="idfilial" value="${usuario.idFilial}">
                     <p>
                         <label for="txtNome">Nome:</label><br />
-                        <input type="text" maxlength="100" name="nomeProduto" id="nomeproduto" class="ipt-largo" required />
+                        <input type="text" maxlength="100" name="nomeProduto" id="nomeproduto" class="ipt-largo form-control" required />
                     </p>
                     <p>
                         <label for="txtNome">Marca:</label><br />
-                        <input type="text" maxlength="80" name="marcaProduto" id="marcaproduto" class="ipt-largo" required />
+                        <input type="text" maxlength="80" name="marcaProduto" id="marcaproduto" class="ipt-largo form-control" required />
                     </p>
                     <p class="ipt-curto ipt-curto-1">
                         <label for="numberNome">Preço R$:</label><br />
-                        <input type="number" step=0.01 name="precoProduto" id="precoproduto" required />
+                        <input type="number" step=0.01 name="precoProduto" id="precoproduto" class="form-control" required />
                     </p>
                     <p class="ipt-curto">
                         <label for="numberNome">Quantidade:</label><br />
-                        <input type="number" name="qtdeProduto" id="qtdeproduto" required />
+                        <input type="number" name="qtdeProduto" id="qtdeproduto" class="form-control" required />
                     </p><br />
-                    <input type="submit" value="Cadastrar"/>            
+                    <input class="btn btn-default" type="submit" value="Cadastrar"/>
+                    <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
                 </fieldset>
             </form>
         </div>

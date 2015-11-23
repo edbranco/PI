@@ -27,11 +27,11 @@
                     <legend>Cadastrar Filial</legend>  
                     <p>
                         <label for="nomefilial">Nome:</label><br />
-                        <input type="text" maxlength="20" name="nomefilial" id="nomefilial" class="ipt-largo" required />
+                        <input type="text" maxlength="20" name="nomefilial" id="nomefilial" class="ipt-largo form-control" required />
                     </p>
                     <p class="ipt-largo">
                     <label for="uf">UF:</label><br />
-                    <select name="uf" id="uf" class="ipt-select">
+                    <select name="uf" id="uf" class="ipt-select form-control">
                         <option value="0">Selecione o Estado</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -67,9 +67,10 @@
                 </div>
                     <p>
                         <label for="cnpj">CNPJ:</label><br />
-                        <input type="text" name="cnpj" id="cnpj" class="ipt-largo" required />
+                        <input type="text" name="cnpj" id="cnpj" class="ipt-largo form-control" required />
                     </p>
-                    <input type="submit" value="Cadastrar"/>
+                    <input class="btn btn-default" type="submit" value="Cadastrar"/>
+                    <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
                  </fieldset>
             </form>
         </div>

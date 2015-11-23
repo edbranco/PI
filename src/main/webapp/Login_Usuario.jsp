@@ -18,17 +18,36 @@
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />  
     </head>
     <body>
-
-        <form action="Login" method="post">
-            <fieldset>
-                <label>Usuário</label>
-                <input type="text" name="usuario" />
-                <label>Senha</label>
-                <input type="password" name="senha" />
-
-                <input type="submit" name="valor" value="OK" />
-            </fieldset>
-        </form>
+        
+        <div id="login-box">
+            <div id="login-titulo">
+                <p>Login</p>
+            </div>
+            <div id="form-login">
+                <form action="Login" method="post">
+                    <div id="form-login-campos">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Usuário</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="usuario" class="form-control" /><br />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Senha</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="senha" class="form-control" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div id="form-login-botoes">
+                        <input class="btn btn-default" type="submit" name="valor"  value="OK" />
+                        <input class="btn btn-default" type="reset" name="limpar"  value="Limpar" />
+                    </div>
+                </form>
+            </div>
+        </div>
         
         <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
