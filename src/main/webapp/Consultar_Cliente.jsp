@@ -21,43 +21,52 @@
     <body>
         <jsp:include page="Menu.jsp" />
         
-        <form action="ServletClienteConsultar" method="post">            
-          
-            <fieldset>
-                <legend>Consultar Cliente</legend>              
-                <p>
-                    <label for="nomecliente">Nome:</label>
-                    <input type="text" name="nomeCliente" id="nomecliente">
-                </p>
-                <input type="submit" value="Listar" />
-            </fieldset>
-        </form>
-        
-        <table>
-            <tr>
-                <!-- <th>#</th> -->
-                <th>ID</th>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Telefone</th>
-                <th>E-mail</th>
-                <th>Endereco</th>
-                <th>Cidade</th>
-                <th>UF</th>
-            </tr>
-            <c:forEach items="${listaClientes}" var="cliente" varStatus="stat">
-                <tr>                
-                    <td><c:out value="${cliente.id}" /></td>
-                    <td><c:out value="${cliente.nome}" /></td>
-                    <td><c:out value="${cliente.cpf}" /></td>
-                    <td><c:out value="${cliente.telefone}" /></td>
-                    <td><c:out value="${cliente.email}" /></td>
-                    <td><c:out value="${cliente.endereco}" /></td>
-                    <td><c:out value="${cliente.cidade}" /></td>
-                    <td><c:out value="${cliente.uf}" /></td>
-                </tr>
-            </c:forEach>
-        </table>
+        <div class="box-consulta">
+            <form action="ServletClienteConsultar" method="post">         
+                <fieldset>
+                    <legend>Consultar Cliente</legend>              
+                    <p>
+                        <label for="nomecliente">Nome:</label>
+                        <input class="form-control" type="text" name="nomeCliente" id="nomecliente">
+                    </p>
+                    
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" value="Listar" />
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
+                </fieldset>
+            </form>
+
+            <div class="box-tabelas">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <!-- <th>#</th> -->
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Telefone</th>
+                            <th>E-mail</th>
+                            <th>Endereco</th>
+                            <th>Cidade</th>
+                            <th>UF</th>
+                        </tr>
+                    </thead>
+                    <c:forEach items="${listaClientes}" var="cliente" varStatus="stat">
+                        <tr>                
+                            <td><c:out value="${cliente.id}" /></td>
+                            <td><c:out value="${cliente.nome}" /></td>
+                            <td><c:out value="${cliente.cpf}" /></td>
+                            <td><c:out value="${cliente.telefone}" /></td>
+                            <td><c:out value="${cliente.email}" /></td>
+                            <td><c:out value="${cliente.endereco}" /></td>
+                            <td><c:out value="${cliente.cidade}" /></td>
+                            <td><c:out value="${cliente.uf}" /></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
         
         
         <!-- Scripts: jQuery e Bootstrap -->

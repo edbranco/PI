@@ -27,9 +27,9 @@
                     <legend>Alterar Filial</legend> 
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
-                    <p>
+                    <p class="campos-esq">
                         <label for="idFilial">Digite o ID da Filial:</label>
-                        <input type="text" name="idFilial" id="idFilial" value="${filial.idfilial}" class="ipt-id" required />
+                        <input type="text" name="idFilial" id="idFilial" value="${filial.idfilial}" class="ipt-id form-control" required />
                     </p>
                     <div id="err-campo-id" class="alert alert-danger">
                         <strong>Atenção!</strong> Digite apenas números inteiros.
@@ -37,15 +37,15 @@
      
                     <p>
                         <label for="nomeFilial">Nome da Filial:</label><br />
-                        <input type="text" name="nomeFilial" id="nomeFilial" value="${filial.nomefilial}" class="ipt-largo" required />
+                        <input type="text" name="nomeFilial" id="nomeFilial" value="${filial.nomefilial}" class="ipt-largo form-control" required />
                     </p>
-                    <p>
+                    <p class="campos-esq">
                         <label for="cnpj">Cnpj:</label><br />
-                        <input type="text" name="cnpj" id="cnpj" value="${filial.cnpj}" class="ipt-largo" required/>
+                        <input type="text" name="cnpj" id="cnpj" value="${filial.cnpj}" class="ipt-largo form-control" required/>
                     </p>
                     <p class="ipt-largo">
                     <label for="uf">UF:</label><br />
-                    <select name="uf" id="uf" class="ipt-largo">
+                    <select name="uf" id="uf" class="ipt-largo form-control">
                         <option value="${filial.uf}">${filial.uf}</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -77,8 +77,11 @@
                     </select>
                 </p>
                     
-                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
-                    <input type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
+                <div class="div-botoes">
+                    <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                    <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
+                    <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                </div>
                 </fieldset>
             </form>
         </div>

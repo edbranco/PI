@@ -25,7 +25,7 @@
             <form action="ServletFilialCadastrar" method="post" onsubmit="return validarFilialCadastrar();">
                  <fieldset>
                     <legend>Cadastrar Filial</legend>  
-                    <p>
+                    <p class="campos-esq">
                         <label for="nomefilial">Nome:</label><br />
                         <input type="text" maxlength="20" name="nomefilial" id="nomefilial" class="ipt-largo form-control" required />
                     </p>
@@ -69,8 +69,10 @@
                         <label for="cnpj">CNPJ:</label><br />
                         <input type="text" name="cnpj" id="cnpj" class="ipt-largo form-control" required />
                     </p>
-                    <input class="btn btn-default" type="submit" value="Cadastrar"/>
-                    <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" value="Cadastrar"/>
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
                  </fieldset>
             </form>
         </div>

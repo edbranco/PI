@@ -27,31 +27,31 @@
                     <legend>Alterar Funcionário</legend>
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
-                    <p>
+                    <p class="campos-esq">
                         <label for="idfuncionario">Digite o ID do Funcionário:</label>
-                        <input type="text" name="idfuncionario" id="idfuncionario" value="${funcionario.id}" class="ipt-id-func" required />
+                        <input type="text" name="idfuncionario" id="idfuncionario" value="${funcionario.id}" class="form-control" required />
                     </p>
                     <div id="err-campo-id" class="alert alert-danger">
                         <strong>Atenção!</strong> Digite apenas números inteiros.
                     </div>
                     <p>
                         <label for="nomefuncionario">Nome:</label><br />
-                        <input type="text" name="nomefuncionario" id="nomefuncionario" value="${funcionario.nome}" class="ipt-largo" required />
+                        <input type="text" name="nomefuncionario" id="nomefuncionario" value="${funcionario.nome}" class="ipt-largo form-control" required />
                     </p>
                     <div id="err-campo-nome" class="alert alert-danger">
                         <strong>Atenção!</strong> Digite apenas letras.
                     </div>
-                    <p>
+                    <p class="campos-esq">
                         <label for="rafuncionario">RA:</label><br />
-                        <input type="text" name="rafuncionario" id="rafuncionario" value="${funcionario.ra}" class="ipt-largo" required />
+                        <input type="text" name="rafuncionario" id="rafuncionario" value="${funcionario.ra}" class="ipt-largo form-control" required />
                     </p>
                     <p>
                         <label for="cpffuncionario">CPF:</label><br />
-                        <input type="text" name="cpffuncionario" id="cpffuncionario" value="${funcionario.cpf}" class="ipt-largo" required />
+                        <input type="text" name="cpffuncionario" id="cpffuncionario" value="${funcionario.cpf}" class="ipt-largo form-control" required />
                     </p>
-                    <p>
+                    <p class="campos-esq">
                         <label for="filialfuncionario">Filial:</label><br />
-                        <select name="filialfuncionario" id="filialfuncionario" class="ipt-select">
+                        <select name="filialfuncionario" id="filialfuncionario" class="ipt-select form-control">
                             <option value="${funcionario.idFilial}">${funcionario.idFilial}</option>
                             <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
                                 <option value="${filial.idfilial}">${filial.nomefilial}</option>
@@ -60,19 +60,19 @@
                     </p>
                     <p>
                         <label for="telefonefuncionario">Telefone:</label><br />
-                        <input type="text" name="telefonefuncionario" id="telefonefuncionario" value="${funcionario.telefone}" class="ipt-largo" required />
+                        <input type="text" name="telefonefuncionario" id="telefonefuncionario" value="${funcionario.telefone}" class="ipt-largo form-control" required />
                     </p>
-                    <p>
+                    <p class="campos-esq">
                         <label for="emailfuncionario">Email:</label><br />
-                        <input type="email" name="emailfuncionario" id="emailfuncionario" value="${funcionario.email}" class="ipt-largo" required />
+                        <input type="email" name="emailfuncionario" id="emailfuncionario" value="${funcionario.email}" class="ipt-largo form-control" required />
                     </p>
                     <p>
                         <label for="enderecofuncionario">Endereco:</label><br />
-                        <input type="text" name="enderecofuncionario" id="enderecofuncionario" value="${funcionario.endereco}" class="ipt-largo" required />
+                        <input type="text" name="enderecofuncionario" id="enderecofuncionario" value="${funcionario.endereco}" class="ipt-largo form-control" required />
                     </p>
-                    <p>
+                    <p class="campos-esq">
                         <label for="cargofuncionario">Cargo:</label><br />
-                        <select name="cargofuncionario" id="cargofuncionario" class="ipt-select ipt-largo">
+                        <select name="cargofuncionario" id="cargofuncionario" class="ipt-select ipt-largo form-control">
                             <option value="${funcionario.cargo}">${funcionario.cargo}</option>
                             <option value="gerente">Gerente</option>
                             <option value="vendedor">Vendedor</option>
@@ -80,7 +80,7 @@
                     </p>
                     <p class="ipt-curto ipt-curto-1">
                         <label for="estadofuncionario">UF:</label><br />
-                        <select name="estadofuncionario" id="estadofuncionario" value="${usuario.uf}" class="ipt-select">
+                        <select name="estadofuncionario" id="estadofuncionario" value="${usuario.uf}" class="ipt-select form-control">
                             <option value="${funcionario.uf}">${funcionario.uf}</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -113,10 +113,14 @@
                     </p>            
                     <p class="ipt-curto">
                         <label for="cidadefuncionario">Cidade:</label><br />
-                        <input type="text" name="cidadefuncionario" id="cidadefuncionario" value="${funcionario.cidade}" class="ipt-curto" required />
+                        <input type="text" name="cidadefuncionario" id="cidadefuncionario" value="${funcionario.cidade}" class="ipt-curto form-control" required />
                     </p><br />
-                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
-                    <input type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
+                    
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                        <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
                 </fieldset>
             </form>
         </div>

@@ -29,14 +29,17 @@
                     <input type="hidden" name="filialExiste" id="filialExiste" value="${filialExiste}">
                     <p>
                         <label for="idfilial">Digite o ID da Filial:</label>
-                        <input type="text" name="idfilial" id="idfilial" value="${filial.idfilial}" required>
+                        <input class="form-control" type="text" name="idfilial" id="idfilial" value="${filial.idfilial}" required>
                     </p>
                     <div id="err-campo-id" class="alert alert-danger">
                         <strong>Atenção!</strong> Digite apenas números inteiros.
                     </div>
                     
-                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
-                    <input type="submit" name="btn-consultar" id="btn-excluir" value="Excluir"/>  
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                        <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-excluir" value="Excluir"/>  
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
                 </fieldset>
             </form>
         </div>

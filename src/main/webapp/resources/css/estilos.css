@@ -63,34 +63,39 @@ span.aviso {
     margin: 40px auto;
 }
 
-.ipt-largo {
-    width: 450px;
-}
-
-.ipt-curto {
+form p {
+    width: 300px;
     display: inline-block;
 }
 
-p.ipt-curto input, p.ipt-curto select {
+/*.ipt-largo {
+    width: 450px;
+}*/
+
+/*.ipt-curto {
+    display: inline-block;
+}*/
+
+/*p.ipt-curto input, p.ipt-curto select {
     width: 210px;
-}
+}*/
 
-.ipt-curto-1 {
+/*.ipt-curto-1 {
     margin-right: 25px;
-}
+}*/
 
-.ipt-id {
+/*.ipt-id {
     width: 295px;
-}
+}*/
 
 .ipt-id-filial {
     margin-left: 16px;
     width: 295px;
 }
 
-.ipt-select {
+/*.ipt-select {
     height: 26px;
-}
+}*/
 
 .alert-success {
     margin: 0 auto;
@@ -144,4 +149,36 @@ p.ipt-curto input, p.ipt-curto select {
 
 #login-titulo p {
     margin: 8px 5px 0;
+}
+
+
+
+/*CAMPOS DOS FORMULÁRIOS*/
+
+.campos-esq {
+    margin-right: 75px;
+}
+
+.div-botoes {
+    margin-top: 35px;
+}
+
+legend {
+    margin-bottom: 35px;
+}
+
+.box-consulta {
+    width: 90%;
+    margin: 40px auto;
+}
+
+.box-tabelas {
+    margin-top: 50px;
+}
+
+body {
+/*    background-image: url(../img/fundo3.jpg);*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }

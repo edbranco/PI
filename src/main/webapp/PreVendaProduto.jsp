@@ -29,31 +29,35 @@
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
                     <input type="hidden" name="idfilial" id="idfilial" value="${produto.id_filial}">
-                    <p>
+                    <p class="campos-esq">
                         <label for="idproduto">Digite o ID do Produto:</label>
-                        <input type="text" name="idProduto" id="idproduto" value="${produto.id}" class="ipt-id" required />
+                        <input type="text" name="idProduto" id="idproduto" value="${produto.id}" class="form-control" required />
                     </p>
                     <div id="err-campo-id" class="alert alert-danger">
                         <strong>Atenção!</strong> Digite apenas números inteiros.
                     </div>
                     <p>
                         <label for="nomeproduto">Nome:</label><br />
-                        <input type="text" name="nomeProduto" id="nomeproduto" value="${produto.nome}" class="ipt-largo" />
+                        <input type="text" name="nomeProduto" id="nomeproduto" value="${produto.nome}" class="form-control" />
                     </p>
-                    <p>
+                    <p class="campos-esq">
                         <label for="marcaproduto">Marca:</label><br />
-                        <input type="text" name="marcaProduto" id="marcaproduto" value="${produto.marca}" class="ipt-largo" />
+                        <input type="text" name="marcaProduto" id="marcaproduto" value="${produto.marca}" class="form-control" />
                     </p>
                     <p class="ipt-curto ipt-curto-1">
                         <label for="precoproduto">Preço R$:</label><br />
-                        <input type="number" step=0.01 name="precoProduto" id="precoproduto" value="${produto.preco}" />
+                        <input class="form-control" type="number" step=0.01 name="precoProduto" id="precoproduto" value="${produto.preco}" />
                     </p>
-                    <p class="ipt-curto">
+                    <p>
                         <label for="qtdeproduto">Quantidade:</label><br />
-                        <input type="number" name="qtdeProduto" id="qtdeproduto" value="${produto.qtde}" />
+                        <input class="form-control" type="number" name="qtdeProduto" id="qtdeproduto" value="${produto.qtde}" />
                     </p><br />
-                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
-                    <input type="submit" name="btn-consultar" id="btn-alterar" value="Vender" />
+                    
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                        <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-alterar" value="Vender" />
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
                 </fieldset>
             </form>
         </div>

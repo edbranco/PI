@@ -57,8 +57,8 @@
                 <li class="dropdown"><a href="#">Venda</a>
                     <ul class="dropdown-menu">     
                         <li><a href="PreVendaProduto.jsp">Efetuar Venda</a></li>
-                        <li id="li-relatorio"><a href="RelatorioVenda.jsp">Relatorio Geral</a></li> 
-                        <li id="li-relatorio"><a href="ServletCarregarRelatorio">Relatorio Filial</a></li> 
+                        <li id="li-relatorio-geral"><a href="RelatorioVenda.jsp">Relatorio Geral</a></li> 
+                        <li id="li-relatorio-filial"><a href="ServletCarregarRelatorio">Relatorio Filial</a></li> 
                         
                     </ul>
                 </li>
@@ -75,10 +75,13 @@
         
         <script>
             var cargo = document.getElementById("cargoUsuario").value;
+            
             if (cargo === "gerente") {
-                document.getElementById("li-relatorio").classList.add("aparecer");
+                document.getElementById("li-relatorio-geral").classList.add("aparecer");
+                document.getElementById("li-relatorio-filial").classList.add("aparecer");
             } else {
-                document.getElementById("li-relatorio").classList.add("desaparecer");
+                document.getElementById("li-relatorio-geral").classList.add("desaparecer");
+                document.getElementById("li-relatorio-filial").classList.add("desaparecer");
             }
         </script>
     </body>

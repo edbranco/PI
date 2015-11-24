@@ -24,7 +24,7 @@
             <form action="ServletFuncionarioCadastrar" method="post">
                 <fieldset>
                     <legend>Cadastrar Funcionário</legend>   
-                    <p>
+                    <p class="campos-esq">
                         <label for="nomefuncionario">Nome:</label><br />
                         <input type="text" name="nomefuncionario" id="nomefuncionario" class="ipt-largo form-control" />
                     </p>
@@ -32,7 +32,7 @@
                         <label for="nomeusuario">Usuario:</label><br />
                         <input type="text" name="nomeusuario" id="nomeusuario" class="ipt-largo form-control" />
                     </p>
-                    <p>
+                    <p class="campos-esq">
                         <label for="senhausuario">Senha:</label><br />
                         <input type="password" name="senhausuario" id="senhausuario" class="ipt-largo form-control" />
                     </p>                    
@@ -40,7 +40,7 @@
                         <label for="rafuncionario">RA:</label><br />
                         <input type="text" name="rafuncionario" id="rafuncionario" class="ipt-largo form-control" />
                     </p>
-                    <p>
+                    <p class="campos-esq">
                         <label for="cpffuncionario">CPF:</label><br />
                         <input type="text" name="cpffuncionario" id="cpffuncionario" class="ipt-largo form-control" />
                     </p>         
@@ -52,7 +52,7 @@
                            </c:forEach>                    
                         </select>
                     </p>
-                    <p>
+                    <p class="campos-esq">
                         <label for="telefonefuncionario">Telefone:</label><br />
                         <input type="text" name="telefonefuncionario" id="telefonefuncionario" class="ipt-largo form-control" />
                     </p>
@@ -60,7 +60,7 @@
                         <label for="emailfuncionario">Email:</label><br />
                         <input type="email" name="emailfuncionario" id="emailfuncionario" class="ipt-largo form-control" />
                     </p>
-                    <p>
+                    <p class="campos-esq">
                         <label for="enderecofuncionario">Endereco:</label><br />
                         <input type="text" name="enderecofuncionario" id="enderecofuncionario" class="ipt-largo form-control" />
                     </p>
@@ -73,7 +73,7 @@
                         </select>
                     </p>
 
-                    <p class="ipt-curto ipt-curto-1">
+                    <p class="campos-esq">
                         <label for="estadofuncionario">UF:</label><br />
                         <select name="estadofuncionario" id="estadofuncionario" class="ipt-select form-control">
                             <option value="0">Selecione o Estado</option>
@@ -110,8 +110,11 @@
                         <label for="cidadefuncionario">Cidade:</label><br />
                         <input type="text" name="cidadefuncionario" id="cidadefuncionario" class="form-control">
                     </p><br />
-                    <input class="btn btn-default" type="submit" value="Cadastrar"/>
-                    <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" value="Cadastrar"/>
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
                 </fieldset>
             </form> 
         </div>

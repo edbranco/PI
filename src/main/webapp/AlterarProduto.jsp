@@ -28,31 +28,35 @@
                     <legend>Alterar Produtos</legend>  
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
-                    <p>
+                    <p class="campos-esq">
                         <label for="idproduto">Digite o ID do Produto:</label>
-                        <input type="text" name="idProduto" id="idproduto" value="${produto.id}" class="ipt-id" required />
+                        <input type="text" name="idProduto" id="idproduto" value="${produto.id}" class="ipt-id form-control" required />
                     </p>
                     <div id="err-campo-id" class="alert alert-danger">
                         <strong>Atenção!</strong> Digite apenas números inteiros.
                     </div>
                     <p>
                         <label for="nomeproduto">Nome:</label><br />
-                        <input type="text" name="nomeProduto" id="nomeproduto" value="${produto.nome}" class="ipt-largo" />
+                        <input type="text" name="nomeProduto" id="nomeproduto" value="${produto.nome}" class="ipt-largo form-control" />
+                    </p>
+                    <p class="campos-esq">
+                        <label for="marcaproduto">Marca:</label><br />
+                        <input type="text" name="marcaProduto" id="marcaproduto" value="${produto.marca}" class="ipt-largo form-control" />
                     </p>
                     <p>
-                        <label for="marcaproduto">Marca:</label><br />
-                        <input type="text" name="marcaProduto" id="marcaproduto" value="${produto.marca}" class="ipt-largo" />
-                    </p>
-                    <p class="ipt-curto ipt-curto-1">
                         <label for="precoproduto">Preço R$:</label><br />
-                        <input type="number" step=0.01 name="precoProduto" id="precoproduto" value="${produto.preco}" />
+                        <input type="number" step=0.01 name="precoProduto" id="precoproduto" value="${produto.preco}" class="form-control" />
                     </p>
-                    <p class="ipt-curto">
+                    <p>
                         <label for="qtdeproduto">Quantidade:</label><br />
-                        <input type="number" name="qtdeProduto" id="qtdeproduto" value="${produto.qtde}" />
+                        <input type="number" name="qtdeProduto" id="qtdeproduto" value="${produto.qtde}" class="form-control" />
                     </p><br />
-                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
-                    <input type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
+                    
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                        <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
                 </fieldset>
             </form>
         </div>

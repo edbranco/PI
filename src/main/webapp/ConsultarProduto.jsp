@@ -19,40 +19,54 @@
     </head>
     <body>
         <jsp:include page="Menu.jsp" />
-        <form action="ServletConsultarProduto" method="post">            
-          
-            <fieldset>
-                <legend>Consultar Produto</legend>              
-                <p>
-                    <label for="nomeproduto">Nome:</label>
-                    <input type="text" name="nomeProduto" id="nomeproduto">
-                </p>
-                <input type="submit" value="Listar"/>
-            </fieldset>
-        </form>
         
-        <table>
-            <tr>
-                <!-- <th>#</th> -->
-                <th class="cpo-id">ID</th>
-                <th class="cpo-id">Filial</th>
-                <th class="cpo-id">Nome</th>
-                <th class="cpo-id">Marca</th>
-                <th class="cpo-id">Preço</th>
-                <th class="cpo-id">Quantidade</th>
-                
-            </tr>
-            <c:forEach items="${listProduto}" var="produto" varStatus="stat">
-                <tr>                
-                    <td><c:out value="${produto.id}" /></td>
-                    <td><c:out value="${produto.id_filial}" /></td>
-                    <td><c:out value="${produto.nome}" /></td>
-                    <td><c:out value="${produto.marca}" /></td>
-                    <td><c:out value="${produto.preco}" /></td>
-                    <td><c:out value="${produto.qtde}" /></td>
+        <div class="box-consulta">
+            <form action="ServletConsultarProduto" method="post">         
+                <fieldset>
+                    <legend>Consultar Produto</legend>              
+                    <p>
+                        <label for="nomeproduto">Nome:</label>
+                        <input class="form-control" type="text" name="nomeProduto" id="nomeproduto">
+                    </p>
                     
-                </tr>
-            </c:forEach>
-        </table>
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" value="Listar" />
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
+                </fieldset>
+            </form>
+
+            <div class="box-tabelas">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <!-- <th>#</th> -->
+                            <th class="cpo-id">ID</th>
+                            <th class="cpo-id">Filial</th>
+                            <th class="cpo-id">Nome</th>
+                            <th class="cpo-id">Marca</th>
+                            <th class="cpo-id">Preço</th>
+                            <th class="cpo-id">Quantidade</th>
+                        </tr>
+                    </thead>
+                    <c:forEach items="${listProduto}" var="produto" varStatus="stat">
+                        <tr>                
+                            <td><c:out value="${produto.id}" /></td>
+                            <td><c:out value="${produto.id_filial}" /></td>
+                            <td><c:out value="${produto.nome}" /></td>
+                            <td><c:out value="${produto.marca}" /></td>
+                            <td><c:out value="${produto.preco}" /></td>
+                            <td><c:out value="${produto.qtde}" /></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+        
+        
+        
+        <!-- Scripts: jQuery e Bootstrap -->
+        <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -20,33 +20,40 @@
     <body>
       <jsp:include page="Menu.jsp" />
       
-        <form action="ServletFilialConsultar" method="post">            
-          
-            <fieldset>
-                <legend>Consultar Filial</legend>              
-             
-                <input type="submit" value="Listar"/>
-            </fieldset>
-        </form>
+        <div class="box-consulta">
+            <form action="ServletFilialConsultar" method="post">         
+                <fieldset>
+                    <legend>Consultar Filial</legend>              
+
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" value="Listar"/>
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
+                </fieldset>
+            </form>
         
-        <table>
-            <tr>
-                <!-- <th>#</th> -->
-   
-                <th>Nome  </th>
-                 <th>Cnpj </th>
-                  <th>UF  </th>
-               
-            </tr>
-            <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
-                <tr>                
-                    <td><c:out value="${filial.nomefilial}   " /></td>
-                    <td><c:out value="${filial.cnpj}   " /></td>
-                    <td><c:out value="${filial.uf}   " /></td>
-                    
-                </tr>
-            </c:forEach>
-        </table>
+        
+            <div class="box-tabelas">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <!-- <th>#</th> -->
+                            <th>Nome  </th>
+                             <th>Cnpj </th>
+                              <th>UF  </th>
+                        </tr>
+                    </thead>
+                    <c:forEach items="${listaFilial}" var="filial" varStatus="stat">
+                        <tr>                
+                            <td><c:out value="${filial.nomefilial}   " /></td>
+                            <td><c:out value="${filial.cnpj}   " /></td>
+                            <td><c:out value="${filial.uf}   " /></td>
+
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
         
             <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>

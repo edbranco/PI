@@ -19,41 +19,48 @@
     </head>
     <body>
         <jsp:include page="Menu.jsp" />
-        <form action="ServletRelatorioVenda" method="post">            
-          
-            <fieldset>
-                <legend>Relatorio de Venda</legend>              
-              
-                <input type="submit" value="Gerar"/>
-            </fieldset>
-        </form>
         
-        <table>
-            <tr>
-                <!-- <th>#</th> -->
-                
-                <th class="cpo-id">Nome Produto</th>
-                <th class="cpo-id">Preço Total Venda</th>
-                <th class="cpo-id">Data</th>
-                <th class="cpo-id">Nome Funcionario</th>
-                <th class="cpo-id">Nome Filial</th>
-                
-                
-                
-            </tr>
-            <c:forEach items="${relatorio}" var="relatorio" varStatus="stat">
-                <tr>                
-                    <td><c:out value="${relatorio.nomeProduto}" /></td>
-                    <td>R$<c:out value="${relatorio.preco}" /> </td>
-                    <td><c:out value="${relatorio.dt_cadastro}" /></td>
-                    <td><c:out value="${relatorio.nomeFuncionario}" /></td>
-                    <td><c:out value="${relatorio.nomeFilial}" /></td>
-                    
-                    
-                    
-                </tr>
-            </c:forEach>
-        </table>
+        <div class="box-consulta">
+            <form action="ServletRelatorioVenda" method="post">         
+                <fieldset>
+                    <legend>Relatorio de Venda</legend>              
+
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" value="Gerar"/>
+                    </div>
+                </fieldset>
+            </form>
+
+            <div class="box-tabelas">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <!-- <th>#</th> -->                
+                            <th class="cpo-id">Nome Produto</th>
+                            <th class="cpo-id">Preço Total Venda</th>
+                            <th class="cpo-id">Data</th>
+                            <th class="cpo-id">Nome Funcionario</th>
+                            <th class="cpo-id">Nome Filial</th>               
+                        </tr>
+                    </thead>
+                    <c:forEach items="${relatorio}" var="relatorio" varStatus="stat">
+                        <tr>                
+                            <td><c:out value="${relatorio.nomeProduto}" /></td>
+                            <td>R$<c:out value="${relatorio.preco}" /> </td>
+                            <td><c:out value="${relatorio.dt_cadastro}" /></td>
+                            <td><c:out value="${relatorio.nomeFuncionario}" /></td>
+                            <td><c:out value="${relatorio.nomeFilial}" /></td>               
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+        
+        
+        
+        <!-- Scripts: jQuery e Bootstrap -->
+        <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
     </body>
 </html>
 

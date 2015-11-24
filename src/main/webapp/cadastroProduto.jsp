@@ -26,7 +26,7 @@
                 <fieldset>
                     <legend>Cadastrar Produtos</legend>
                     <input type="hidden" name="idfilial" id="idfilial" value="${usuario.idFilial}">
-                    <p>
+                    <p class="campos-esq">
                         <label for="txtNome">Nome:</label><br />
                         <input type="text" maxlength="100" name="nomeProduto" id="nomeproduto" class="ipt-largo form-control" required />
                     </p>
@@ -34,7 +34,7 @@
                         <label for="txtNome">Marca:</label><br />
                         <input type="text" maxlength="80" name="marcaProduto" id="marcaproduto" class="ipt-largo form-control" required />
                     </p>
-                    <p class="ipt-curto ipt-curto-1">
+                    <p class="campos-esq">
                         <label for="numberNome">Preço R$:</label><br />
                         <input type="number" step=0.01 name="precoProduto" id="precoproduto" class="form-control" required />
                     </p>
@@ -42,8 +42,11 @@
                         <label for="numberNome">Quantidade:</label><br />
                         <input type="number" name="qtdeProduto" id="qtdeproduto" class="form-control" required />
                     </p><br />
-                    <input class="btn btn-default" type="submit" value="Cadastrar"/>
-                    <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" value="Cadastrar"/>
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
                 </fieldset>
             </form>
         </div>

@@ -21,7 +21,7 @@ function validarCampos() {
     
     //Validar nome
     var nomebool;    
-    var letters = /^[A-Za-z]+$/;
+    var letters = /^[a-zA-Z\s]*$/;
     if(nome.match(letters)) {
         nomebool = true;
     } else {

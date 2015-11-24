@@ -28,39 +28,39 @@
                     <legend>Alterar Cliente</legend>
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
-                    <p>
+                    <p class="campos-esq">
                         <label for="idcliente">Digite o ID do Cliente:</label><br />
-                        <input type="text" name="idCliente" id="idcliente" value="${cliente.id}" class="ipt-id" required />
+                        <input type="text" name="idCliente" id="idcliente" value="${cliente.id}" class="ipt-id form-control" required />
                     </p>
                     <div id="err-campo-id" class="alert alert-danger">
                         <strong>Atenção!</strong> Digite apenas números inteiros.
                     </div>
                     <p>
                         <label for="nomecliente">Nome:</label><br />
-                        <input type="text" name="nomeCliente" id="nomecliente" value="${cliente.nome}" class="ipt-largo" required />
+                        <input type="text" name="nomeCliente" id="nomecliente" value="${cliente.nome}" class="ipt-largo form-control" required />
                     </p>
                     <div id="err-campo-nome" class="alert alert-danger">
                         <strong>Atenção!</strong> Digite apenas letras.
                     </div>
-                    <p>
+                    <p class="campos-esq">
                         <label for="cpfcliente">CPF:</label><br />
-                        <input type="text" name="cpfCliente" id="cpfcliente" value="${cliente.cpf}" class="ipt-largo" required />
+                        <input type="text" name="cpfCliente" id="cpfcliente" value="${cliente.cpf}" class="ipt-largo form-control" required />
                     </p>
                     <p>
                         <label for="telefonecliente">Telefone:</label><br />
-                        <input type="text" name="telefoneCliente" id="telefonecliente" value="${cliente.telefone}" class="ipt-largo" required />
+                        <input type="text" name="telefoneCliente" id="telefonecliente" value="${cliente.telefone}" class="ipt-largo form-control" required />
                     </p>
-                    <p>
+                    <p class="campos-esq">
                         <label for="emailcliente">E-mail:</label><br />
-                        <input type="email" name="emailCliente" id="emailcliente" value="${cliente.email}" class="ipt-largo" required />
+                        <input type="email" name="emailCliente" id="emailcliente" value="${cliente.email}" class="ipt-largo form-control" required />
                     </p>
                     <p>
                         <label for="enderecocliente">Endereço:</label><br />
-                        <input type="text" name="enderecoCliente" id="enderecocliente" value="${cliente.endereco}" class="ipt-largo" required />
+                        <input type="text" name="enderecoCliente" id="enderecocliente" value="${cliente.endereco}" class="ipt-largo form-control" required />
                     </p>
-                    <p class="ipt-curto ipt-curto-1">
+                    <p class="campos-esq">
                         <label for="estadocliente">UF:</label><br />
-                        <select name="estadoCliente" id="estadocliente" class="ipt-select">
+                        <select name="estadoCliente" id="estadocliente" class="ipt-select form-control">
                             <option value="${cliente.uf}">${cliente.uf}</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>
@@ -93,10 +93,14 @@
                     </p>
                     <p class="ipt-curto">
                         <label for="cidadecliente">Cidade:</label><br />
-                        <input type="text" name="cidadeCliente" id="cidadecliente" value="${cliente.cidade}" required />
+                        <input type="text" name="cidadeCliente" id="cidadecliente" value="${cliente.cidade}" class="form-control" required />
                     </p><br />
-                    <input type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
-                    <input type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
+                    
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-pesquisar" value="Pesquisar" />
+                        <input class="btn btn-default" type="submit" name="btn-consultar" id="btn-alterar" value="Alterar" />
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
                 </fieldset>
             </form>
         </div>
