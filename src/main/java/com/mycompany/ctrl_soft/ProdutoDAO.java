@@ -43,52 +43,21 @@ public class ProdutoDAO {
         Connection conn = null;
 
         long id_filial_user_logado = p.id_filial;
-
-//        String sql2 = "SELECT ID_FILIAL FROM TB_Funcionario WHERE ID_Funcionario = 1";
-//        try {
-//            conn = obterConexao();
-//            stmt2 = conn.createStatement();
-//            ResultSet resultados = stmt2.executeQuery(sql2);
-//
-//            while (resultados.next()) {
-//                id_filial_user_logado = resultados.getInt("ID_FILIAL");
-//            }
-//            //seta o id_filial para a classe de produto
-//            p.setId_filial(id_filial_user_logado);
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            if (stmt != null) {
-//                try {
-//                    stmt.close();
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//            if (conn != null) {
-//                try {
-//                    conn.close();
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        }
-
+        
+        //String responsavel por receber os dados da tabela do BD
         String sql = "INSERT INTO TB_PRODUTO (ID_FILIAL, NOMEPRODUTO, MARCA, " // ESPACO ANTES DO "
                 + "PRECO, QTDE) VALUES (?, ?, ?, ?, ?)";
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-
+            //Atribuindo ao banco os dados que estão no Produto p
             stmt.setLong(1, p.getId_filial());
             stmt.setString(2, p.getNome());
             stmt.setString(3, p.getMarca());
             stmt.setDouble(4, p.getPreco());
             stmt.setInt(5, p.getQtde());
-//            stmt.setDate(5, new java.sql.Date(p.getDtCadastro().getTime()));
+
             stmt.executeUpdate();
             System.out.println("Registro incluido com sucesso.");
 
@@ -156,6 +125,7 @@ public class ProdutoDAO {
     }
 
     public Produto consultarProduto(Produto produto, int id) {
+        
         PreparedStatement stmt = null;
         Statement stmt2 = null;
         Connection conn = null;
@@ -166,13 +136,14 @@ public class ProdutoDAO {
         int qtde = 0;
         int idf = 0;
         int idp = 0;
-
+        //String recebendo resultado do select do banco
         String sql2 = "SELECT * FROM TB_Produto WHERE ID_Produto = " + id;
         try {
+            //obtendo conexao
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
-
+            //Atribuindo os dados do banco as variaveis declaradas
             while (resultados.next()) {
 
                 nome = resultados.getString("NomeProduto");
@@ -182,14 +153,14 @@ public class ProdutoDAO {
                 idf = Integer.parseInt(resultados.getString("ID_Filial"));
                 idp = Integer.parseInt(resultados.getString("ID_Produto"));
             }
-            //seta o id_filial para a classe de produto
+            //setando a instancia da classe produto passado como parametro
             produto.setNome(nome);
             produto.setMarca(marca);
             produto.setPreco(preco);
             produto.setQtde(qtde);
             produto.setId(idp);
             produto.setId_filial(idf);
-
+            //retorno da instancia de Produto
             return produto;
 
         } catch (SQLException ex) {
@@ -267,18 +238,19 @@ public class ProdutoDAO {
     public List<Produto> listaProdutos(String nome) {
         Statement stmt = null;
         Connection conn = null;
-
-        String sql = "SELECT * FROM TB_PRODUTO WHERE NomeProduto LIKE LOWER('%" + nome + "%')";
+        //String responsavel por receber os dados da tabela do BD de acordo com o nome
+        String sql = "SELECT * FROM TB_PRODUTO WHERE UPPER(NomeProduto) LIKE UPPER('%" + nome + "%')";
 
         try {
+            //Obtém conexão
             conn = obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
-
-            DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
-
+            
             List<Produto> listaProdutos = new ArrayList<Produto>();
+            //Pegando todos os dados do banco de acordo com a condição do nome
             while (resultados.next()) {
+                //Atribuindo os dados a instância do produto p
                 Produto p = new Produto();
                 p.setId(resultados.getLong("ID_PRODUTO"));
                 p.setId_filial(resultados.getLong("ID_Filial"));
@@ -286,9 +258,11 @@ public class ProdutoDAO {
                 p.setMarca(resultados.getString("MARCA"));
                 p.setPreco(resultados.getDouble("PRECO"));
                 p.setQtde(resultados.getInt("QTDE"));
+                //Adicionando o Produto á Lista
                 listaProdutos.add(p);
   
             }
+            //retornando a lista
             return listaProdutos;
 
         } catch (SQLException ex) {
@@ -319,21 +293,23 @@ public class ProdutoDAO {
         
         PreparedStatement stmt = null;
         Connection conn = null;       
-        
+        //String recebendo dados do banco de acordo com as condições
         String sql = "DELETE FROM TB_Produto WHERE ID_Produto= ?";
         try {
+            //obtendo conexão
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
                        
             stmt.setInt(1, id);
             int retorno = stmt.executeUpdate();
-            
+            // if == 1 mostra que produto foi excluido com sucesso
             if (retorno == 1){
                 cadastrado = true;
             }else{
+                // mostra que produto não foi excluido com sucesso
                 cadastrado = false;
             }
-            
+            //retorno do boolean de verificação
             return cadastrado;
 
         } catch (SQLException ex) {

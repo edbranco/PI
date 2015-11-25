@@ -76,47 +76,58 @@ public class ServletAlterarProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
+        //Pegando id do parametro do usuario
         String idTexto = request.getParameter("idProduto");
+        //pegando valor do submit 
+        
         String botaoValor = request.getParameter("btn-consultar");
+        //Atribuindo id do usuario em uma variavel
         int id = Integer.parseInt(idTexto);
-
+        
+        //Criando duas instancias da classe produto, sendo uma para teste
         Produto produto = new Produto();
         Produto produtoTeste = new Produto();
-
-        ProdutoDAO dao = new ProdutoDAO();
-        boolean semRegistro;
         
-        if (botaoValor.equals("Pesquisar")) {   
+        //Instanciando a classe para chamar os métodos
+        ProdutoDAO dao = new ProdutoDAO();
+        //Boolean com para confirmar se houve registro no banco
+        boolean semRegistro;
+        //Observando qual Função o usuário chamou No caso Pesquisar Produto
+        if (botaoValor.equals("Pesquisar")) {  
+            //Produto teste recebendo o resultado do método de consulta
             produtoTeste = dao.consultarProduto(produto, id);
-            
+            //Verificando se houve retorno conforme com os parametros
             if (produtoTeste.nome.equals("")) {
+                //Entrando nesse if signifca que não foi encotrado o Produto procurado
                 semRegistro = true;
                 boolean habilitado = false;
                 request.setAttribute("habilitado", habilitado);
                 request.setAttribute("semRegistro", semRegistro);
             } else {
+                //Entrando nesse if signifca que foi encotrado o Produto procurado
                 semRegistro = false;                
                 boolean habilitado = true;
                 request.setAttribute("habilitado", habilitado);
                 request.setAttribute("semRegistro", semRegistro);
             }
         }
+        //Else responsavel por mostrar a requisição do Alterar Produto
         else {
+            //Pegando atributos do input
             String nome = request.getParameter("nomeProduto");
             String marca = request.getParameter("marcaProduto");
             String preco = request.getParameter("precoProduto");
             int qtde = Integer.parseInt(request.getParameter("qtdeProduto"));
             
-
+            //Setando os atributos do input na instancia da classe Produto
             produto.setId(id);
             produto.setNome(nome);
             produto.setMarca(marca);
             produto.setPreco(Double.parseDouble(preco));
             produto.setQtde(qtde);
-
+            //chamando o método alterar
             dao.alterarProduto(produto, id);
-            
+            //Boolean que certifica que foi feito a alteração com sucesso
             boolean mensagem = true;
             request.setAttribute("mensagem", mensagem);
         }

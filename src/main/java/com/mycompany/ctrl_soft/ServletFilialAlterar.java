@@ -75,20 +75,24 @@ public class ServletFilialAlterar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        //Recebe id Filial da requisição
         String idTexto = request.getParameter("idFilial");
+        //Recebe o value do botão que foi usado na requisição
         String botaoValor = request.getParameter("btn-consultar");
         int id = Integer.parseInt(idTexto);
-
+        
+        //Cria objetos da classe filial
         Filial filial = new Filial();
         Filial filialTeste = new Filial();
-
+        
+        //Cria objeto da classe FilialDAO onde estão localizados os metodos de Filial
         FilialDAO dao = new FilialDAO();
         boolean semRegistro;
-        
+        //Caso value btn-consultar seja Pesquisar é chamada a função consultarFILIAL
         if (botaoValor.equals("Pesquisar")) {
             filialTeste = dao.consultarFilial(filial, id);
             
+            //Verifica se a pesquisa retornou alguma filial
             if (filialTeste.uf.equals("")) {
                 semRegistro = true;
                 boolean habilitado = false;
@@ -101,6 +105,7 @@ public class ServletFilialAlterar extends HttpServlet {
                 request.setAttribute("semRegistro", semRegistro);
             }
         }
+        //Caso value btn-consultar seja "Alterar" é resgatado os campos e chamada a função alterarFilial
         else if (botaoValor.equals("Alterar")) {          
             String nome = request.getParameter("nomeFilial");
             String cnpj = request.getParameter("cnpj");

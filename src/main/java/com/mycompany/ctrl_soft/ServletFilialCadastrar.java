@@ -33,19 +33,24 @@ public class ServletFilialCadastrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //É resgatado os parametros da requisição
         String nome=request.getParameter("nomefilial");
         String ufFilial=request.getParameter("uf");
         String cnpjFilial=request.getParameter("cnpj");
         
+        //Cria objeto da Filial
         Filial filial = new Filial();
        
+        //Set dos parametros resgatados
         filial.setNomefilial(nome);
         filial.setUf(ufFilial);
         filial.setCnpj(cnpjFilial);
         
+        //Objeto FilialDao
         FilialDAO dao = new FilialDAO();
         boolean cadastrado = dao.cadastrarFilial(filial);
         
+        //Caso Filial seja cadastrada envia-se a mensagem de sucesso
         if (cadastrado == true) {
             boolean mensagem = true;
             request.setAttribute("mensagem", mensagem);
@@ -89,20 +94,25 @@ public class ServletFilialCadastrar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
+         
+        //É resgatado os parametros da requisição
         String nome=request.getParameter("nomefilial");
         String ufFilial=request.getParameter("uf");
         String cnpjFilial=request.getParameter("cnpj");
         
+         //Cria objeto da Filial
         Filial filial = new Filial();
-       
+        
+        //Set dos parametros resgatados
         filial.setNomefilial(nome);
         filial.setUf(ufFilial);
         filial.setCnpj(cnpjFilial);
         
+        //Objeto FilialDAO
         FilialDAO dao = new FilialDAO();
         boolean cadastrado = dao.cadastrarFilial(filial);
         
+        //Caso Filial seja cadastrada envia-se a mensagem de sucesso
         if (cadastrado == true) {
             boolean mensagem = true;
             request.setAttribute("mensagem", mensagem);

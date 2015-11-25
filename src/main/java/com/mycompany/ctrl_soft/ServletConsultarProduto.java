@@ -64,13 +64,15 @@ public class ServletConsultarProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        //Pega o parametro do input do usuário
         String nome = request.getParameter("nomeProduto");
-
+        //Cria novo produto
         Produto produto = new Produto();
-        
+        //seta o novo produto com o nome que o usuario entrou
         produto.setNome(nome);
-
+        //Instancia a Classe ProdutoDAO
         ProdutoDAO dao = new ProdutoDAO();
+        //Atribui a lista com os dados do Produto que tenha o nome que o usuario passou
         List<Produto> listProduto = dao.listaProdutos(nome);
 
         request.setAttribute("listProduto", listProduto);

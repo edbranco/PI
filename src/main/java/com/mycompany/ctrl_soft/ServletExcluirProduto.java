@@ -35,7 +35,7 @@ public class ServletExcluirProduto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        //Mensagens de verificações
         boolean mensagem = false;
         boolean semRegistro = false;
         boolean produtoExiste = false;
@@ -76,27 +76,33 @@ public class ServletExcluirProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
+            //Pegando os parametros do usuário idproduto
             String idTexto = request.getParameter("idProduto");
+            //convertendo o idproduto em int
             int id = Integer.parseInt(idTexto);
+            //analisando qual funcionalidade usuario deseja realizar
             String botaoValor = request.getParameter("btn-consultar");
-
+            //Instancia a classe produto sendo uma para teste de verificação
             Produto produto = new Produto();
             Produto produtoTeste = new Produto();
-
+            //Instanciando classe para chamado dos métodos
             ProdutoDAO dao = new ProdutoDAO();
+            //Booleans de verificações de registro
             boolean semRegistro;
             boolean produtoExiste;
-
+            //Significa que o usuario clicou em Pesquisar
             if (botaoValor.equals("Pesquisar")) {   
+                //Variavel recebe resultado do método de consulta de acordo com o produto e id
                 produtoTeste = dao.consultarProduto(produto, id);
-
+                //Verificando se houve retorno de alguem produto
                 if (produtoTeste.nome.equals("")) {
+                    //comprova sem registro
                     semRegistro = true;
                     produtoExiste = false;
                     request.setAttribute("semRegistro", semRegistro);
                     request.setAttribute("produtoExiste", produtoExiste);
                 } else {
+                    //Comprova que houve registro e produto existe
                     semRegistro = false;
                     produtoExiste = true;
                     request.setAttribute("semRegistro", semRegistro);
@@ -104,15 +110,19 @@ public class ServletExcluirProduto extends HttpServlet {
                     request.setAttribute("produto", produto);
                 }
             }
-            else {            
+            //Usuario solicitou a funcionalidade de exclusão de produtos
+            else {  
+                //Boolean verificando se houve foi feito a exclusao
                 boolean excluido = dao.exluirProduto(id);
 
                 if (excluido == true) {
+                    //excluido com sucesso
                     boolean mensagem = true;
                     semRegistro = false;
                     request.setAttribute("mensagem", mensagem); 
                     request.setAttribute("semRegistro", semRegistro);
                 } else {
+                    //excluido sem sucesso
                     boolean mensagem = false;
                     semRegistro = true;
                     request.setAttribute("mensagem", mensagem);

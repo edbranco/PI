@@ -80,26 +80,27 @@ public class Servlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+        //Pega os parametros dos Input do usuario
         String nome = request.getParameter("nomeProduto");
         String marca = request.getParameter("marcaProduto");
         double preco = Double.valueOf(request.getParameter("precoProduto"));
         int qtde = Integer.valueOf(request.getParameter("qtdeProduto"));
         long idfilial = Long.valueOf(request.getParameter("idfilial"));
-
+        //Cria uma variável do tipo Produto
         Produto p1 = new Produto();
-        
+        //Seta a variável com os parametros do usuário
         p1.setId_filial(idfilial);
         p1.setNome(nome);
         p1.setMarca(marca);
         p1.setPreco(preco);
         p1.setQtde(qtde);
         p1.setDtCadastro(new Date());
-
+        //Criação da variável responsável por chamar o método de produto
         ProdutoDAO dao = new ProdutoDAO();
         dao.cadastrarProduto(p1);
-        
+        //Boolean para confirmar se o cadastro foi realizado com êxito
         boolean mensagem = true;
-
+        //atribuindo a variavel para jsp com o boolean
         request.setAttribute("mensagem", mensagem);
 
         RequestDispatcher disp

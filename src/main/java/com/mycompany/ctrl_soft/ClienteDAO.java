@@ -254,7 +254,7 @@ public class ClienteDAO {
         Statement stmt2 = null;
         Connection conn = null;
         
-        String sql2 = "SELECT * FROM TB_Cliente WHERE NomeCliente LIKE LOWER('%" + nome + "%')";
+        String sql2 = "SELECT * FROM TB_Cliente WHERE UPPER(NomeCliente) LIKE UPPER('%" + nome + "%')";
         try {
             conn = obterConexao();
             stmt2 = conn.createStatement();

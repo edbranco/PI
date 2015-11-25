@@ -77,9 +77,10 @@ public class ServletRelatorioVenda extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
+        //Cria objeto VendaDao
         VendaDAO venda = new VendaDAO();
         
+        //Cria a lista que recebe recebe relatorio
         List<Venda> relatorio = venda.relatorio();
        
 

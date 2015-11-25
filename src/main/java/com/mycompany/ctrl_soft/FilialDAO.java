@@ -40,7 +40,7 @@ public class FilialDAO {
                 "duel"); // senha
         return conn;
     }
-
+    //Função para cadastrar Filial
     public boolean cadastrarFilial(Filial f) {
         boolean cadastrado = false;
         
@@ -88,6 +88,7 @@ public class FilialDAO {
 
     }
 
+    //Função para alterar Filial
     public void alterarFiial(Filial filial, int id) {
         PreparedStatement stmt = null;
         Connection conn = null;       
@@ -127,6 +128,7 @@ public class FilialDAO {
         }
     }
     
+    //Função para consultar Filial
     public Filial consultarFilial(Filial filial, int id) {
         PreparedStatement stmt = null;
         Statement stmt2 = null;
@@ -181,7 +183,7 @@ public class FilialDAO {
         }
     }
 
-    
+    //Função para excluir Filial
     public boolean excluirFilial(int id) {
         boolean cadastrado;
         
@@ -227,7 +229,8 @@ public class FilialDAO {
             }
         }
     }
-
+    
+    //Função para listar Filiais já cadastradas no banco
     public List<Filial> listarFilial() {
         PreparedStatement stmt = null;
         Statement stmt2 = null;

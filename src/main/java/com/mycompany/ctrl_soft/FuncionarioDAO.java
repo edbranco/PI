@@ -267,7 +267,7 @@ public class FuncionarioDAO {
         Statement stmt2 = null;
         Connection conn = null;
 
-        String sql2 = "SELECT * FROM TB_Funcionario WHERE NomeFuncionario LIKE LOWER('%" + nome + "%')";
+        String sql2 = "SELECT * FROM TB_Funcionario WHERE UPPER(NomeFuncionario) LIKE UPPER('%" + nome + "%')";
         try {
             conn = obterConexao();
             stmt2 = conn.createStatement();

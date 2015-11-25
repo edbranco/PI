@@ -76,17 +76,22 @@ public class ServletFilialExcluir extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {        
 
+        //Recebe o id filial enviado pela requisição
         String idTexto = request.getParameter("idfilial");        
         int id = Integer.parseInt(idTexto);
+        //Recebe o value de btn-consultar
         String botaoValor = request.getParameter("btn-consultar");        
         
+        //Cria-se obejtos de filial 
         Filial filial = new Filial();
         Filial filialTeste = new Filial();
-
+        
+        //Cria-se Objeto de FilialDAO
         FilialDAO dao = new FilialDAO();        
         boolean semRegistro;
         boolean filialExiste;
         
+        //Caso Value btn-consultar seja pesquisar retorna se filial existe ou não
         if (botaoValor.equals("Pesquisar")) {   
             filialTeste = dao.consultarFilial(filial, id);
             
@@ -103,6 +108,7 @@ public class ServletFilialExcluir extends HttpServlet {
                 request.setAttribute("filial", filial);
             }
         }
+        //Caso value seja diferente de Pesquisar é feita a exclusão da filial cadastrada no banco
         else {            
             boolean excluido = dao.excluirFilial(id);
             

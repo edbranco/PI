@@ -74,11 +74,14 @@ public class RelatorioFilialVenda extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Recebe a filial desejada para gerar o relatorio
         String idTexto = request.getParameter("filial");
-        
         String botaoValor = request.getParameter("btn-consultar");
         int id = Integer.parseInt(idTexto);
+        //Cria objeto VendaDAO
         VendaDAO venda = new VendaDAO(); 
+        
+        //Cria a lista que recebe a função RelatorioFilial, onde é passado o id da filial como parametro
         List<Venda> relatorioFilial = venda.relatorioFilial(id); 
         
         request.setAttribute("relatorioFilial", relatorioFilial);

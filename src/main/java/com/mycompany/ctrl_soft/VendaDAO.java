@@ -89,7 +89,7 @@ public class VendaDAO {
             }
         }
     }
-    
+    //Função que retorna todas as vendas, foi utilizado inner join para receber outros atributos da chave estrangeira
     public List<Venda> relatorio() {
         PreparedStatement stmt = null;
         Statement stmt2 = null;
@@ -145,6 +145,7 @@ public class VendaDAO {
         }
     }
     
+    //Função similiar a relatorio, no entanto é passado um id de filial como parametro, a função retorna apenas os relatorios de uma filial
     public List<Venda> relatorioFilial(int id) {
         
         PreparedStatement stmt = null;

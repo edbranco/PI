@@ -77,10 +77,14 @@ public class ServletFilialConsultar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
           
+        
+        //objeto de FilialDAO
         FilialDAO filial = new FilialDAO();
-   
+        
+        //Cria-se uma lista do Tipo Filial e recebe a função listar Filial
         List<Filial> listaFilial = filial.listarFilial();
 
+        //Envia a consulta de volta para jsp
         request.setAttribute("listaFilial", listaFilial);
 
         RequestDispatcher disp
