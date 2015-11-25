@@ -11,7 +11,7 @@ and open the template in the editor.
 
 /*Menu*/
 #menu-header {
-    background-color: #008B8B;
+    background-color: #808080;
 }
 
 li.dropdown:hover ul.dropdown-menu {
@@ -33,7 +33,7 @@ li.dropdown:hover ul.dropdown-menu {
 }
 
 .nav-pills>li>a:hover {
-    color: #008B8B;
+    color: #808080;
     font-size: 20px;
 }
 /*Fim Menu*/
@@ -177,8 +177,23 @@ legend {
 }
 
 body {
-/*    background-image: url(../img/fundo3.jpg);*/
+    background-image: url(../img/fundo.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+}
+
+
+/*CORES DAS FONTES*/
+
+p, legend span, td {
+    color: #d9d9d9;
+}
+
+#form-login-campos label {
+    color: #d9d9d9;
+}
+
+thead {
+    color: aliceblue;
 }

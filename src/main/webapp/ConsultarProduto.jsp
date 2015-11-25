@@ -23,7 +23,7 @@
         <div class="box-consulta">
             <form action="ServletConsultarProduto" method="post">         
                 <fieldset>
-                    <legend>Consultar Produto</legend>              
+                    <legend><span>Consultar Produto</span></legend>              
                     <p>
                         <label for="nomeproduto">Nome:</label>
                         <input class="form-control" type="text" name="nomeProduto" id="nomeproduto">

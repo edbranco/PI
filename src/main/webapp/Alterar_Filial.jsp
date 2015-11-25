@@ -24,7 +24,7 @@
         <div class="formulario">
             <form action="ServletFilialAlterar" method="post" onsubmit="return validarAlterarFilial();">  
                 <fieldset>
-                    <legend>Alterar Filial</legend> 
+                    <legend><span>Alterar Filial</span></legend> 
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
                     <p class="campos-esq">
@@ -41,7 +41,7 @@
                     </p>
                     <p class="campos-esq">
                         <label for="cnpj">Cnpj:</label><br />
-                        <input type="text" name="cnpj" id="cnpj" value="${filial.cnpj}" class="ipt-largo form-control" required/>
+                        <input type="text" name="cnpj" id="cnpj" value="${filial.cnpj}" class="ipt-largo form-control" required />
                     </p>
                     <p class="ipt-largo">
                     <label for="uf">UF:</label><br />
@@ -90,6 +90,9 @@
         </div>
         <div id="alerta-registro" class="alert alert-warning">
             <strong>Atenção!</strong> Esta filial não existe!
+        </div>
+        <div id="alerta-pes-filial" class="alert alert-warning">
+            <strong>Atenção!</strong> Pesquise uma filial primeiro!
         </div>
                     
                     

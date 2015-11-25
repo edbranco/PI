@@ -3,26 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 window.addEventListener("load", carregar);
 
-var altera = false;
+var vende = false;
 
 var pesquisa = false;
 
 var idErrado;
 
 function carregar (evt) {
-    pesquisa = "false";
-    document.getElementById('nomeFilial').disabled = true;
-    document.getElementById('cnpj').disabled = true;
-    document.getElementById('uf').disabled = true;
-    
-    pesquisa = document.getElementById('habilitado').value;  
-    if (pesquisa === "true") {
-        document.getElementById('nomeFilial').disabled = false;
-        document.getElementById('cnpj').disabled = false;
-        document.getElementById('uf').disabled = false;
-    }
+//    if () {
+        document.getElementById('nomeproduto').disabled = true;
+        document.getElementById('marcaproduto').disabled = true;
+        document.getElementById('precoproduto').disabled = true;
+        document.getElementById('qtdeproduto').disabled = true;
+//    }
     
     //Mensagem caso pesquisa não retorne nada     
     if (document.getElementById('semRegistro').value === "true") {
@@ -31,15 +27,16 @@ function carregar (evt) {
         document.getElementById("alerta-registro").classList.add("desaparecer");
     }
     
-    document.getElementById('btn-alterar').addEventListener("click", alteraEVerdadeiro);
-    document.getElementById('btn-pesquisar').addEventListener("click", alteraEFalso);
+    document.getElementById('btn-alterar').addEventListener("click", vendeEVerdadeiro);
+    document.getElementById('btn-pesquisar').addEventListener("click", vendeEFalso);
 }
 
-function alteraEFalso() {
-    altera = false;
+
+function vendeEFalso() {
+    vende = false;
     
     //Validar id
-    var id = document.getElementById('idFilial').value;
+    var id = document.getElementById('idproduto').value;
     
     if (id !== "") {
         var idbool;    
@@ -56,11 +53,11 @@ function alteraEFalso() {
     }
 }
 
-function alteraEVerdadeiro() {
-    altera = true;
+function vendeEVerdadeiro() {
+    vende = true;   
     
     //Validar id
-    var id = document.getElementById('idFilial').value;
+    var id = document.getElementById('idproduto').value;
     
     if (id !== "") {
         var idbool;    
@@ -77,10 +74,11 @@ function alteraEVerdadeiro() {
     }
 }
 
-function validarAlterarFilial() {
-    if (altera === true && idErrado === false) {
+
+function validarVender() {
+    if (vende === true && idErrado === false) {
         //Campos
-        var id = document.getElementById('idFilial').value;
+        var id = document.getElementById('idproduto').value;
     
         //Validar id
         var idbool;    
@@ -93,9 +91,9 @@ function validarAlterarFilial() {
             idbool = false;
         }
         
-        if (document.getElementById('nomeFilial').hasAttribute('disabled')) {
-            document.getElementById("alerta-pes-filial").classList.add("aparecer");
-            document.getElementById("suc-alt-filial").classList.add("desaparecer");
+        if (document.getElementById('nomeproduto').hasAttribute('disabled')) {
+            document.getElementById("alerta-pes-produto").classList.add("aparecer");
+            document.getElementById("suc-alt-produto").classList.add("desaparecer");
             document.getElementById("alerta-registro").classList.add("desaparecer");
             return false;
         }
@@ -108,13 +106,10 @@ function validarAlterarFilial() {
             return false;
         }
     }
-    else if (altera === false && idErrado === false) {
+    else if (vende === false && idErrado === false) {
         return true;
     }
     else {
         return false;
     }
 };
-
-
-

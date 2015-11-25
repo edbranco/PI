@@ -24,7 +24,7 @@
         <div class="formulario">
             <form action="ServletFuncionarioExcluir" method="post" onsubmit="return validarExcluirFuncionario();">         
                 <fieldset>
-                    <legend>Excluir Funcionário</legend>
+                    <legend><span>Excluir Funcionário</span></legend>
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
                     <input type="hidden" name="funcionarioExiste" id="funcionarioExiste" value="${funcionarioExiste}">
                     <p>

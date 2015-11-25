@@ -88,20 +88,8 @@ function alteraEVerdadeiro() {
 function validarAlterarCliente() {
     if (altera === true && idErrado === false) {
         //Campos
-        var estado = document.getElementById('estadocliente').value;
         var id = document.getElementById('idcliente').value;
-        var nome = document.getElementById('nomecliente').value;
-
-
-        //Mensagem de campos em branco e validacao
-    //    var brancobool;
-    //    if (estado === "0") {
-    //        brancobool = false;
-    //        alert("Todos os campos devem ser preenchidos!");        
-    //        return false;
-    //    } else {
-    //        brancobool = true;
-    //    }    
+        var nome = document.getElementById('nomecliente').value; 
     
         //Validar id
         var idbool;    
@@ -116,12 +104,19 @@ function validarAlterarCliente() {
 
         //Validar nome
         var nomebool;    
-        var letters = /^[A-Za-z]+$/;
+        var letters = /^[a-zA-Z\s]*$/;
         if(nome.match(letters)) {
             nomebool = true;
         } else {
             document.getElementById("err-campo-nome").classList.add("aparecer");
             nomebool = false;
+        }
+        
+        if (document.getElementById('nomecliente').hasAttribute('disabled')) {
+            document.getElementById("alerta-pes-cliente").classList.add("aparecer");
+            document.getElementById("suc-alt-cliente").classList.add("desaparecer");
+            document.getElementById("alerta-registro").classList.add("desaparecer");
+            return false;
         }
 
         //Checa todos os campos
@@ -139,19 +134,3 @@ function validarAlterarCliente() {
         return false;
     }
 };
-
-function erroNome() {
-    var nome = document.getElementById('nomecliente').value;
-    
-    //Validar nome
-    var nomebool;    
-    var letters = /^[A-Za-z]+$/;
-    if(nome.match(letters)) {
-        
-    } else {
-        document.getElementById("err-campo-nome").classList.add("aparecer");
-    }
-}
-
-
-

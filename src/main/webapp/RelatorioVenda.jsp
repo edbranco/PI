@@ -23,7 +23,7 @@
         <div class="box-consulta">
             <form action="ServletRelatorioVenda" method="post">         
                 <fieldset>
-                    <legend>Relatorio de Venda</legend>              
+                    <legend><span>Relatorio de Venda</span></legend>              
 
                     <div class="div-botoes">
                         <input class="btn btn-default" type="submit" value="Gerar"/>

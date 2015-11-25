@@ -103,3 +103,41 @@ function validarFilialCadastrar() {
         return false;
     }
 };
+
+
+
+function validarFuncionarioCadastrar() {
+    //Campos
+    var nome = document.getElementById('nomefuncionario').value;
+    var estado = document.getElementById('estadofuncionario').value;
+    var cargo = document.getElementById('cargofuncionario').value;
+    
+    
+    //Mensagem de campos em branco e validacao
+    var brancobool;
+    if (estado === "0" || cargo === "0") {
+        brancobool = false;
+        alert("Todos os campos devem ser preenchidos!");
+    } else {
+        brancobool = true;
+    } 
+    
+    //Validar nome
+    var nomebool;    
+    var letters = /^[a-zA-Z\s]*$/;
+    if(nome.match(letters)) {
+        nomebool = true;
+    } else {
+        document.getElementById("err-campo-nome").classList.add("aparecer");
+        nomebool = false;
+    }
+    
+    
+    //Checa todos os campos
+    if (brancobool === true && nomebool === true) {
+        return true;
+    }
+    else {
+        return false;
+    }
+};

@@ -23,7 +23,7 @@
         <div class="box-consulta">
             <form action="ServletFilialConsultar" method="post">         
                 <fieldset>
-                    <legend>Consultar Filial</legend>              
+                    <legend><span>Consultar Filial</span></legend>              
 
                     <div class="div-botoes">
                         <input class="btn btn-default" type="submit" value="Listar"/>

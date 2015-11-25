@@ -24,7 +24,7 @@
         <div class="formulario">
             <form action="Servlet" method="post">         
                 <fieldset>
-                    <legend>Cadastrar Produtos</legend>
+                    <legend><span>Cadastrar Produtos</span></legend>
                     <input type="hidden" name="idfilial" id="idfilial" value="${usuario.idFilial}">
                     <p class="campos-esq">
                         <label for="txtNome">Nome:</label><br />

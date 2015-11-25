@@ -24,7 +24,7 @@
         <div class="formulario">
             <form action="ServletFuncionarioAlterar" method="post" onsubmit="return validarAlterarFuncionario();">
                 <fieldset>
-                    <legend>Alterar Funcionário</legend>
+                    <legend><span>Alterar Funcionário</span></legend>
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
                     <p class="campos-esq">
@@ -129,6 +129,9 @@
         </div>
         <div id="alerta-registro" class="alert alert-warning">
             <strong>Atenção!</strong> Este funcionário não existe!
+        </div>
+        <div id="alerta-pes-funcionario" class="alert alert-warning">
+            <strong>Atenção!</strong> Pesquise um funcionário primeiro!
         </div>
         
                 

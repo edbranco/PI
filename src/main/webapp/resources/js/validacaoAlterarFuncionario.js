@@ -94,7 +94,6 @@ function alteraEVerdadeiro() {
 function validarAlterarFuncionario() {
     if (altera === true && idErrado === false) {
         //Campos
-        var estado = document.getElementById('estadocliente').value;
         var id = document.getElementById('idfuncionario').value;
         var nome = document.getElementById('nomefuncionario').value;
     
@@ -111,12 +110,19 @@ function validarAlterarFuncionario() {
 
         //Validar nome
         var nomebool;    
-        var letters = /^[A-Za-z]+$/;
+        var letters = /^[a-zA-Z\s]*$/;
         if(nome.match(letters)) {
             nomebool = true;
         } else {
             document.getElementById("err-campo-nome").classList.add("aparecer");
             nomebool = false;
+        }
+        
+        if (document.getElementById('nomefuncionario').hasAttribute('disabled')) {
+            document.getElementById("alerta-pes-funcionario").classList.add("aparecer");
+            document.getElementById("suc-alt-funcionario").classList.add("desaparecer");
+            document.getElementById("alerta-registro").classList.add("desaparecer");
+            return false;
         }
 
         //Checa todos os campos

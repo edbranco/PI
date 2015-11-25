@@ -16,7 +16,7 @@
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="${pathResources}/js/validacao.js"></script>
+        <script type="text/javascript" src="${pathResources}/js/validacaoVenda.js"></script>
        
     </head>
     <body>                  
@@ -25,7 +25,7 @@
         <div class="formulario">
             <form action="ServletPreVendaProduto" method="post">  
                 <fieldset>
-                    <legend>Pre Venda</legend>  
+                    <legend><span>Pre Venda</span></legend>  
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
                     <input type="hidden" name="idfilial" id="idfilial" value="${produto.id_filial}">

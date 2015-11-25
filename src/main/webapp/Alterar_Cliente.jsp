@@ -25,7 +25,7 @@
         <div class="formulario">
             <form action="ServletClienteAlterar" method="post" onsubmit="return validarAlterarCliente();">
                 <fieldset>
-                    <legend>Alterar Cliente</legend>
+                    <legend><span>Alterar Cliente</span></legend>
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
                     <p class="campos-esq">
@@ -109,6 +109,9 @@
         </div>
         <div id="alerta-registro" class="alert alert-warning">
             <strong>Atenção!</strong> Este cliente não existe!
+        </div>
+        <div id="alerta-pes-cliente" class="alert alert-warning">
+            <strong>Atenção!</strong> Pesquise um cliente primeiro!
         </div>
             
             

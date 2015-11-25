@@ -36,7 +36,9 @@ public class PreCadastroUsuario extends HttpServlet {
         FilialDAO filial = new FilialDAO();
    
         List<Filial> listaFilial = filial.listarFilial();
-
+        boolean mensagem = false;
+        
+        request.setAttribute("mensagem", mensagem);
         request.setAttribute("listaFilial", listaFilial);
         
           RequestDispatcher disp = request.getRequestDispatcher("Cadastrar_Funcionario.jsp");

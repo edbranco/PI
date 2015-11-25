@@ -108,6 +108,9 @@ public class ServletFuncionarioCadastrar extends HttpServlet {
         dao.cadastrarFuncionario(funcionario);
 
         request.setAttribute("funcionario", funcionario);
+        
+        boolean mensagem = true;
+        request.setAttribute("mensagem", mensagem);
 
         RequestDispatcher disp
             = request.getRequestDispatcher("Cadastrar_Funcionario.jsp");

@@ -16,33 +16,37 @@
         <c:url var="pathResources" value="/resources" /> <%-- CORRIGE URL DO SISTEMA PARA ACESSAR O DIRETÓRIO RESOURCES --%>
         <link href="${pathResources}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="${pathResources}/css/estilos.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="${pathResources}/js/validacao.js"></script>
     </head>
    <body>
         <jsp:include page="Menu.jsp" />    
         
         <div class="formulario">
-            <form action="ServletFuncionarioCadastrar" method="post">
+            <form action="ServletFuncionarioCadastrar" method="post" onsubmit="return validarFuncionarioCadastrar();">
                 <fieldset>
-                    <legend>Cadastrar Funcionário</legend>   
+                    <legend><span>Cadastrar Funcionário</span></legend>   
                     <p class="campos-esq">
                         <label for="nomefuncionario">Nome:</label><br />
-                        <input type="text" name="nomefuncionario" id="nomefuncionario" class="ipt-largo form-control" />
+                        <input type="text" maxlength="100" name="nomefuncionario" id="nomefuncionario" class="ipt-largo form-control" required />
                     </p>
+                    <div id="err-campo-nome" class="alert alert-danger">
+                        <strong>Atenção!</strong> Digite apenas letras.
+                    </div>
                     <p>
                         <label for="nomeusuario">Usuario:</label><br />
-                        <input type="text" name="nomeusuario" id="nomeusuario" class="ipt-largo form-control" />
+                        <input type="text" maxlength="20" name="nomeusuario" id="nomeusuario" class="ipt-largo form-control" required />
                     </p>
                     <p class="campos-esq">
                         <label for="senhausuario">Senha:</label><br />
-                        <input type="password" name="senhausuario" id="senhausuario" class="ipt-largo form-control" />
+                        <input type="password" maxlength="20" name="senhausuario" id="senhausuario" class="ipt-largo form-control" required />
                     </p>                    
                     <p>
                         <label for="rafuncionario">RA:</label><br />
-                        <input type="text" name="rafuncionario" id="rafuncionario" class="ipt-largo form-control" />
+                        <input type="text" name="rafuncionario" id="rafuncionario" class="ipt-largo form-control" required />
                     </p>
                     <p class="campos-esq">
                         <label for="cpffuncionario">CPF:</label><br />
-                        <input type="text" name="cpffuncionario" id="cpffuncionario" class="ipt-largo form-control" />
+                        <input type="text" name="cpffuncionario" id="cpffuncionario" class="ipt-largo form-control" required />
                     </p>         
                     <p>
                         <label for="filialfuncionario">Filial:</label><br />
@@ -54,15 +58,15 @@
                     </p>
                     <p class="campos-esq">
                         <label for="telefonefuncionario">Telefone:</label><br />
-                        <input type="text" name="telefonefuncionario" id="telefonefuncionario" class="ipt-largo form-control" />
+                        <input type="text" name="telefonefuncionario" id="telefonefuncionario" class="ipt-largo form-control" required />
                     </p>
                     <p>
                         <label for="emailfuncionario">Email:</label><br />
-                        <input type="email" name="emailfuncionario" id="emailfuncionario" class="ipt-largo form-control" />
+                        <input type="email" maxlength="50" name="emailfuncionario" id="emailfuncionario" class="ipt-largo form-control" required />
                     </p>
                     <p class="campos-esq">
                         <label for="enderecofuncionario">Endereco:</label><br />
-                        <input type="text" name="enderecofuncionario" id="enderecofuncionario" class="ipt-largo form-control" />
+                        <input type="text" maxlength="200" name="enderecofuncionario" id="enderecofuncionario" class="ipt-largo form-control" required />
                     </p>
                     <p>
                         <label for="cargofuncionario">Cargo:</label><br />
@@ -108,7 +112,7 @@
                     </p>            
                     <p class="ipt-curto">
                         <label for="cidadefuncionario">Cidade:</label><br />
-                        <input type="text" name="cidadefuncionario" id="cidadefuncionario" class="form-control">
+                        <input type="text" maxlength="80" name="cidadefuncionario" id="cidadefuncionario" class="form-control" required />
                     </p><br />
                     
                     <div class="div-botoes">
@@ -117,6 +121,9 @@
                     </div>
                 </fieldset>
             </form> 
+        </div>
+        <div id="suc-cad-funcionario" class="alert alert-success">
+            Funcionário cadastrado com sucesso!
         </div>
         
         
@@ -130,7 +137,16 @@
             jQuery(function($){
                 $("#telefonefuncionario").mask("(99)9999-9999");
                 $("#cpffuncionario").mask("999.999.999-99");
+                $("#rafuncionario").mask("999999");
             });
+        </script>
+        
+        <script>
+            if (${mensagem} === true) {
+                document.getElementById("suc-cad-funcionario").classList.add("aparecer");
+            } else {
+                document.getElementById("suc-cad-funcionario").classList.add("desaparecer");
+            }
         </script>
     </body>
 </html>

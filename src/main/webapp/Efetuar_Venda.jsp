@@ -23,7 +23,7 @@
         <div class="formulario">
             <form action="ServletVendaEfetuar" method="post">
                 <fieldset>
-                    <legend>Vender Produto</legend>
+                    <legend><span>Vender Produto</span></legend>
                     
                     <input type="hidden" name="idfilial" id="idfilial" value="${produto.id_filial }">
                     <input type="hidden" name="idfuncionario" id="idfuncionario" value="${usuario.id}">

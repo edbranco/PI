@@ -24,7 +24,7 @@
         <div class="formulario">
             <form action="ServletFilialExcluir" method="post" onsubmit="return validarExcluirFilial();">        
                 <fieldset>
-                    <legend>Excluir Filial</legend>
+                    <legend><span>Excluir Filial</span></legend>
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
                     <input type="hidden" name="filialExiste" id="filialExiste" value="${filialExiste}">
                     <p>

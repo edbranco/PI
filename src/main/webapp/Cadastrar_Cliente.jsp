@@ -24,7 +24,7 @@
        <div class="formulario">
             <form id="fr-cad-cliente" action="ServletClienteCadastrar" method="post" onsubmit="return validarCampos();">
                 <fieldset>
-                    <legend>Cadastrar Cliente </legend>   
+                    <legend><span>Cadastrar Cliente</span></legend>   
                 <p class="campos-esq">
                     <label for="nomecliente">Nome:</label><br />
                     <input type="text" maxlength="100" name="nomeCliente" id="nomecliente" class="ipt-largo form-control" required />

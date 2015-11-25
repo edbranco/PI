@@ -24,7 +24,7 @@
         <div class="formulario">
             <form action="ServletFilialCadastrar" method="post" onsubmit="return validarFilialCadastrar();">
                  <fieldset>
-                    <legend>Cadastrar Filial</legend>  
+                    <legend><span>Cadastrar Filial</span></legend>  
                     <p class="campos-esq">
                         <label for="nomefilial">Nome:</label><br />
                         <input type="text" maxlength="20" name="nomefilial" id="nomefilial" class="ipt-largo form-control" required />

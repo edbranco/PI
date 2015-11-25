@@ -25,7 +25,7 @@
         <div class="formulario">
             <form action="ServletAlterarProduto" method="post" onsubmit="return validarAlterarProduto();">  
                 <fieldset>
-                    <legend>Alterar Produtos</legend>  
+                    <legend><span>Alterar Produtos</span></legend>  
                     <input type="hidden" name="habilitado" id="habilitado" value="${habilitado}">
                     <input type="hidden" name="semRegistro" id="semRegistro" value="${semRegistro}">
                     <p class="campos-esq">
@@ -37,19 +37,19 @@
                     </div>
                     <p>
                         <label for="nomeproduto">Nome:</label><br />
-                        <input type="text" name="nomeProduto" id="nomeproduto" value="${produto.nome}" class="ipt-largo form-control" />
+                        <input type="text" name="nomeProduto" id="nomeproduto" value="${produto.nome}" class="ipt-largo form-control" required />
                     </p>
                     <p class="campos-esq">
                         <label for="marcaproduto">Marca:</label><br />
-                        <input type="text" name="marcaProduto" id="marcaproduto" value="${produto.marca}" class="ipt-largo form-control" />
+                        <input type="text" name="marcaProduto" id="marcaproduto" value="${produto.marca}" class="ipt-largo form-control" required />
                     </p>
                     <p>
                         <label for="precoproduto">Preço R$:</label><br />
-                        <input type="number" step=0.01 name="precoProduto" id="precoproduto" value="${produto.preco}" class="form-control" />
+                        <input type="number" step=0.01 name="precoProduto" id="precoproduto" value="${produto.preco}" class="form-control" required />
                     </p>
                     <p>
                         <label for="qtdeproduto">Quantidade:</label><br />
-                        <input type="number" name="qtdeProduto" id="qtdeproduto" value="${produto.qtde}" class="form-control" />
+                        <input type="number" name="qtdeProduto" id="qtdeproduto" value="${produto.qtde}" class="form-control" required />
                     </p><br />
                     
                     <div class="div-botoes">
@@ -65,6 +65,9 @@
         </div>
         <div id="alerta-registro" class="alert alert-warning">
             <strong>Atenção!</strong> Este produto não existe!
+        </div>
+        <div id="alerta-pes-produto" class="alert alert-warning">
+            <strong>Atenção!</strong> Pesquise um produto primeiro!
         </div>
                     
                     

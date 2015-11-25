@@ -94,6 +94,13 @@ function validarAlterarProduto() {
             document.getElementById("err-campo-id").classList.add("aparecer");
             idbool = false;
         }
+        
+        if (document.getElementById('nomeproduto').hasAttribute('disabled')) {
+            document.getElementById("alerta-pes-produto").classList.add("aparecer");
+            document.getElementById("suc-alt-produto").classList.add("desaparecer");
+            document.getElementById("alerta-registro").classList.add("desaparecer");
+            return false;
+        }
 
         //Checa todos os campos
         if (idbool === true) {

@@ -23,7 +23,7 @@
         <div class="box-consulta">
             <form action="RelatorioFilialVenda" method="post">
                 <fieldset>
-                    <legend>Relatorio de Venda</legend>                     
+                    <legend><span>Relatorio de Venda</span></legend>                     
 
                     <p>
                         <label for="filial">Filial:</label><br />
