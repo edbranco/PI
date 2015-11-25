@@ -36,11 +36,14 @@ public class ServletFuncionarioAlterar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        //instancia a FilialDAO
         FilialDAO filial = new FilialDAO();
    
+        //lista a filial
         List<Filial> listaFilial = filial.listarFilial();
 
         request.setAttribute("listaFilial", listaFilial);
+        //seta o atributo
         
         boolean mensagem = false;
         boolean habilitado = false;
@@ -49,7 +52,8 @@ public class ServletFuncionarioAlterar extends HttpServlet {
         request.setAttribute("mensagem", mensagem);
         request.setAttribute("habilitado", habilitado);
         request.setAttribute("semRegistro", semRegistro);
-
+        
+        //seta os atributos
         RequestDispatcher disp
                 = request.getRequestDispatcher("Alterar_Funcionario.jsp");
         disp.forward(request, response);
@@ -82,22 +86,27 @@ public class ServletFuncionarioAlterar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String idTexto = request.getParameter("idfuncionario");
+        String idTexto = request.getParameter("idfuncionario");//recupera o parâmetro
         String botaoValor = request.getParameter("btn-consultar");
         int id = Integer.parseInt(idTexto);
 
-        Funcionario funcionario = new Funcionario();
+        // instancia a classe Funcionário  
+        Funcionario funcionario = new Funcionario(); 
         Funcionario funcionarioTeste = new Funcionario();
 
         FuncionarioDAO dao = new FuncionarioDAO();
         boolean semRegistro;
         
+        
         if (botaoValor.equals("Pesquisar")) {   
+            // se o usuário selecionar o botão pesquisar a classe se de teste irá consultar o Funcionário
             funcionarioTeste = dao.consultarFuncionario(funcionario, id);
             
             if (funcionarioTeste.uf.equals("")) {
+                // se for nulo não há registro
                 semRegistro = true;
                 boolean habilitado = false;
+                 //Seta os atributos
                 request.setAttribute("habilitado", habilitado);
                 request.setAttribute("semRegistro", semRegistro);
             } else {
@@ -131,20 +140,25 @@ public class ServletFuncionarioAlterar extends HttpServlet {
             funcionario.setUf(uf);
             funcionario.setCargo(cargo);
 
+            // altera o Funcionário
             dao.alterarFuncionario(funcionario, id);
             
             boolean mensagem = true;
             request.setAttribute("mensagem", mensagem);
         }
 
-        request.setAttribute("funcionario", funcionario);
+        request.setAttribute("funcionario", funcionario); // seta o atributo
         
+        //instancia a filial
         FilialDAO filial = new FilialDAO();
    
+        //Lista a filial
         List<Filial> listaFilial = filial.listarFilial();
 
+        //Seta o Atributo listaFilial
         request.setAttribute("listaFilial", listaFilial);
 
+        //Despacha para a jsp.Alterar_Funcionario
         RequestDispatcher disp
                 = request.getRequestDispatcher("Alterar_Funcionario.jsp");
         disp.forward(request, response);

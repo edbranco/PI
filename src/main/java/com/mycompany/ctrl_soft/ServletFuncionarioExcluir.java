@@ -76,23 +76,29 @@ public class ServletFuncionarioExcluir extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+       
+        //recupera os parâmetros
         String idTexto = request.getParameter("idfuncionario");
         int id = Integer.parseInt(idTexto);
         String botaoValor = request.getParameter("btn-consultar");
 
+        //instancia a classe Funcionário
         Funcionario funcionario = new Funcionario();
+        //instancia a classeFuncionario teste
         Funcionario funcionarioTeste = new Funcionario();        
-
+        //instancia a classe FuncionarioDAO
         FuncionarioDAO dao = new FuncionarioDAO();        
         boolean semRegistro;
         boolean funcionarioExiste;
         
         if (botaoValor.equals("Pesquisar")) {   
             funcionarioTeste = dao.consultarFuncionario(funcionario, id);
-            
+            //consulta o Funcionario no Banco
             if (funcionarioTeste.uf.equals("")) {
+                //se for nulo não há registro
                 semRegistro = true;
                 funcionarioExiste = false;
+                //seta os atributos 
                 request.setAttribute("semRegistro", semRegistro);
                 request.setAttribute("funcionarioExiste", funcionarioExiste);
             } else {
@@ -105,8 +111,9 @@ public class ServletFuncionarioExcluir extends HttpServlet {
         }
         else {            
             boolean excluido = dao.excluirFuncionario(funcionario, id);
-            
+              
             if (excluido == true) {
+                //se o funcionário for excluido apresenta a mensagem e exclui o funcionário do banco de dados
                 boolean mensagem = true;
                 semRegistro = false;
                 request.setAttribute("mensagem", mensagem); 
@@ -118,7 +125,7 @@ public class ServletFuncionarioExcluir extends HttpServlet {
                 request.setAttribute("semRegistro", semRegistro);
             }
         }       
-        
+        //despacha na jsp Excluir_Funcionario
         RequestDispatcher disp
             = request.getRequestDispatcher("Excluir_Funcionario.jsp");
         disp.forward(request, response);

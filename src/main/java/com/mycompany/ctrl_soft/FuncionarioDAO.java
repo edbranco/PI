@@ -37,20 +37,22 @@ public class FuncionarioDAO {
         return conn;
     }
 
-    public boolean cadastrarFuncionario(Funcionario funcionario) {
+    public boolean cadastrarFuncionario(Funcionario funcionario) { // instancia a classe
         boolean cadastrado = false;
+
         
         PreparedStatement stmt = null;
         Connection conn = null;
-        
+
         String sql = "INSERT INTO TB_Funcionario (ID_Filial, Usuario, Senha, NomeFuncionario, RA, CPF, "
-                    + "Telefone, Email, Endereco, Cidade, UF, Cargo) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "Telefone, Email, Endereco, Cidade, UF, Cargo) " // insere os atributos na Tabela Funcionário
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
+            //Obtendo Conexão com banco
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            
+            // Seta todos os atributos
             stmt.setLong(1, funcionario.getIdFilial());
             stmt.setString(2, funcionario.getUsuario());
             stmt.setString(3, funcionario.getSenha());
@@ -65,8 +67,8 @@ public class FuncionarioDAO {
             stmt.setString(12, funcionario.getCargo());
 
             stmt.executeUpdate();
-            
-            cadastrado = true;
+            // Executa 
+            cadastrado = true; // se o Funcionário for cadastrado retorna o Usuário Cadastrado
             return cadastrado;
 
         } catch (SQLException ex) {
@@ -93,10 +95,13 @@ public class FuncionarioDAO {
         }
     }
 
-    public void alterarFuncionario(Funcionario funcionario, int id) {
+    public void alterarFuncionario(Funcionario funcionario, int id) { //instancia a classe Funcionário 
+      //Obtendo Conexão com banco
         PreparedStatement stmt = null;
         Connection conn = null;
-
+        
+        
+//String SQL responsável pela alteração do Funcionário
         String sql = "UPDATE TB_Funcionario SET ID_Filial=?, NomeFuncionario=?, RA=?, CPF=?, Telefone=?, "
                 + "Email=?, Endereco=?, Cidade=?, UF=?, Cargo=? WHERE ID_Funcionario=?";
 
@@ -139,26 +144,27 @@ public class FuncionarioDAO {
         }
     }
 
-    public boolean excluirFuncionario(Funcionario funcionario, int id) {
+    public boolean excluirFuncionario(Funcionario funcionario, int id) { // instancia a classe Funcionario
         boolean cadastrado;
-        
+
         PreparedStatement stmt = null;
         Connection conn = null;
-
+        //String SQL Para efetuar a exclusão pega o Id do Usuário Logado e passa por parâmetro 
         String sql = "DELETE FROM TB_Funcionario WHERE ID_Funcionario = ?";
+
         try {
-            conn = obterConexao();
+            conn = obterConexao(); //obter a Conexão
             stmt = conn.prepareStatement(sql);
 
-            stmt.setInt(1, id);
+            stmt.setInt(1, id); //Seta a variável  
             int retorno = stmt.executeUpdate();
-            
-            if (retorno == 1){
+
+            if (retorno == 1) { // se a variável retornar o funcionario será excluído
                 cadastrado = true;
-            }else{
+            } else {
                 cadastrado = false;
             }
-            
+
             return cadastrado;
 
         } catch (SQLException ex) {
@@ -185,12 +191,11 @@ public class FuncionarioDAO {
         }
     }
 
-    //Função de consulta de Funcionarios
-    public Funcionario consultarFuncionario(Funcionario funcionario, int id) {
+    public Funcionario consultarFuncionario(Funcionario funcionario, int id) {// instancia a classe Funcionário
         PreparedStatement stmt = null;
         Statement stmt2 = null;
         Connection conn = null;
-        
+
         long idfilial = 0;
         String nome = "";
         int ra = 0;
@@ -201,18 +206,20 @@ public class FuncionarioDAO {
         String cidade = "";
         String uf = "";
         String cargo = "";
-        
+
+        //Seleciona o e tabela e passa o s Id por parâmetro
         String sql2 = "SELECT * FROM TB_Funcionario WHERE ID_Funcionario = " + id;
         try {
+            //Obtendo Conexão com banco
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
-            
-            if(resultados == null){
+
+            if (resultados == null) {
                 return null;
             }
-
-            while (resultados.next()) {   
+            //Enquanto houver resultados
+            while (resultados.next()) {
                 idfilial = Long.parseLong(resultados.getString("ID_Filial"));
                 nome = resultados.getString("NomeFuncionario");
                 ra = resultados.getInt("RA");
@@ -224,7 +231,7 @@ public class FuncionarioDAO {
                 uf = resultados.getString("UF");
                 cargo = resultados.getString("Cargo");
             }
-            
+            //Seta todos os atributos
             funcionario.setId(id);
             funcionario.setIdFilial(idfilial);
             funcionario.setNome(nome);
@@ -236,7 +243,7 @@ public class FuncionarioDAO {
             funcionario.setCidade(cidade);
             funcionario.setUf(uf);
             funcionario.setCargo(cargo);
-            
+            //retorna a consulta do Funcionário
             return funcionario;
 
         } catch (SQLException ex) {
@@ -262,17 +269,20 @@ public class FuncionarioDAO {
             }
         }
     }
+
     public List<Funcionario> ListarFuncionarios(String nome) {
+        //Obtendo Conexão com banco
         PreparedStatement stmt = null;
         Statement stmt2 = null;
         Connection conn = null;
 
-        String sql2 = "SELECT * FROM TB_Funcionario WHERE UPPER(NomeFuncionario) LIKE UPPER('%" + nome + "%')";
+        // efetua consulta por nome  do Funcionário da tabela selecionada
+        String sql2 = "SELECT * FROM TB_Funcionario WHERE NomeFuncionario LIKE LOWER('%" + nome + "%')";
         try {
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
-            
+
             List<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
 
             while (resultados.next()) {
@@ -289,11 +299,11 @@ public class FuncionarioDAO {
                 funcionarioTemp.setCidade(resultados.getString("Cidade"));
                 funcionarioTemp.setUf(resultados.getString("UF"));
                 funcionarioTemp.setCargo(resultados.getString("Cargo"));
-                
+
                 //Adiciona na lista o cliente temporário
                 listaFuncionarios.add(funcionarioTemp);
             }
-            
+
             return listaFuncionarios;
 
         } catch (SQLException ex) {
@@ -319,10 +329,10 @@ public class FuncionarioDAO {
             }
         }
     }
-    
+
     //Métodos para autenticação
-    
     public boolean autenticar(String usuarioLogin, String senha) {
+        //Obtendo Conexão com banco
         Statement stmt = null;
         Connection conn = null;
 
@@ -336,9 +346,11 @@ public class FuncionarioDAO {
             ResultSet resultados = stmt.executeQuery(sql);
 
             while (resultados.next()) {
+                //enqanto houver resultados pega a Usuário e Senha
                 String usuarioBanco = resultados.getString("Usuario");
                 String senhaBanco = resultados.getString("Senha");
 
+                //se a senha cadastrada no Banco for igual a senha inserida (atual) retorna true
                 if (senhaBanco.equals(senha)) {
                     return true;
                 }
@@ -365,8 +377,9 @@ public class FuncionarioDAO {
 
         return false;
     }
-    
+
     public Funcionario buscarUsuario(String email, String senha) {
+        //Obtendo Conexão com banco
         Statement stmt = null;
         Connection conn = null;
 
@@ -378,7 +391,7 @@ public class FuncionarioDAO {
             conn = obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
-
+       // enquanto houver resultados 
             while (resultados.next()) {
                 int id = resultados.getInt("ID_Funcionario");
                 String emailBanco = resultados.getString("Usuario");
@@ -387,16 +400,18 @@ public class FuncionarioDAO {
                 String nomeCompleto = resultados.getString("NomeFuncionario");
                 String cargoBanco = resultados.getString("cargo");
 
+                //Se a senha cadastrada no Banco for igual a senha inserida (atual)
                 if (senhaBanco.equals(senha)) {
                     Funcionario User = new Funcionario();
-                    
+                
                     User.setId(id);
                     User.setIdFilial(filialBanco);
                     User.setUsuario(emailBanco);
                     User.setSenha(senhaBanco);
                     User.setNome(nomeCompleto);
                     User.setCargo(cargoBanco);
-            
+                    
+                    
                     return User;
                 }
             }
@@ -427,10 +442,12 @@ public class FuncionarioDAO {
         Statement stmt = null;
         Connection conn = null;
 
+        //String SQL responsável pela busca do Usuário
         String sql = "select * from TB_Funcionario\n"
                 + "WHERE Usuario = '" + email + "'";
 
         try {
+            //Obtendo Conexão com banco
             conn = obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
@@ -444,13 +461,14 @@ public class FuncionarioDAO {
                 String cargoBanco = resultados.getString("cargo");
                 if (emailBanco.equals(email)) {
                     Funcionario User = new Funcionario();
-                    
+                    //se o email cadastrado no Banco for igual o email inserido (atual)
                     User.setId(id);
                     User.setIdFilial(filialBanco);
                     User.setUsuario(emailBanco);
                     User.setSenha(senhaBanco);
                     User.setNome(nomeCompleto);
                     User.setCargo(cargoBanco);
+                    
                 }
             }
 

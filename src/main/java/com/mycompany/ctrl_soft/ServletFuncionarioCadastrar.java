@@ -89,8 +89,10 @@ public class ServletFuncionarioCadastrar extends HttpServlet {
         String uf = request.getParameter("estadofuncionario");
         String cargo = request.getParameter("cargofuncionario");
 
+        
+        //instancia a classe funcionário
         Funcionario funcionario = new Funcionario();
-
+        //Seta todos os campos
         funcionario.setNome(nome);
         funcionario.setUsuario(usuario);      
         funcionario.setSenha(senha);
@@ -104,14 +106,19 @@ public class ServletFuncionarioCadastrar extends HttpServlet {
         funcionario.setUf(uf);
         funcionario.setCargo(cargo);
 
+        //instancia a FuncionárioDAO
         FuncionarioDAO dao = new FuncionarioDAO();
+        //cadastra o Funcionário
         dao.cadastrarFuncionario(funcionario);
 
+        //seta o atributo funcionario
         request.setAttribute("funcionario", funcionario);
         
         boolean mensagem = true;
+        //seta o atributo da mensagem
         request.setAttribute("mensagem", mensagem);
 
+        //despacha na jsp Cadastrar_Funcionario
         RequestDispatcher disp
             = request.getRequestDispatcher("Cadastrar_Funcionario.jsp");
         disp.forward(request, response);

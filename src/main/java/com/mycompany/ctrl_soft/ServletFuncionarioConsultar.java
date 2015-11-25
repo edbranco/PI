@@ -77,16 +77,20 @@ public class ServletFuncionarioConsultar extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         String nome = request.getParameter("nomefuncionario");
-
+        // instancia a classe Funcionário
         Funcionario funcionario = new Funcionario();
-        
+        //seta o nome do Funcionario
         funcionario.setNome(nome);
 
+        //instancia a a classeDAO do Funcionario
         FuncionarioDAO dao = new FuncionarioDAO();
+        //Lista o funcionario pelo nome
         List<Funcionario> listaFuncionarios = dao.ListarFuncionarios(nome);
-
+        
+        //seta o atributo listaFuncionarios
         request.setAttribute("listaFuncionarios", listaFuncionarios);
 
+        //Despacha jsp Consultar_Funcionario
         RequestDispatcher disp
                 = request.getRequestDispatcher("Consultar_Funcionario.jsp");
         disp.forward(request, response);
