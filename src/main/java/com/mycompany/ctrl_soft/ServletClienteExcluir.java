@@ -5,6 +5,8 @@
  */
 package com.mycompany.ctrl_soft;
 
+import com.mycompany.ctrl_soft.Cliente;
+import com.mycompany.ctrl_soft.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -36,6 +38,7 @@ public class ServletClienteExcluir extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        //Variáveis de verificação
         boolean mensagem = false;
         boolean semRegistro = false;
         boolean clienteExiste = false;
@@ -76,20 +79,26 @@ public class ServletClienteExcluir extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        
+        //Valores dos campos do formulário
         String idTexto = request.getParameter("idcliente");
         int id = Integer.parseInt(idTexto);
         String botaoValor = request.getParameter("btn-consultar");
 
+        //Cria um novo objeto cliente e outro de teste
         Cliente cliente = new Cliente();
         Cliente clienteTeste = new Cliente();        
 
-        ClienteDAO dao = new ClienteDAO();        
+        //Cria objeto do tipo DAO
+        ClienteDAO dao = new ClienteDAO();    
+        //Variáveis de verificação
         boolean semRegistro;
         boolean clienteExiste;
         
+        //Verifica qual dos botões foi acionado
         if (botaoValor.equals("Pesquisar")) {   
             clienteTeste = dao.consultarCliente(cliente, id);
-            
+            //Se a coluna UF do banco estiver vazia, significa q o cliente não existe
             if (clienteTeste.uf.equals("")) {
                 semRegistro = true;
                 clienteExiste = false;
@@ -104,10 +113,11 @@ public class ServletClienteExcluir extends HttpServlet {
             }
         }
         else {            
+            //Variável recebe resposta do método de Excluir
             boolean excluido = dao.excluirCliente(id);
             
             if (excluido == true) {
-                boolean mensagem = true;
+                boolean mensagem = true; //variável q mostra ou não mensagem
                 semRegistro = false;
                 request.setAttribute("mensagem", mensagem); 
                 request.setAttribute("semRegistro", semRegistro);

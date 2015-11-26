@@ -46,13 +46,15 @@ public class VendaDAO {
         double preco = venda.getPreco();
         preco *= qtde;
         
-        
+        //String que responsável pela query que será feita ao banco
         String sql = "INSERT INTO TB_Venda (ID_Filial, ID_Produto, ID_Cliente, ID_Funcionario, "
                 + "DataVenda, PrecoTotal) VALUES (?, ?, ?, ?, ?, ?)";
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);            
            
+            //Atribuindo ao banco os dados que estão no objeto Cliente
             stmt.setLong(1, venda.getId_filial());
             stmt.setLong(2, venda.getId_produto());
             stmt.setLong(3, venda.getId_cliente());
@@ -62,7 +64,10 @@ public class VendaDAO {
             stmt.executeUpdate();
             
             cadastrado = true;
+            
+            //variável q recebe o id do produto
             Long id_produto = venda.getId_produto();
+            //chama função que diminui quantidade da venda do estoque
             diminuirEstoque(qtde, id_produto);
             return cadastrado;
 
@@ -95,6 +100,7 @@ public class VendaDAO {
         Statement stmt2 = null;
         Connection conn = null;
 
+        //String que responsável pela query que será feita ao banco
         String sql2 = "Select tb_produto.NOMEPRODUTO,tb_filial.Nome_Filial,tb_funcionario.NomeFuncionario, tb_venda.precototal, tb_venda.DATAVENDA\n" +
             "from TB_PRODUTO \n" +
             "inner join tb_venda on tb_produto.id_produto = tb_venda.id_produto\n" +
@@ -102,14 +108,16 @@ public class VendaDAO {
             "inner join tb_funcionario on tb_funcionario.id_funcionario = tb_venda.id_funcionario"
                 + " Order by tb_filial.NOME_FILIAL";
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
 
+            //Objeto do tipo lista
             ArrayList<Venda> relatorio = new ArrayList<Venda>();
 
             
-            
+            //Enquanto houver vendas, estas serão adicionados à lista
             while (resultados.next()) {
             Venda venda = new Venda();  
                 venda.setNomeProduto(resultados.getString("NOMEPRODUTO"));
@@ -151,6 +159,8 @@ public class VendaDAO {
         PreparedStatement stmt = null;
         Statement stmt2 = null;
         Connection conn = null;
+        
+        //String que responsável pela query que será feita ao banco
         String sql2 = "Select tb_produto.NOMEPRODUTO,tb_filial.Nome_Filial,tb_funcionario.NomeFuncionario, tb_venda.precototal, tb_venda.DATAVENDA\n" +
 "            from TB_PRODUTO\n" +
 "            inner join tb_venda on tb_produto.id_produto = tb_venda.id_produto\n" +
@@ -159,12 +169,15 @@ public class VendaDAO {
 " \n" +
 "                            where TB_FILIAL.ID_FILIAL = "+id+ "";
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
             
+            //Novo objeto do tipo lista
             ArrayList<Venda> relatorioFilial = new ArrayList<Venda>();
             
+            //Enquanto houver vendas, estas serão adicionados à lista
             while (resultados.next()) {
             Venda venda = new Venda();  
                 venda.setNomeProduto(resultados.getString("NOMEPRODUTO"));
@@ -209,8 +222,10 @@ public class VendaDAO {
         
         Long id = null;
         
+        //String que responsável pela query que será feita ao banco
         String sql2 = "SELECT * FROM TB_Cliente WHERE CPF = '" + cpf + "'";
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
@@ -219,11 +234,13 @@ public class VendaDAO {
 //                return null;
 //            }
 
+            //Enquanto houver clientes, estes serão adicionados à lista
             while (resultados.next()) {          
                 id = resultados.getLong("ID_Cliente");
+                cliente.setId(id);
             }
-            //seta o id_filial para a classe de produto
-            cliente.setId(id);
+            
+            
             
             return cliente;
 
@@ -260,18 +277,21 @@ public class VendaDAO {
         int qtdeAtual = 0;
         int novaQtde = 0;
         
-        //Pegar qtde atual
+        //String que responsável pela query que será feita ao banco
         String sql2 = "SELECT Qtde FROM TB_Produto WHERE ID_Produto = " + id_produto;
         
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
 
+            //Pega quantidade atual em estoque
             while (resultados.next()) {          
                 qtdeAtual = resultados.getInt("Qtde");
             }
             
+            //Nova quantidade em estoque
             novaQtde = qtdeAtual - qtde;
             
         } catch (SQLException ex) {
@@ -281,11 +301,12 @@ public class VendaDAO {
         }           
             
             
-
+        //Faz Update no banco
         String sql = "UPDATE TB_Produto SET Qtde=? "
                 + "WHERE ID_Produto=?";
 
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
 
@@ -324,18 +345,22 @@ public class VendaDAO {
         int qtdeAtual = 0;
         int novaQtde = 0;
         
+        //String que responsável pela query que será feita ao banco
         String sql2 = "SELECT Qtde FROM TB_Produto WHERE ID_Produto = " + idProduto;
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
 
+            //Pega quantidade atual
             while (resultados.next()) {          
                 qtdeAtual = resultados.getInt("Qtde");
             }
             
             novaQtde = qtdeAtual - qtde;
             
+            //Verifica se é possível realizar compra
             if (novaQtde < 0) {
                 return false;
             } else {

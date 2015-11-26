@@ -44,12 +44,15 @@ public class ClienteDAO {
         PreparedStatement stmt = null;
         Connection conn = null;       
         
+        //String que responsável pela query que será feita ao banco
         String sql = "INSERT INTO TB_Cliente (NomeCliente, CPF, Telefone, Email, "
                 + "Endereco, Cidade, UF) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);            
            
+            //Atribuindo ao banco os dados que estão no objeto Cliente
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getCpf());
             stmt.setString(3, cliente.getTelefone());
@@ -57,10 +60,9 @@ public class ClienteDAO {
             stmt.setString(5, cliente.getEndereco());
             stmt.setString(6, cliente.getCidade());
             stmt.setString(7, cliente.getUf());
-//            stmt.setDate(5, new java.sql.Date(p.getDtCadastro().getTime()));
             stmt.executeUpdate();
-            System.out.println("Registro incluído com sucesso.");
             
+            //Depois de cadastrado, variável recebe e retorna true
             cadastrado = true;
             return cadastrado;
 
@@ -95,14 +97,18 @@ public class ClienteDAO {
         PreparedStatement stmt = null;
         Connection conn = null;       
         
+        //String que responsável pela query que será feita ao banco
         String sql = "DELETE FROM TB_Cliente WHERE ID_Cliente = ?";
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
                        
+            //Atribuindo ao banco os dados que estão no objeto Cliente
             stmt.setInt(1, id);
-            int retorno = stmt.executeUpdate();
+            int retorno = stmt.executeUpdate(); //executa query
             
+            //Retorno do banco
             if (retorno == 1){
                 cadastrado = true;
             }else{
@@ -141,6 +147,7 @@ public class ClienteDAO {
         Statement stmt2 = null;
         Connection conn = null;
         
+        //Variáveis que receberão resultados do banco
         String nome = "";
         String cpf = "";
         String telefone = "";
@@ -149,8 +156,10 @@ public class ClienteDAO {
         String cidade = "";
         String uf = "";
         
+        //String que responsável pela query que será feita ao banco
         String sql2 = "SELECT * FROM TB_Cliente WHERE ID_Cliente = " + id;
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
@@ -158,7 +167,8 @@ public class ClienteDAO {
             if(resultados == null){
                 return null;
             }
-
+            
+            //Quando achar algum cliente, seta as variáveis
             while (resultados.next()) {                
                 nome = resultados.getString("NomeCliente");
                 cpf = resultados.getString("CPF");
@@ -168,7 +178,7 @@ public class ClienteDAO {
                 cidade = resultados.getString("Cidade");
                 uf = resultados.getString("UF");
             }
-            //seta o id_filial para a classe de produto
+            
             cliente.setId(id);
             cliente.setNome(nome);
             cliente.setCpf(cpf);
@@ -209,13 +219,16 @@ public class ClienteDAO {
         PreparedStatement stmt = null;
         Connection conn = null;       
         
+        //String que responsável pela query que será feita ao banco
         String sql = "UPDATE TB_Cliente SET NomeCliente=?, CPF=?, Telefone=?, Email=?, Endereco=?, "
                 + "Cidade=?, UF=? WHERE ID_Cliente = ?";
         
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
                        
+            //Atribuindo ao banco os dados que estão no objeto Cliente
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getCpf());
             stmt.setString(3, cliente.getTelefone());
@@ -254,14 +267,18 @@ public class ClienteDAO {
         Statement stmt2 = null;
         Connection conn = null;
         
+        //String que responsável pela query que será feita ao banco
         String sql2 = "SELECT * FROM TB_Cliente WHERE UPPER(NomeCliente) LIKE UPPER('%" + nome + "%')";
         try {
+            //Obtendo conexão do banco
             conn = obterConexao();
             stmt2 = conn.createStatement();
             ResultSet resultados = stmt2.executeQuery(sql2);
 
+            //Objeto do tipo List
             List<Cliente> listaClientes = new ArrayList<Cliente>();
             
+            //Enquanto houver clientes, estes serão adicionados à lista
             while (resultados.next()) {
                 //Cliente temporário
                 Cliente clienteTemp = new Cliente();

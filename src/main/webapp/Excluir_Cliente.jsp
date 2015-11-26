@@ -51,6 +51,9 @@
         </div>
                     
         <div class="consulta-excluir">
+            <div>
+                <h2>Informações do Cliente</h2>
+            </div>
             <p>Nome: ${cliente.nome}</p>
             <p>CPF: ${cliente.cpf}</p>
             <p>Telefone: ${cliente.telefone}</p>

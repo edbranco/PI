@@ -39,7 +39,7 @@ public class ServletVendaEfetuar extends HttpServlet {
         
         ProdutoDAO produtoDAO = new ProdutoDAO();
    
-        
+        //Variáveis de verificação
         boolean mensagem = false;
         boolean mensagem2 = false;
         boolean clienteExiste = true;
@@ -99,9 +99,11 @@ public class ServletVendaEfetuar extends HttpServlet {
         //Cliente a ser verificado a existência
         Cliente cliente = new Cliente();
         
+        //Consultar cliente pelo CPF
         dao.consultarCpfCliente(cliente, cpf);
         prodEmEstoque = dao.consultarProduto(idProduto, qtde);
         
+        //Verifica se cliente existe
         if (cliente.id != null) {
             if (prodEmEstoque == false) {
                 clienteExiste = true;

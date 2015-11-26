@@ -35,6 +35,8 @@ public class ServletClienteCadastrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        //Variáveis de verificação
         boolean mensagem = false;
         
         request.setAttribute("mensagem", mensagem);
@@ -71,6 +73,8 @@ public class ServletClienteCadastrar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        
+        //Valores dos campos do formulário
         String nome = request.getParameter("nomeCliente");
         String cpf = request.getParameter("cpfCliente");
         String telefone = request.getParameter("telefoneCliente");
@@ -79,8 +83,10 @@ public class ServletClienteCadastrar extends HttpServlet {
         String cidade = request.getParameter("cidadeCliente");
         String uf = request.getParameter("estadoCliente");
 
+        //Cria um novo objeto cliente
         Cliente cliente = new Cliente();
         
+        //Setando novo cliente
         cliente.setNome(nome);
         cliente.setCpf(cpf);
         cliente.setTelefone(telefone);
@@ -88,11 +94,13 @@ public class ServletClienteCadastrar extends HttpServlet {
         cliente.setEndereco(endereco);
         cliente.setCidade(cidade);
         cliente.setUf(uf);
-//        cliente.setDtCadastro(new Date());
 
+        //Cria objeto do tipo DAO
         ClienteDAO dao = new ClienteDAO();
+        //Variável recebe resposta se cliente foi ou não cadastrado
         boolean cadastrado = dao.cadastrarCliente(cliente);
         
+        //Se o cliente for cadastrado mostra mensagem de sucesso
         if (cadastrado == true) {
             boolean mensagem = true;
             request.setAttribute("mensagem", mensagem);

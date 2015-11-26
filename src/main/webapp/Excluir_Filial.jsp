@@ -51,6 +51,9 @@
         </div>
                     
         <div class="consulta-excluir">
+            <div>
+                <h2>Informações da Filial</h2>
+            </div>
             <p>Nome: ${filial.nomefilial}</p>
             <p>CNPJ: ${filial.cnpj}</p>
             <p>UF: ${filial.uf}</p>

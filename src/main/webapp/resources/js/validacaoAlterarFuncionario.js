@@ -5,6 +5,7 @@
  */
 window.addEventListener("load", carregar);
 
+//variáveis de verificação
 var altera = false;
 
 var pesquisa = false;
@@ -12,6 +13,7 @@ var pesquisa = false;
 var idErrado;
 
 function carregar (evt) {
+    //Estado dos campos ao carregar a página
     pesquisa = "false";
     document.getElementById('nomefuncionario').disabled = true;
     document.getElementById('rafuncionario').disabled = true;
@@ -24,6 +26,7 @@ function carregar (evt) {
     document.getElementById('estadofuncionario').disabled = true;
     document.getElementById('cidadefuncionario').disabled = true;
     
+    //Habilita campos para digitação
     pesquisa = document.getElementById('habilitado').value;  
     if (pesquisa === "true") {
         document.getElementById('nomefuncionario').disabled = false;
@@ -45,6 +48,7 @@ function carregar (evt) {
         document.getElementById("alerta-registro").classList.add("desaparecer");
     }
     
+    //Eventos de clique
     document.getElementById('btn-alterar').addEventListener("click", alteraEVerdadeiro);
     document.getElementById('btn-pesquisar').addEventListener("click", alteraEFalso);
 }
@@ -91,6 +95,7 @@ function alteraEVerdadeiro() {
     }
 }
 
+//Função que valida campos
 function validarAlterarFuncionario() {
     if (altera === true && idErrado === false) {
         //Campos
@@ -118,6 +123,7 @@ function validarAlterarFuncionario() {
             nomebool = false;
         }
         
+        //Se usuário clica em alterar sem pesquisar
         if (document.getElementById('nomefuncionario').hasAttribute('disabled')) {
             document.getElementById("alerta-pes-funcionario").classList.add("aparecer");
             document.getElementById("suc-alt-funcionario").classList.add("desaparecer");
@@ -140,19 +146,3 @@ function validarAlterarFuncionario() {
         return false;
     }
 };
-
-function erroNome() {
-    var nome = document.getElementById('nomefuncionario').value;
-    
-    //Validar nome
-    var nomebool;    
-    var letters = /^[A-Za-z]+$/;
-    if(nome.match(letters)) {
-        
-    } else {
-        document.getElementById("err-campo-nome").classList.add("aparecer");
-    }
-}
-
-
-

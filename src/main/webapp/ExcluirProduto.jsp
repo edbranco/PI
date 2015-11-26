@@ -51,6 +51,9 @@
         </div>
                     
         <div class="consulta-excluir">
+            <div>
+                <h2>Informações do Produto</h2>
+            </div>
             <p>Nome: ${produto.nome}</p>
             <p>Marca: ${produto.marca}</p>
             <p>Preço: ${produto.preco}</p>

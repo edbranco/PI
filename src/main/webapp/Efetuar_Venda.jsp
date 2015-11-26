@@ -28,31 +28,30 @@
                     <input type="hidden" name="idfilial" id="idfilial" value="${produto.id_filial }">
                     <input type="hidden" name="idfuncionario" id="idfuncionario" value="${usuario.id}">
                     
-                    <p>
+                    <p class="campos-esq">
                         <label for="vendaproduto">ID:</label><br />
-                        <select name="vendaproduto" id="vendaproduto" class="ipt-select">                    
-                           
-                               <option value="${produto.id}">${produto.id}</option>
-                                            
-                        </select>
+                        <input type="text" name="vendaproduto" id="vendaproduto" value="${produto.id}" class="form-control" readonly />
                     </p>
                     
                     <p class="ipt-curto ipt-curto-1">
                         <label for="vendapreco">Preço R$:</label><br />
-                        <input type="text" name="vendapreco" id="vendapreco" value="${produto.preco}"  required />
+                        <input type="text" name="vendapreco" id="vendapreco" value="${produto.preco}" class="form-control" readonly />
                     </p>
                     
-                    <p>
+                    <p class="campos-esq">
                         <label for="vendacliente">CPF Cliente:</label><br />
-                        <input type="text" name="vendacliente" id="vendacliente" class="ipt-largo" required />
+                        <input type="text" name="vendacliente" id="vendacliente" class="form-control" required />
                     </p>
                     
                     <p class="ipt-curto">
                         <label for="qtdeproduto">Quantidade:</label><br />
-                        <input type="number" step="1" name="qtdeproduto" id="qtdeproduto" required />
+                        <input type="number" step="1" name="qtdeproduto" id="qtdeproduto" class="form-control" required />
                     </p><br />
                     
-                    <input type="submit" name="vender" value="Confirmar" />
+                    <div class="div-botoes">
+                        <input class="btn btn-default" type="submit" name="vender" value="Confirmar" />
+                        <a href="Menu.jsp"><input class="btn btn-default" type="button" value="Cancelar"/></a>
+                    </div>
                 </fieldset>
             </form>
         </div>
@@ -68,7 +67,7 @@
         
         
         
-         <!-- Scripts: jQuery e Bootstrap -->
+        <!-- Scripts: jQuery e Bootstrap -->
         <script type="text/javascript" src="${pathResources}/js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pathResources}/js/jquery.maskedinput.js"></script>

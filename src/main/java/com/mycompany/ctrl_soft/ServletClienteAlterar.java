@@ -36,6 +36,7 @@ public class ServletClienteAlterar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        //Variáveis de verificação
         boolean mensagem = false;
         boolean habilitado = false;
         boolean semRegistro = false;
@@ -77,22 +78,27 @@ public class ServletClienteAlterar extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
+        //Valores dos campos do formulário
         String idTexto = request.getParameter("idCliente");
         String botaoValor = request.getParameter("btn-consultar");
         int id = Integer.parseInt(idTexto);
 
+        //Cria um novo objeto cliente e outro de teste
         Cliente cliente = new Cliente();
         Cliente clienteTeste = new Cliente();
 
+        //Cria objeto do tipo DAO
         ClienteDAO dao = new ClienteDAO();
+        //variável que indica se há registros
         boolean semRegistro;
         
+        //Verifica qual dos botões foi acionado
         if (botaoValor.equals("Pesquisar")) {   
             clienteTeste = dao.consultarCliente(cliente, id);
-            
+            //Se a coluna UF do banco estiver vazia, significa q o cliente não existe
             if (clienteTeste.uf.equals("")) {
                 semRegistro = true;
-                boolean habilitado = false;
+                boolean habilitado = false; //variável que habilita campos
                 request.setAttribute("habilitado", habilitado);
                 request.setAttribute("semRegistro", semRegistro);
             } else {
@@ -103,6 +109,7 @@ public class ServletClienteAlterar extends HttpServlet {
             }
         }
         else {
+            
             String nome = request.getParameter("nomeCliente");
             String cpf = request.getParameter("cpfCliente");
             String telefone = request.getParameter("telefoneCliente");
@@ -111,6 +118,7 @@ public class ServletClienteAlterar extends HttpServlet {
             String cidade = request.getParameter("cidadeCliente");
             String uf = request.getParameter("estadoCliente");
 
+            //Setando novo cliente
             cliente.setId(id);
             cliente.setNome(nome);
             cliente.setCpf(cpf);
@@ -120,9 +128,10 @@ public class ServletClienteAlterar extends HttpServlet {
             cliente.setCidade(cidade);
             cliente.setUf(uf);
 
+            //Objeto DAO chama função alterar
             dao.alterarCliente(cliente, id);
             
-            boolean mensagem = true;
+            boolean mensagem = true; //variável q mostra ou não mensagem
             request.setAttribute("mensagem", mensagem);
         }
 

@@ -99,6 +99,16 @@ form p {
 
 .alert-success {
     margin: 0 auto;
+    width: 360px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.alert-warning {
+    margin: 0 auto;
+    width: 360px;
+    font-size: 13px;
+    text-align: center;
 }
 
 .ipt-id-func {
@@ -120,10 +130,8 @@ form p {
 }
 
 #form-login {
-/*    margin: 0 auto;
-    width: 400px;*/
-    border-left: 3px solid black;
-    border-right: 3px solid black;
+    border-left: 3px solid #DDD;
+    border-right: 3px solid #DDD;
 }
 
 #form-login-campos {
@@ -134,13 +142,13 @@ form p {
 }
 
 #login-titulo {
-    border: 3px solid black;
+    border: 3px solid #DDD;
     height: 40px;
 }
 
 #form-login-botoes {
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
+    border-top: 3px solid #DDD;
+    border-bottom: 3px solid #DDD;
     height: 55px;
     padding-top: 8px;
     padding-right: 31px;
@@ -148,7 +156,9 @@ form p {
 }
 
 #login-titulo p {
-    margin: 8px 5px 0;
+    margin: 3px 5px 0;
+    font-size: 21px;
+    text-align: center;
 }
 
 
@@ -196,4 +206,37 @@ p, legend span, td {
 
 thead {
     color: aliceblue;
+}
+
+
+
+#box-erro-btn {    
+    margin: 40px auto 0;
+    width: 400px;
+}
+
+#box-erro-btn button {
+    width: 400px;
+    height: 100px;
+    font-size: 25px;
+}
+
+.modal-body p {
+    color: #002b80;
+}
+
+.consulta-excluir {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.consulta-excluir h2 {
+    margin-left: 15px;
+    color: #d9d9d9;
+    font-size: 20px;
+}
+
+.consulta-excluir div {
+    width: 263px;
+    margin: 0 auto;
 }

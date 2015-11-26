@@ -51,6 +51,9 @@
         </div>
                     
         <div class="consulta-excluir">
+            <div>
+                <h2>Informações do Funcionário</h2>
+            </div>
             <p>Nome: ${funcionario.nome}</p>
             <p>RA: ${funcionario.ra}</p>
             <p>CPF: ${funcionario.cpf}</p>

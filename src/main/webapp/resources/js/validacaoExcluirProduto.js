@@ -5,6 +5,7 @@
  */
 window.addEventListener("load", carregar);
 
+//variáveis de verificação
 var exclui = false;
 
 var idErrado = false;
@@ -23,6 +24,7 @@ function carregar (evt) {
         clienteInfo[0].style.display = "block";
     }
     
+    //Eventos de clique
     document.getElementById('btn-excluir').addEventListener("click", excluiEVerdadeiro);
     document.getElementById('btn-pesquisar').addEventListener("click", excluiEFalso);
 }
@@ -51,6 +53,7 @@ function excluiEVerdadeiro() {
     exclui = true;    
 }
 
+//Função que valida campo
 function validarExcluirProduto() {
     if (exclui === true && idErrado === false) {
         //Campos

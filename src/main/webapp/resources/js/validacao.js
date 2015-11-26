@@ -29,23 +29,6 @@ function validarCampos() {
         nomebool = false;
     }
 
-    //Validar CPF
-//    var cpfbool;    
-//    if (cpf.length < 14) {
-//        cpfbool = false;
-//        document.getElementById("err-campo-cpf").classList.add("aparecer");
-//    } else {
-//        cpfbool = true;
-//    }
-    
-    //Validar Telefone
-//    var telefonebool;    
-//    if (telefone.length < 10 || telefone.length > 11) {
-//        telefonebool = false;
-//        document.getElementById("err-campo-fone").classList.add("aparecer");
-//    } else {
-//        telefonebool = true;
-//    }
     
     //Checa todos os campos
     if (nomebool === true && brancobool === true) {
@@ -80,6 +63,7 @@ function validarIdAlterar() {
     }
 };
 
+//Função que valida campos de cadastro
 function validarFilialCadastrar() {
     //Campos
     var estado = document.getElementById('uf').value;
@@ -105,7 +89,7 @@ function validarFilialCadastrar() {
 };
 
 
-
+//Função que valida campos de cadastro
 function validarFuncionarioCadastrar() {
     //Campos
     var nome = document.getElementById('nomefuncionario').value;

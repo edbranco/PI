@@ -76,13 +76,18 @@ public class ServletClienteConsultar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        
+        //Valores dos campos do formulário
         String nome = request.getParameter("nomeCliente");
 
+        //Cria um novo objeto cliente
         Cliente cliente = new Cliente();
         
         cliente.setNome(nome);
 
+        //Cria objeto do tipo DAO e chama função de consulta
         ClienteDAO dao = new ClienteDAO();
+        //Lista recebe os resultados da pesquisa
         List<Cliente> listaClientes = dao.listarCliente(nome);
 
         request.setAttribute("listaClientes", listaClientes);

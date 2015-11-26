@@ -5,6 +5,7 @@
  */
 window.addEventListener("load", carregar);
 
+//variáveis de verificação
 var altera = false;
 
 var pesquisa = false;
@@ -12,6 +13,7 @@ var pesquisa = false;
 var idErrado;
 
 function carregar (evt) {
+    //Estado dos campos ao carregar a página
     pesquisa = "false";
     document.getElementById('nomecliente').disabled = true;
     document.getElementById('cpfcliente').disabled = true;
@@ -21,6 +23,7 @@ function carregar (evt) {
     document.getElementById('cidadecliente').disabled = true;
     document.getElementById('estadocliente').disabled = true;
     
+    //Habilita campos para digitação
     pesquisa = document.getElementById('habilitado').value;  
     if (pesquisa === "true") {
         document.getElementById('nomecliente').disabled = false;
@@ -39,6 +42,7 @@ function carregar (evt) {
         document.getElementById("alerta-registro").classList.add("desaparecer");
     }
     
+    //Eventos de clique
     document.getElementById('btn-alterar').addEventListener("click", alteraEVerdadeiro);
     document.getElementById('btn-pesquisar').addEventListener("click", alteraEFalso);
 }
@@ -85,6 +89,7 @@ function alteraEVerdadeiro() {
     }
 }
 
+//Função que valida campos
 function validarAlterarCliente() {
     if (altera === true && idErrado === false) {
         //Campos

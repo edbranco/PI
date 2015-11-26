@@ -34,6 +34,7 @@ public class ServletCarregarRelatorio extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
+        //Lista de filiais
        FilialDAO filial = new FilialDAO();
    
         List<Filial> listaFilial = filial.listarFilial();

@@ -33,7 +33,9 @@ public class ServletPreVendaProduto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-     boolean mensagem = false;
+        
+        //Variáveis de verificação
+        boolean mensagem = false;
         boolean habilitado = false;
         boolean semRegistro = false;
         
@@ -73,19 +75,24 @@ public class ServletPreVendaProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
+        //Valores dos campos do formulário
         String idTexto = request.getParameter("idProduto");
         String botaoValor = request.getParameter("btn-consultar");
         int id = Integer.parseInt(idTexto);
 
+        //Cria um novo objeto produto e outro de teste
         Produto produto = new Produto();
         Produto produtoTeste = new Produto();
 
+        //Cria objeto do tipo DAO
         ProdutoDAO dao = new ProdutoDAO();
+        //variável que indica se há registros
         boolean semRegistro;
         
+        //Verifica qual dos botões foi acionado
         if (botaoValor.equals("Pesquisar")) {   
             produtoTeste = dao.consultarProduto(produto, id);
-            
+            //Se a coluna nome do banco estiver vazia, significa q o produto não existe
             if (produtoTeste.nome.equals("")) {
                 semRegistro = true;
                 boolean habilitado = false;
@@ -106,6 +113,7 @@ public class ServletPreVendaProduto extends HttpServlet {
             String preco = request.getParameter("precoProduto");
             int qtde = Integer.parseInt(request.getParameter("qtdeProduto"));
             
+            //Setando novo cliente
             produto.setId_filial(idfilial);
             produto.setId(id);
             produto.setNome(nome);

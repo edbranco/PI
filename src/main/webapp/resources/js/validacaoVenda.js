@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+
 window.addEventListener("load", carregar);
 
+//variáveis de verificação
 var vende = false;
 
 var pesquisa = false;
@@ -13,13 +15,7 @@ var pesquisa = false;
 var idErrado;
 
 function carregar (evt) {
-//    if () {
-        document.getElementById('nomeproduto').disabled = true;
-        document.getElementById('marcaproduto').disabled = true;
-        document.getElementById('precoproduto').disabled = true;
-        document.getElementById('qtdeproduto').disabled = true;
-//    }
-    
+  
     //Mensagem caso pesquisa não retorne nada     
     if (document.getElementById('semRegistro').value === "true") {
         document.getElementById("alerta-registro").classList.add("aparecer");
@@ -27,6 +23,7 @@ function carregar (evt) {
         document.getElementById("alerta-registro").classList.add("desaparecer");
     }
     
+    //Eventos de clique
     document.getElementById('btn-alterar').addEventListener("click", vendeEVerdadeiro);
     document.getElementById('btn-pesquisar').addEventListener("click", vendeEFalso);
 }
@@ -74,7 +71,7 @@ function vendeEVerdadeiro() {
     }
 }
 
-
+//funcao que valida camp
 function validarVender() {
     if (vende === true && idErrado === false) {
         //Campos
@@ -91,9 +88,9 @@ function validarVender() {
             idbool = false;
         }
         
-        if (document.getElementById('nomeproduto').hasAttribute('disabled')) {
+        if (document.getElementById('nomeproduto').value === "") {
             document.getElementById("alerta-pes-produto").classList.add("aparecer");
-            document.getElementById("suc-alt-produto").classList.add("desaparecer");
+            document.getElementById("err-campo-id").classList.add("desaparecer");
             document.getElementById("alerta-registro").classList.add("desaparecer");
             return false;
         }
