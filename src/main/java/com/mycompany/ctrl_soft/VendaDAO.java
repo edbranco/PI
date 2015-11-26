@@ -101,12 +101,13 @@ public class VendaDAO {
         Connection conn = null;
 
         //String que responsável pela query que será feita ao banco
-        String sql2 = "Select tb_produto.NOMEPRODUTO,tb_filial.Nome_Filial,tb_funcionario.NomeFuncionario, tb_venda.precototal, tb_venda.DATAVENDA\n" +
-            "from TB_PRODUTO \n" +
-            "inner join tb_venda on tb_produto.id_produto = tb_venda.id_produto\n" +
-            "inner join tb_Filial on tb_filial.id_filial = tb_venda.id_filial\n" +
-            "inner join tb_funcionario on tb_funcionario.id_funcionario = tb_venda.id_funcionario"
-                + " Order by tb_filial.NOME_FILIAL";
+        String sql2 = "Select tb_cliente.NOMECLIENTE, tb_produto.NOMEPRODUTO,tb_filial.Nome_Filial,tb_funcionario.NomeFuncionario, tb_venda.precototal, tb_venda.DATAVENDA\n" +
+"            from TB_PRODUTO \n" +
+"            inner join tb_venda on tb_produto.id_produto = tb_venda.id_produto\n" +
+"            inner join tb_Filial on tb_filial.id_filial = tb_venda.id_filial\n" +
+"            inner join tb_funcionario on tb_funcionario.id_funcionario = tb_venda.id_funcionario\n" +
+"            inner join tb_cliente on tb_cliente.ID_CLIENTE = tb_venda.ID_CLIENTE\n" +
+"               Order by tb_filial.NOME_FILIAL";
         try {
             //Obtendo conexão do banco
             conn = obterConexao();
@@ -120,6 +121,7 @@ public class VendaDAO {
             //Enquanto houver vendas, estas serão adicionados à lista
             while (resultados.next()) {
             Venda venda = new Venda();  
+                venda.setNomeCliente(resultados.getString("NOMECLIENTE"));
                 venda.setNomeProduto(resultados.getString("NOMEPRODUTO"));
                 venda.setNomeFilial(resultados.getString("NOME_FILIAL"));
                 venda.setNomeFuncionario(resultados.getString("NOMEFUNCIONARIO"));
@@ -161,13 +163,15 @@ public class VendaDAO {
         Connection conn = null;
         
         //String que responsável pela query que será feita ao banco
-        String sql2 = "Select tb_produto.NOMEPRODUTO,tb_filial.Nome_Filial,tb_funcionario.NomeFuncionario, tb_venda.precototal, tb_venda.DATAVENDA\n" +
-"            from TB_PRODUTO\n" +
+        String sql2 = "Select tb_cliente.NOMECLIENTE, tb_produto.NOMEPRODUTO,tb_filial.Nome_Filial,tb_funcionario.NomeFuncionario, tb_venda.precototal, tb_venda.DATAVENDA\n" +
+"            from TB_PRODUTO \n" +
 "            inner join tb_venda on tb_produto.id_produto = tb_venda.id_produto\n" +
-"           inner join tb_Filial on tb_filial.id_filial = tb_venda.id_filial\n" +
-"           inner join tb_funcionario on tb_funcionario.id_funcionario = tb_venda.id_funcionario\n" +
-" \n" +
-"                            where TB_FILIAL.ID_FILIAL = "+id+ "";
+"            inner join tb_Filial on tb_filial.id_filial = tb_venda.id_filial\n" +
+"            inner join tb_funcionario on tb_funcionario.id_funcionario = tb_venda.id_funcionario\n" +
+"            inner join tb_cliente on tb_cliente.ID_CLIENTE = tb_venda.ID_CLIENTE\n" +
+"              \n" +
+"          where TB_FILIAL.ID_FILIAL = "+id+"\n" +
+"                 Order by tb_filial.NOME_FILIAL";
         try {
             //Obtendo conexão do banco
             conn = obterConexao();
@@ -180,6 +184,7 @@ public class VendaDAO {
             //Enquanto houver vendas, estas serão adicionados à lista
             while (resultados.next()) {
             Venda venda = new Venda();  
+                venda.setNomeCliente(resultados.getString("NOMECLIENTE"));
                 venda.setNomeProduto(resultados.getString("NOMEPRODUTO"));
                 venda.setNomeFilial(resultados.getString("NOME_FILIAL"));
                 venda.setNomeFuncionario(resultados.getString("NOMEFUNCIONARIO"));

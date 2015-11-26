@@ -39,8 +39,10 @@
                             <th class="cpo-id">Nome Produto</th>
                             <th class="cpo-id">Preço Total Venda</th>
                             <th class="cpo-id">Data</th>
+                            <th class="cpo-id">Nome Cliente</th>
                             <th class="cpo-id">Nome Funcionario</th>
-                            <th class="cpo-id">Nome Filial</th>               
+                            <th class="cpo-id">Nome Filial</th>
+                            
                         </tr>
                     </thead>
                     <c:forEach items="${relatorio}" var="relatorio" varStatus="stat">
@@ -48,6 +50,7 @@
                             <td><c:out value="${relatorio.nomeProduto}" /></td>
                             <td>R$<c:out value="${relatorio.preco}" /> </td>
                             <td><c:out value="${relatorio.dt_cadastro}" /></td>
+                            <td><c:out value="${relatorio.nomeCliente}" /></td>
                             <td><c:out value="${relatorio.nomeFuncionario}" /></td>
                             <td><c:out value="${relatorio.nomeFilial}" /></td>               
                         </tr>

@@ -48,6 +48,7 @@
                             <th class="cpo-id">Nome Produto</th>
                             <th class="cpo-id">Preço Total Venda</th>
                             <th class="cpo-id">Data</th>
+                            <th class="cpo-id">Nome Cliente</th>
                             <th class="cpo-id">Nome Funcionario</th>
                             <th class="cpo-id">Nome Filial</th>
                         </tr>
@@ -57,6 +58,7 @@
                             <td><c:out value="${relatorioFilial.nomeProduto}" /></td>
                             <td>R$<c:out value="${relatorioFilial.preco}" /> </td>
                             <td><c:out value="${relatorioFilial.dt_cadastro}" /></td>
+                            <td><c:out value="${relatorioFilial.nomeCliente}" /></td>
                             <td><c:out value="${relatorioFilial.nomeFuncionario}" /></td>
                             <td><c:out value="${relatorioFilial.nomeFilial}" /></td>
                         </tr>
