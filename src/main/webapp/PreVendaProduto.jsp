@@ -33,13 +33,16 @@
                         <label for="idproduto">Digite o ID do Produto:</label>
                         <input type="text" name="idProduto" id="idproduto" value="${produto.id}" class="form-control" required />
                     </p>
-                    <div id="err-campo-id" class="alert alert-danger">
-                        <strong>Atenção!</strong> Digite apenas números inteiros.
-                    </div>
+                    
                     <p>
                         <label for="nomeproduto">Nome:</label><br />
                         <input type="text" name="nomeProduto" id="nomeproduto" value="${produto.nome}" class="form-control" readonly />
                     </p>
+                    
+                    <div id="err-campo-id" class="alert alert-danger">
+                        <strong>Atenção!</strong> Digite apenas números inteiros.
+                    </div>
+                    
                     <p class="campos-esq">
                         <label for="marcaproduto">Marca:</label><br />
                         <input type="text" name="marcaProduto" id="marcaproduto" value="${produto.marca}" class="form-control" readonly />

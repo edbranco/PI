@@ -45,7 +45,7 @@
                     
                     <p class="ipt-curto">
                         <label for="qtdeproduto">Quantidade:</label><br />
-                        <input type="number" step="1" name="qtdeproduto" id="qtdeproduto" class="form-control" required />
+                        <input type="number" min="1" step="1" name="qtdeproduto" id="qtdeproduto" class="form-control" required />
                     </p><br />
                     
                     <div class="div-botoes">

@@ -29,13 +29,16 @@
                         <label for="nomefuncionario">Nome:</label><br />
                         <input type="text" maxlength="100" name="nomefuncionario" id="nomefuncionario" class="ipt-largo form-control" required />
                     </p>
-                    <div id="err-campo-nome" class="alert alert-danger">
-                        <strong>Atenção!</strong> Digite apenas letras.
-                    </div>
+                    
                     <p>
                         <label for="nomeusuario">Usuario:</label><br />
                         <input type="text" maxlength="20" name="nomeusuario" id="nomeusuario" class="ipt-largo form-control" required />
                     </p>
+                    
+                    <div id="err-campo-nome" class="alert alert-danger">
+                        <strong>Atenção!</strong> Digite apenas letras.
+                    </div>
+                    
                     <p class="campos-esq">
                         <label for="senhausuario">Senha:</label><br />
                         <input type="password" maxlength="20" name="senhausuario" id="senhausuario" class="ipt-largo form-control" required />

@@ -29,13 +29,16 @@
                     <label for="nomecliente">Nome:</label><br />
                     <input type="text" maxlength="100" name="nomeCliente" id="nomecliente" class="ipt-largo form-control" required />
                 </p>
-                <div id="err-campo-nome" class="alert alert-danger">
-                    <strong>Atenção!</strong> Digite apenas letras.
-                </div>
+                
                 <p>
                     <label for="cpfcliente">CPF:</label><br />
                     <input type="cpf" name="cpfCliente" id="cpfcliente" class="ipt-largo form-control" required />
                 </p>
+                
+                <div id="err-campo-nome" class="alert alert-danger">
+                    <strong>Atenção!</strong> Digite apenas letras.
+                </div>
+                
                 <div id="err-campo-cpf" class="alert alert-danger">
                     <strong>Atenção!</strong> CPF inválido.
                 </div>
